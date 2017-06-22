@@ -1,8 +1,8 @@
 package com.divae.firstspirit.access.editor.value;
 
 import com.divae.firstspirit.MockTest;
-import com.divae.firstspirit.access.editor.fslist.IdProvidingFormDataMock;
-import com.divae.firstspirit.access.store.templatestore.SectionTemplateMock.SectionTemplateBuilder;
+import com.divae.firstspirit.access.editor.fslist.IdProvidingFormDataMock.IdProvidingFormDataBuilder;
+import com.divae.firstspirit.access.store.templatestore.SectionTemplateMock.TruncatedSectionTemplateBuilder;
 import de.espirit.firstspirit.access.editor.fslist.IdProvidingFormData;
 import de.espirit.firstspirit.access.editor.value.SectionFormsProducer;
 import de.espirit.firstspirit.access.store.templatestore.SectionTemplate;
@@ -28,9 +28,9 @@ public class SectionFormsProducerMockTest extends MockTest {
 
 	@Test
 	public void testCreates() {
-		SectionTemplateBuilder sectionTemplateBuilder = sectionTemplateWith("test", 2, TEMPLATESTORE, null);
-		IdProvidingFormDataMock.IdProvidingFormDataBuilder idProvidingFormDataBuilder = idProvidingFormDataWith(0L);
-		SectionFormsProducer sectionFormsProducer = build(sectionFormsProducerWith().creates(() -> idProvidingFormDataBuilder, sectionTemplateBuilder));
+        TruncatedSectionTemplateBuilder<SectionTemplate> sectionTemplateBuilder = sectionTemplateWith("test", 2, TEMPLATESTORE, null);
+        IdProvidingFormDataBuilder idProvidingFormDataBuilder = idProvidingFormDataWith(0L);
+        SectionFormsProducer sectionFormsProducer = build(sectionFormsProducerWith().creates(() -> idProvidingFormDataBuilder, sectionTemplateBuilder));
 		IdProvidingFormData idProvidingFormData = build(idProvidingFormDataBuilder);
 		SectionTemplate sectionTemplate = build(sectionTemplateBuilder);
 		assertThat(sectionFormsProducer.create(sectionTemplate), is(idProvidingFormData));
@@ -38,8 +38,8 @@ public class SectionFormsProducerMockTest extends MockTest {
 
 	@Test
 	public void testAllowedTemplates() {
-		SectionTemplateBuilder sectionTemplateBuilder = sectionTemplateWith("test", 2, TEMPLATESTORE, null);
-		SectionFormsProducer sectionFormsProducer = build(sectionFormsProducerWith().allowedTemplates(singletonList(sectionTemplateBuilder)));
+        TruncatedSectionTemplateBuilder<SectionTemplate> sectionTemplateBuilder = sectionTemplateWith("test", 2, TEMPLATESTORE, null);
+        SectionFormsProducer sectionFormsProducer = build(sectionFormsProducerWith().allowedTemplates(singletonList(sectionTemplateBuilder)));
 		SectionTemplate sectionTemplate = build(sectionTemplateBuilder);
 		Collection<SectionTemplate> allowedTemplates = sectionFormsProducer.getAllowedTemplates();
 		assertThat(allowedTemplates.size(), is(1));

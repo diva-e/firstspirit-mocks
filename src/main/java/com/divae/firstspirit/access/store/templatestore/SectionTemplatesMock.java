@@ -26,8 +26,8 @@ public final class SectionTemplatesMock {
 	}
 
 	public interface SectionTemplatesBuilder extends TemplateContainerBuilder<SectionTemplate, SectionTemplates, SectionTemplatesBuilder> {
-		SectionTemplatesBuilder aTemplate(Function<SectionTemplatesBuilder, SectionTemplateBuilder> function);
-	}
+        <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionTemplatesBuilder aTemplate(Function<SectionTemplatesBuilder, OTBUILDER> function);
+    }
 
 	public static final class DefaultSectionTemplatesBuilder extends DefaultTemplateContainerBuilder<SectionTemplate, SectionTemplates, SectionTemplatesBuilder, DefaultSectionTemplatesBuilder> implements SectionTemplatesBuilder {
 
@@ -36,8 +36,8 @@ public final class SectionTemplatesMock {
 		}
 
 		@Override
-		public final SectionTemplatesBuilder aTemplate(Function<SectionTemplatesBuilder, SectionTemplateBuilder> function) {
-			SectionTemplate sectionTemplate = build(function.apply(getBuilder()));
+        public final <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionTemplatesBuilder aTemplate(Function<SectionTemplatesBuilder, OTBUILDER> function) {
+            SectionTemplate sectionTemplate = build(function.apply(getBuilder()));
 			when(getBuildable().getTemplate(sectionTemplate.getUid())).thenReturn(sectionTemplate);
 			children(singletonList(sectionTemplate));
 			return getBuilder();

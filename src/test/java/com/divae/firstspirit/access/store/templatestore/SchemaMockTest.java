@@ -28,4 +28,16 @@ public class SchemaMockTest extends MockTest {
 		Schema schema = build(schemaWith("test", 2, null).aSession(SessionMock::sessionWith));
 		assertThat(schema.getSession(), is(notNullValue()));
 	}
+
+	@Test
+	public void testASessionBooleanTrue() {
+		Schema schema = build(schemaWith("test", 2, null).aSession(SessionMock::sessionWith, true));
+		assertThat(schema.getSession(true), is(notNullValue()));
+	}
+
+	@Test
+	public void testASessionBooleanFalse() {
+		Schema schema = build(schemaWith("test", 2, null).aSession(SessionMock::sessionWith, false));
+		assertThat(schema.getSession(false), is(notNullValue()));
+	}
 }
