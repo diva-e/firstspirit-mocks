@@ -3,7 +3,6 @@ package com.divae.firstspirit.access.editor.value;
 import com.divae.firstspirit.BuilderMock.DefaultBuilder;
 import com.divae.firstspirit.access.editor.FormDataProducerMock.DefaultFormDataProducerBuilder;
 import com.divae.firstspirit.access.editor.FormDataProducerMock.FormDataProducerBuilder;
-import com.divae.firstspirit.access.editor.fslist.IdProvidingFormDataMock;
 import com.divae.firstspirit.access.editor.fslist.IdProvidingFormDataMock.IdProvidingFormDataBuilder;
 import com.divae.firstspirit.access.store.templatestore.SectionTemplateMock.SectionTemplateBuilder;
 import de.espirit.firstspirit.access.editor.fslist.IdProvidingFormData;
@@ -28,10 +27,10 @@ public final class SectionFormsProducerMock {
 	}
 
 	public interface SectionFormsProducerBuilder extends FormDataProducerBuilder<SectionFormsProducer, SectionFormsProducerBuilder> {
-		SectionFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, SectionTemplateBuilder withSectionTemplate);
+        <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, OTBUILDER withSectionTemplate);
 
-		SectionFormsProducerBuilder allowedTemplates(List<SectionTemplateBuilder> sectionTemplates);
-	}
+        <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder allowedTemplates(List<OTBUILDER> sectionTemplates);
+    }
 
 	public static final class DefaultSectionFormsProducerBuilder extends DefaultFormDataProducerBuilder<SectionFormsProducer, SectionFormsProducerBuilder, DefaultSectionFormsProducerBuilder> implements SectionFormsProducerBuilder {
 
@@ -39,15 +38,15 @@ public final class SectionFormsProducerMock {
 		}
 
 		@Override
-		public final SectionFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, SectionTemplateBuilder withSectionTemplate) {
-			IdProvidingFormData idProvidingFormData = build(supplier.get());
-			when(getBuildable().create(getBuildable(withSectionTemplate))).thenReturn(idProvidingFormData);
-			return getBuilder();
+        public final <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, OTBUILDER sectionTemplate) {
+            IdProvidingFormData idProvidingFormData = build(supplier.get());
+            when(getBuildable().create(getBuildable(sectionTemplate))).thenReturn(idProvidingFormData);
+            return getBuilder();
 		}
 
 		@Override
-		public final SectionFormsProducerBuilder allowedTemplates(List<SectionTemplateBuilder> sectionTemplates) {
-			when(getBuildable().getAllowedTemplates()).thenReturn(sectionTemplates.stream().map(DefaultBuilder::getBuildable).collect(toList()));
+        public final <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder allowedTemplates(List<OTBUILDER> sectionTemplates) {
+            when(getBuildable().getAllowedTemplates()).thenReturn(sectionTemplates.stream().map(DefaultBuilder::getBuildable).collect(toList()));
 			return getBuilder();
 		}
 	}

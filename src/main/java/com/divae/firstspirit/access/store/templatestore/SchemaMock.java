@@ -26,6 +26,8 @@ public final class SchemaMock {
 
 	public interface SchemaBuilder extends TemplateStoreElementBuilder<Schema, SchemaBuilder> {
 		SchemaBuilder aSession(Supplier<SessionBuilder> supplier);
+
+		SchemaBuilder aSession(Supplier<SessionBuilder> supplier, boolean release);
 	}
 
 	public static final class DefaultSchemaBuilder extends DefaultTemplateStoreElementBuilder<Schema, SchemaBuilder, DefaultSchemaBuilder> implements SchemaBuilder {
@@ -38,6 +40,16 @@ public final class SchemaMock {
 		public final SchemaBuilder aSession(Supplier<SessionBuilder> supplier) {
 			Session session = build(supplier.get());
 			when(getBuildable().getSession()).thenReturn(session);
+			return getBuilder();
+		}
+
+		@Override
+		public final SchemaBuilder aSession(Supplier<SessionBuilder> supplier, boolean release) {
+			Session session = build(supplier.get());
+			if (!release) {
+				when(getBuildable().getSession()).thenReturn(session);
+			}
+			when(getBuildable().getSession(release)).thenReturn(session);
 			return getBuilder();
 		}
 	}
