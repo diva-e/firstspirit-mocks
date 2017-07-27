@@ -37,12 +37,4 @@ public class PictureMockTest extends MockTest {
 		Resolution resolution = build(resolutionBuilder);
 		assertThat(picture.getInputStream(resolution), is(stream));
 	}
-
-	@Test
-	public void testAPictureMetaData() throws IOException {
-		ResolutionBuilder resolutionBuilder = resolutionWith("test");
-		Picture picture = build(pictureWith("picture", null).aPictureMetaData(MediaMetaDataMock::mediaMetaDataWith, resolutionBuilder));
-		Resolution resolution = build(resolutionBuilder);
-		assertThat(picture.getPictureMetaData(resolution), is(notNullValue()));
-	}
 }

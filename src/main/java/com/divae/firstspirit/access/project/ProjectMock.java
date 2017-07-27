@@ -4,13 +4,11 @@ import com.divae.firstspirit.BuilderMock;
 import com.divae.firstspirit.BuilderMock.Builder;
 import com.divae.firstspirit.BuilderMock.DefaultBuilder;
 import com.divae.firstspirit.access.LanguageMock.LanguageBuilder;
-import com.divae.firstspirit.access.ReferenceEntryMock.ReferenceEntryBuilder;
 import com.divae.firstspirit.access.UserServiceMock.UserServiceBuilder;
 import com.divae.firstspirit.access.project.ResolutionMock.ResolutionBuilder;
 import com.divae.firstspirit.access.project.TemplateSetMock.TemplateSetBuilder;
 import com.divae.firstspirit.storage.RevisionMock.RevisionBuilder;
 import de.espirit.firstspirit.access.Language;
-import de.espirit.firstspirit.access.ReferenceEntry;
 import de.espirit.firstspirit.access.UserService;
 import de.espirit.firstspirit.access.project.Project;
 import de.espirit.firstspirit.access.project.Resolution;
@@ -25,7 +23,6 @@ import java.util.function.Supplier;
 import static com.divae.firstspirit.BuilderMock.build;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toList;
-import static java.util.stream.Stream.of;
 import static org.mockito.Mockito.when;
 
 public final class ProjectMock {
@@ -48,8 +45,6 @@ public final class ProjectMock {
 		ProjectBuilder templateSets(Supplier<List<TemplateSetBuilder>> supplier);
 
 		ProjectBuilder resolutions(Supplier<List<ResolutionBuilder>> supplier);
-
-		ProjectBuilder brokenReferences(Supplier<ReferenceEntryBuilder[]> supplier, boolean release);
 
 		ProjectBuilder aRevision(Supplier<RevisionBuilder> supplier, Date revisionDate);
 	}
@@ -117,13 +112,6 @@ public final class ProjectMock {
 				throw new IllegalArgumentException("Id [" + id + "] is negative. Please choose another value.");
 			}
 			when(getBuildable().getId()).thenReturn(id);
-		}
-
-		@Override
-		public final ProjectBuilder brokenReferences(Supplier<ReferenceEntryBuilder[]> supplier, boolean release) {
-			ReferenceEntry[] referenceEntries = of(supplier.get()).map(BuilderMock::build).toArray(ReferenceEntry[]::new);
-			when(getBuildable().getBrokenReferences(release)).thenReturn(referenceEntries);
-			return getBuilder();
 		}
 
 		@Override

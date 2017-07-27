@@ -41,7 +41,6 @@ public final class SessionMock {
 			Select select = build(supplier.get());
 			when(getBuildable().createSelect(entityTypeName)).thenReturn(select);
 			when(getBuildable().executeQuery(select)).thenReturn(queryResult);
-			when(getBuildable().executeQuery(select.clone())).thenReturn(queryResult);
 			return getBuilder();
 		}
 

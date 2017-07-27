@@ -34,16 +34,7 @@ public final class SelectMock {
 		public final SelectBuilder aConstraint(Supplier<ConstraintBuilder> supplier) {
 			Constraint constraint = build(supplier.get());
 			when(getBuildable().getConstraint()).thenReturn(constraint);
-			cloneSelect();
 			return getBuilder();
 		}
-
-		private void cloneSelect() {
-			Select clone = build(selectWith());
-			Constraint constraint = getBuildable().getConstraint();
-			when(clone.getConstraint()).thenReturn(constraint);
-			when(getBuildable().clone()).thenReturn(clone);
-		}
-
 	}
 }

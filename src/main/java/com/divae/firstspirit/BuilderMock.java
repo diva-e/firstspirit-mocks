@@ -1,16 +1,11 @@
 package com.divae.firstspirit;
 
-import com.divae.firstspirit.access.LanguageMock;
-import com.divae.firstspirit.access.project.ProjectMock;
-import com.divae.firstspirit.access.store.mediastore.MediaMetaDataMock.DefaultMediaMetaDataBuilder;
-import de.espirit.firstspirit.access.project.Project;
 
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
 import java.lang.reflect.TypeVariable;
 import java.util.UUID;
 
-import static com.divae.firstspirit.access.store.mediastore.MediaMetaDataMock.getBuildabel;
 import static java.lang.String.valueOf;
 import static org.mockito.Mockito.mock;
 
@@ -116,6 +111,6 @@ public final class BuilderMock {
 
 	@SuppressWarnings("unchecked")
 	public static <T, TBUILDER extends Builder<T, TBUILDER>> T build(TBUILDER builder) {
-		return builder instanceof DefaultBuilder ? ((DefaultBuilder<T, TBUILDER, ?>) builder).getBuildable() : builder instanceof DefaultMediaMetaDataBuilder ? (T) getBuildabel((DefaultMediaMetaDataBuilder) builder) : null;
-	}
+        return builder instanceof DefaultBuilder ? ((DefaultBuilder<T, TBUILDER, ?>) builder).getBuildable() : null;
+    }
 }

@@ -2,11 +2,9 @@ package com.divae.firstspirit.access.project;
 
 import com.divae.firstspirit.MockTest;
 import com.divae.firstspirit.access.LanguageMock.LanguageBuilder;
-import com.divae.firstspirit.access.ReferenceEntryMock.ReferenceEntryBuilder;
 import com.divae.firstspirit.access.UserServiceMock.UserServiceBuilder;
 import com.divae.firstspirit.access.project.ProjectMock.ProjectBuilder;
 import de.espirit.firstspirit.access.Language;
-import de.espirit.firstspirit.access.ReferenceEntry;
 import de.espirit.firstspirit.access.UserService;
 import de.espirit.firstspirit.access.project.Project;
 import de.espirit.firstspirit.access.project.Resolution;
@@ -18,7 +16,6 @@ import java.util.List;
 
 import static com.divae.firstspirit.BuilderMock.build;
 import static com.divae.firstspirit.access.LanguageMock.languageWith;
-import static com.divae.firstspirit.access.ReferenceEntryMock.referenceEntryWith;
 import static com.divae.firstspirit.access.UserServiceMock.userServiceWith;
 import static com.divae.firstspirit.access.project.ProjectMock.projectWith;
 import static com.divae.firstspirit.access.project.ResolutionMock.resolutionWith;
@@ -105,15 +102,6 @@ public class ProjectMockTest extends MockTest {
 		assertThat(resolutions.size(), is(1));
 		Resolution resolution = resolutions.get(0);
 		assertThat(resolution.getUid(), is("100x150"));
-	}
-
-	@Test
-	public void testBrokenReferences() {
-		Project project = build(projectWith("test", 0, languageWith("DE")).brokenReferences(() -> new ReferenceEntryBuilder[]{referenceEntryWith(0L)}, false));
-		ReferenceEntry[] brokenReferences = project.getBrokenReferences(false);
-		assertThat(brokenReferences.length, is(1));
-		ReferenceEntry brokenReference = brokenReferences[0];
-		assertThat(brokenReference.getId(), is(0L));
 	}
 
 	@Test

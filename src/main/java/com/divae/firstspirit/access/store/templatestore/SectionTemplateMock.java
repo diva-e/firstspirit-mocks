@@ -19,7 +19,7 @@ public final class SectionTemplateMock {
     }
 
     public static <T extends SectionTemplate, TBUILDER extends SectionTemplateBuilder<T, TBUILDER>> TruncatedSectionTemplateBuilder<T> sectionTemplateWith(String uid, long id, UidType uidType, SectionTemplatesBuilder parent) {
-        return new TruncatedDefaultSectionTemplateBuilder<T>(uid, id, uidType, parent);
+        return new TruncatedDefaultSectionTemplateBuilder<>(uid, id, uidType, parent);
     }
 
     public interface SectionTemplateBuilder<T extends SectionTemplate, TBUILDER extends SectionTemplateBuilder<T, TBUILDER>> extends TemplateBuilder<T, TBUILDER>, PreviewImageProviderBuilder<T, TBUILDER> {
