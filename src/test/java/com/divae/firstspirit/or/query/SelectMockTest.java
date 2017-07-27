@@ -22,10 +22,4 @@ public class SelectMockTest extends MockTest {
 		Select select = build(selectWith().aConstraint(ConstraintMock::constraintWith));
 		assertThat(select.getConstraint(), is(notNullValue()));
 	}
-
-	@Test
-	public void testCloneSelect() {
-		Select select = build(selectWith().aConstraint(ConstraintMock::constraintWith));
-		assertThat(select.clone().getConstraint(), is(notNullValue()));
-	}
 }

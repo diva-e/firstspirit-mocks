@@ -13,7 +13,7 @@ public final class AttributeMock {
     }
 
     public static <T> AttributeBuilder<T> attributeWith() {
-        return new DefaultAttributeBuilder<T>();
+        return new DefaultAttributeBuilder<>();
     }
 
     public interface AttributeBuilder<T> extends Builder<Attribute<T>, AttributeBuilder<T>> {

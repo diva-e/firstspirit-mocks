@@ -30,7 +30,6 @@ public class SessionMockTest extends MockTest {
 		Select select = session.createSelect(entityTypeName);
 		assertThat(select, is(notNullValue()));
 		assertThat(session.executeQuery(select), is(entityList));
-		assertThat(session.executeQuery(select.clone()), is(entityList));
 	}
 
 	@Test
