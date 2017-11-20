@@ -1,7 +1,7 @@
 package com.divae.firstspirit.access.store.templatestore.gom;
 
-import com.divae.firstspirit.BuilderMock.Builder;
-import com.divae.firstspirit.BuilderMock.DefaultBuilder;
+import com.divae.firstspirit.access.store.templatestore.gom.GomElementMock.DefaultGomElementBuilder;
+import com.divae.firstspirit.access.store.templatestore.gom.GomElementMock.GomElementBuilder;
 import de.espirit.firstspirit.access.store.templatestore.gom.GomFormElement;
 
 import static org.mockito.Mockito.when;
@@ -16,10 +16,10 @@ public final class GomFormElementMock {
 		return new DefaultGomFormElementBuilder(name);
 	}
 
-	public interface GomFormElementBuilder extends Builder<GomFormElement, GomFormElementBuilder> {
-	}
+    public interface GomFormElementBuilder extends GomElementBuilder<GomFormElement, GomFormElementBuilder> {
+    }
 
-	public static final class DefaultGomFormElementBuilder extends DefaultBuilder<GomFormElement, GomFormElementBuilder, DefaultGomFormElementBuilder> implements GomFormElementBuilder {
+    public static final class DefaultGomFormElementBuilder extends DefaultGomElementBuilder<GomFormElement, GomFormElementBuilder, DefaultGomFormElementBuilder> implements GomFormElementBuilder {
 
 		private DefaultGomFormElementBuilder(String name) {
 			aName(name);
