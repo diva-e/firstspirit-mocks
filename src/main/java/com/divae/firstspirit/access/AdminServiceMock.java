@@ -25,7 +25,7 @@ public final class AdminServiceMock {
         AdminServiceBuilder anUserStorage(UserStorageBuilder userStorage);
     }
 
-    private static final class DefaultAdminServiceBuilder extends DefaultBuilder<AdminService, AdminServiceBuilder, DefaultAdminServiceBuilder> implements AdminServiceBuilder {
+    public static final class DefaultAdminServiceBuilder extends DefaultBuilder<AdminService, AdminServiceBuilder, DefaultAdminServiceBuilder> implements AdminServiceBuilder {
 
         private DefaultAdminServiceBuilder() {
         }
