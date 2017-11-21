@@ -2,7 +2,6 @@ package com.divae.firstspirit.access.editor.value;
 
 import com.divae.firstspirit.MockTest;
 import com.divae.firstspirit.access.editor.value.DatasetContainerMock.DatasetContainerBuilder;
-import com.divae.firstspirit.access.store.contentstore.Content2Mock;
 import com.divae.firstspirit.access.store.contentstore.DatasetMock.DatasetBuilder;
 import de.espirit.firstspirit.access.editor.value.DatasetContainer;
 import org.junit.Test;
@@ -13,6 +12,7 @@ import static com.divae.firstspirit.BuilderMock.build;
 import static com.divae.firstspirit.access.LanguageMock.languageWith;
 import static com.divae.firstspirit.access.editor.value.DatasetContainerMock.datasetContainerWith;
 import static com.divae.firstspirit.access.project.ProjectMock.projectWith;
+import static com.divae.firstspirit.access.store.contentstore.Content2Mock.content2With;
 import static com.divae.firstspirit.access.store.contentstore.ContentStoreRootMock.contentStoreRootWith;
 import static com.divae.firstspirit.access.store.contentstore.DatasetMock.datasetWith;
 import static com.divae.firstspirit.or.schema.EntityMock.entityWith;
@@ -40,7 +40,7 @@ public class DatasetContainerMockTest extends MockTest {
     @Test
     public void testADataset() {
         DatasetContainerBuilder datasetContainerBuilder = datasetContainerWith(new UUID(0, 0));
-        Content2Mock.content2With("content2", 2, contentStoreRootWith(1, projectWith("project", 0, languageWith("DE")))).aDataset(parent -> {
+        content2With("content2", 2, contentStoreRootWith(1, projectWith("project", 0, languageWith("DE")))).aDataset(parent -> {
             DatasetBuilder datasetBuilder = datasetWith("dataset", 3, parent);
             datasetContainerBuilder.aDataset(datasetBuilder);
             return datasetBuilder;
