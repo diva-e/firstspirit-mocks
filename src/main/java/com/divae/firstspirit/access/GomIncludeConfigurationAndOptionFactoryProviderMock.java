@@ -3,8 +3,8 @@ package com.divae.firstspirit.access;
 import com.divae.firstspirit.access.editor.value.OptionFactoryMock.OptionFactoryBuilder;
 import com.divae.firstspirit.access.editor.value.OptionFactoryProviderMock.OptionFactoryProviderBuilder;
 import com.divae.firstspirit.access.editor.value.OptionFactoryProviderMock.TruncatedOptionFactoryProviderBuilder;
-import com.divae.firstspirit.access.store.templatestore.gom.GomElementMock.DefaultGomElementBuilder;
-import com.divae.firstspirit.access.store.templatestore.gom.GomElementMock.GomElementBuilder;
+import com.divae.firstspirit.access.store.templatestore.gom.GomIncludeConfigurationMock.DefaultGomIncludeConfigurationBuilder;
+import com.divae.firstspirit.access.store.templatestore.gom.GomIncludeConfigurationMock.GomIncludeConfigurationBuilder;
 import de.espirit.firstspirit.access.editor.value.OptionFactoryProvider;
 import de.espirit.firstspirit.access.store.templatestore.gom.GomIncludeConfiguration;
 
@@ -20,13 +20,13 @@ public final class GomIncludeConfigurationAndOptionFactoryProviderMock {
         return new DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder();
     }
 
-    public interface GomIncludeConfigurationAndOptionFactoryProviderBuilder extends GomElementBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder>, OptionFactoryProviderBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder> {
+    public interface GomIncludeConfigurationAndOptionFactoryProviderBuilder extends GomIncludeConfigurationBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder>, OptionFactoryProviderBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder> {
     }
 
     public interface GomIncludeConfigurationAndOptionFactoryProvider extends GomIncludeConfiguration, OptionFactoryProvider {
     }
 
-    public static class DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder extends DefaultGomElementBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder, DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder> implements GomIncludeConfigurationAndOptionFactoryProviderBuilder {
+    public static class DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder extends DefaultGomIncludeConfigurationBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder, DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder> implements GomIncludeConfigurationAndOptionFactoryProviderBuilder {
 
         private final TruncatedOptionFactoryProviderBuilder<GomIncludeConfigurationAndOptionFactoryProvider> optionFactoryProvider;
 
