@@ -16,7 +16,7 @@ public final class GomIncludeConfigurationAndOptionFactoryProviderMock {
         throw new UnsupportedOperationException("Don't use default constructor");
     }
 
-    public static GomIncludeConfigurationAndOptionFactoryProviderBuilder gomIncludeConfigurationAndOptionsFactoryProviderWith() {
+    public static GomIncludeConfigurationAndOptionFactoryProviderBuilder gomIncludeConfigurationAndOptionFactoryProviderWith() {
         return new DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder();
     }
 
