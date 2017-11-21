@@ -10,14 +10,14 @@ import static org.junit.Assert.assertThat;
 
 public class GCASectionMockTest extends MockTest {
 
-	@Test
-	public void testGcaSectionWith() {
-		assertThat(gcaSectionWith("ui", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testGcaSectionWith() {
+        assertThat(gcaSectionWith("ui", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GCASectionMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GCASectionMock.class;
+    }
 
 }

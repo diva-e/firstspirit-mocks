@@ -14,28 +14,28 @@ import static org.junit.Assert.assertThat;
 
 public class LanguageInfoMockTest extends MockTest {
 
-	@Test
-	public void testLanguageInfoWith() {
-		assertThat(languageInfoWith(languageWith("DE"), null), is(notNullValue()));
-	}
+    @Test
+    public void testLanguageInfoWith() {
+        assertThat(languageInfoWith(languageWith("DE"), null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return LanguageInfoMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return LanguageInfoMock.class;
+    }
 
-	@Test
-	public void testADisplayNamed() {
-		String displayName = "test";
-		LanguageInfo languageInfo = build(languageInfoWith(languageWith("DE"), null).aDisplayName(displayName));
-		assertThat(languageInfo.getDisplayName(), is(displayName));
-	}
+    @Test
+    public void testADisplayNamed() {
+        String displayName = "test";
+        LanguageInfo languageInfo = build(languageInfoWith(languageWith("DE"), null).aDisplayName(displayName));
+        assertThat(languageInfo.getDisplayName(), is(displayName));
+    }
 
-	@Test
-	public void testDefaultLanguage() {
-		String displayName = "test";
-		LanguageBuilder languageBuilder = languageWith("DE");
-		LanguageInfo languageInfo = build(languageInfoWith(languageBuilder, null).aDisplayName(displayName));
-		assertThat(languageInfo.getLanguage(), is(build(languageBuilder)));
-	}
+    @Test
+    public void testDefaultLanguage() {
+        String displayName = "test";
+        LanguageBuilder languageBuilder = languageWith("DE");
+        LanguageInfo languageInfo = build(languageInfoWith(languageBuilder, null).aDisplayName(displayName));
+        assertThat(languageInfo.getLanguage(), is(build(languageBuilder)));
+    }
 }

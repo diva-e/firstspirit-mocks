@@ -6,21 +6,21 @@ import de.espirit.firstspirit.feature.FeatureDescriptor;
 
 public final class FeatureDescriptorMock {
 
-	private FeatureDescriptorMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private FeatureDescriptorMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static FeatureDescriptorBuilder featureDescriptorWith() {
-		return new DefaultFeatureDescriptorBuilder();
-	}
+    public static FeatureDescriptorBuilder featureDescriptorWith() {
+        return new DefaultFeatureDescriptorBuilder();
+    }
 
-	public interface FeatureDescriptorBuilder extends Builder<FeatureDescriptor, FeatureDescriptorBuilder> {
-	}
+    public interface FeatureDescriptorBuilder extends Builder<FeatureDescriptor, FeatureDescriptorBuilder> {
+    }
 
-	public static final class DefaultFeatureDescriptorBuilder extends DefaultBuilder<FeatureDescriptor, FeatureDescriptorBuilder, DefaultFeatureDescriptorBuilder> implements FeatureDescriptorBuilder {
+    private static final class DefaultFeatureDescriptorBuilder extends DefaultBuilder<FeatureDescriptor, FeatureDescriptorBuilder, DefaultFeatureDescriptorBuilder> implements FeatureDescriptorBuilder {
 
-		private DefaultFeatureDescriptorBuilder() {
-		}
-	}
+        private DefaultFeatureDescriptorBuilder() {
+        }
+    }
 
 }

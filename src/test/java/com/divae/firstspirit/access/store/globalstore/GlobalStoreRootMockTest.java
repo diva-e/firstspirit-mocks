@@ -16,22 +16,22 @@ import static org.junit.Assert.assertThat;
 
 public class GlobalStoreRootMockTest extends MockTest {
 
-	@Test
-	public void testGlobalStoreRootWith() {
-		assertThat(globalStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testGlobalStoreRootWith() {
+        assertThat(globalStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GlobalStoreRootMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GlobalStoreRootMock.class;
+    }
 
 
-	@Test
-	public void testWithProjectProperties() {
-		GlobalStoreRoot globalStoreRoot = build(globalStoreRootWith(1, projectWith("test", 0, languageWith("DE"))).projectProperties(parent -> projectPropertiesWith("uid", 2, parent)));
-		ProjectProperties projectProperties = globalStoreRoot.getProjectProperties();
-		assertThat(projectProperties.getName(), is("uid"));
-		assertThat(projectProperties.getStore().getId(), is(1L));
-	}
+    @Test
+    public void testWithProjectProperties() {
+        GlobalStoreRoot globalStoreRoot = build(globalStoreRootWith(1, projectWith("test", 0, languageWith("DE"))).projectProperties(parent -> projectPropertiesWith("uid", 2, parent)));
+        ProjectProperties projectProperties = globalStoreRoot.getProjectProperties();
+        assertThat(projectProperties.getName(), is("uid"));
+        assertThat(projectProperties.getStore().getId(), is(1L));
+    }
 }

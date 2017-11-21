@@ -17,22 +17,22 @@ import static org.junit.Assert.assertThat;
 
 public class RevisionMetaDataMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return RevisionMetaDataMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return RevisionMetaDataMock.class;
+    }
 
-	@Test
-	public void testAnOperation() {
-		TruncatedRevisionOperationBuilder<Object, RevisionOperation<Object>> revisionOperationBuilder = revisionOperationWith();
-		RevisionMetaData revisionMetaData = build(revisionMetaDataWith().anOperation(() -> revisionOperationBuilder));
-		RevisionOperation revisionOperation = build(revisionOperationBuilder);
-		assertThat(revisionMetaData.getOperation(), Matchers.<Object>is(revisionOperation));
-	}
+    @Test
+    public void testAnOperation() {
+        TruncatedRevisionOperationBuilder<Object, RevisionOperation<Object>> revisionOperationBuilder = revisionOperationWith();
+        RevisionMetaData revisionMetaData = build(revisionMetaDataWith().anOperation(() -> revisionOperationBuilder));
+        RevisionOperation revisionOperation = build(revisionOperationBuilder);
+        assertThat(revisionMetaData.getOperation(), Matchers.<Object>is(revisionOperation));
+    }
 
-	@Test
-	public void testChangedStoreElements() {
-		RevisionMetaData revisionMetaData = build(revisionMetaDataWith().changedStoreElements(emptyMap()));
-		assertThat(revisionMetaData.getChangedStoreElements(), is(notNullValue()));
-	}
+    @Test
+    public void testChangedStoreElements() {
+        RevisionMetaData revisionMetaData = build(revisionMetaDataWith().changedStoreElements(emptyMap()));
+        assertThat(revisionMetaData.getChangedStoreElements(), is(notNullValue()));
+    }
 }

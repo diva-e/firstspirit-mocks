@@ -16,16 +16,16 @@ import static org.junit.Assert.assertThat;
 
 public class UserStorageMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return UserStorageMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return UserStorageMock.class;
+    }
 
-	@Test
-	public void testUsers() {
-		UserStorage userStorage = build(userStorageWith().users(singletonList(userWith(0L)), "test"));
-		List<User> users = userStorage.findUsers("test");
-		assertThat(users.size(), is(1));
-		assertThat(users.get(0).getId(), is(0L));
-	}
+    @Test
+    public void testUsers() {
+        UserStorage userStorage = build(userStorageWith().users(singletonList(userWith(0L)), "test"));
+        List<User> users = userStorage.findUsers("test");
+        assertThat(users.size(), is(1));
+        assertThat(users.get(0).getId(), is(0L));
+    }
 }

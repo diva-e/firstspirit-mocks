@@ -12,15 +12,15 @@ import static org.junit.Assert.assertThat;
 
 public class BrokerAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return BrokerAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return BrokerAgentMock.class;
+    }
 
-	@Test
-	public void testABrokerByProjectName() {
-		String projectName = "projectName";
-		BrokerAgent brokerAgent = build(brokerAgentWith().aBrokerByProjectName(SpecialistsBrokerMock::specialistsBrokerWith, projectName));
-		assertThat(brokerAgent.getBrokerByProjectName(projectName), is(notNullValue()));
-	}
+    @Test
+    public void testABrokerByProjectName() {
+        String projectName = "projectName";
+        BrokerAgent brokerAgent = build(brokerAgentWith().aBrokerByProjectName(SpecialistsBrokerMock::specialistsBrokerWith, projectName));
+        assertThat(brokerAgent.getBrokerByProjectName(projectName), is(notNullValue()));
+    }
 }

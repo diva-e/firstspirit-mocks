@@ -18,20 +18,20 @@ import static org.junit.Assert.assertThat;
 
 public class ProjectStorageMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ProjectStorageMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ProjectStorageMock.class;
+    }
 
-	@Test
-	public void testProjects() {
-		ProjectStorage projectStorage = build(projectStorageWith().projects(() -> new ProjectBuilder[]{projectWith("test", 0, languageWith("DE"))}));
-		assertThat(projectStorage.getProjects().length, is(1));
-		Project project = projectStorage.getProjects()[0];
-		assertThat(project.getName(), is("test"));
-		assertThat(project.getId(), is(0L));
-		List<Language> languages = project.getLanguages();
-		assertThat(languages.size(), is(1));
-		assertThat(languages.get(0).getAbbreviation(), is("DE"));
-	}
+    @Test
+    public void testProjects() {
+        ProjectStorage projectStorage = build(projectStorageWith().projects(() -> new ProjectBuilder[]{projectWith("test", 0, languageWith("DE"))}));
+        assertThat(projectStorage.getProjects().length, is(1));
+        Project project = projectStorage.getProjects()[0];
+        assertThat(project.getName(), is("test"));
+        assertThat(project.getId(), is(0L));
+        List<Language> languages = project.getLanguages();
+        assertThat(languages.size(), is(1));
+        assertThat(languages.get(0).getAbbreviation(), is("DE"));
+    }
 }

@@ -7,22 +7,22 @@ import de.espirit.firstspirit.access.store.templatestore.ScriptContainer;
 
 public final class ScriptContainerMock {
 
-	private ScriptContainerMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ScriptContainerMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> ScriptContainerBuilder scriptContainerWith(String name, long id, TBUILDER parent) {
-		return new DefaultScriptContainerBuilder(name, id, parent);
-	}
+    public static <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> ScriptContainerBuilder scriptContainerWith(String name, long id, TBUILDER parent) {
+        return new DefaultScriptContainerBuilder(name, id, parent);
+    }
 
-	public interface ScriptContainerBuilder extends IDProviderBuilder<ScriptContainer, ScriptContainerBuilder> {
-	}
+    public interface ScriptContainerBuilder extends IDProviderBuilder<ScriptContainer, ScriptContainerBuilder> {
+    }
 
-	public static final class DefaultScriptContainerBuilder extends DefaultIDProviderBuilder<ScriptContainer, ScriptContainerBuilder, DefaultScriptContainerBuilder> implements ScriptContainerBuilder {
+    private static final class DefaultScriptContainerBuilder extends DefaultIDProviderBuilder<ScriptContainer, ScriptContainerBuilder, DefaultScriptContainerBuilder> implements ScriptContainerBuilder {
 
-		private <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> DefaultScriptContainerBuilder(String name, long id, TBUILDER parent) {
-			super(name, id, parent);
-		}
+        private <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> DefaultScriptContainerBuilder(String name, long id, TBUILDER parent) {
+            super(name, id, parent);
+        }
 
-	}
+    }
 }

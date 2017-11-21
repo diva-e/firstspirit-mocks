@@ -10,14 +10,14 @@ import static org.junit.Assert.assertThat;
 
 public class PageTemplatesMockTest extends MockTest {
 
-	@Test
-	public void testPageTemplatesWith() {
-		assertThat(pageTemplatesWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testPageTemplatesWith() {
+        assertThat(pageTemplatesWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PageTemplatesMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PageTemplatesMock.class;
+    }
 
 }

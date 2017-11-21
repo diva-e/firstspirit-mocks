@@ -7,22 +7,22 @@ import de.espirit.firstspirit.access.store.globalstore.UserProperties;
 
 public final class UserPropertiesMock {
 
-	private UserPropertiesMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private UserPropertiesMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static UserPropertiesBuilder userPropertiesWith(String name, long id, GlobalStoreRootBuilder parent) {
-		return new DefaultUserPropertiesBuilder(name, id, parent);
-	}
+    public static UserPropertiesBuilder userPropertiesWith(String name, long id, GlobalStoreRootBuilder parent) {
+        return new DefaultUserPropertiesBuilder(name, id, parent);
+    }
 
-	public interface UserPropertiesBuilder extends IDProviderBuilder<UserProperties, UserPropertiesBuilder> {
-	}
+    public interface UserPropertiesBuilder extends IDProviderBuilder<UserProperties, UserPropertiesBuilder> {
+    }
 
-	public static final class DefaultUserPropertiesBuilder extends DefaultIDProviderBuilder<UserProperties, UserPropertiesBuilder, DefaultUserPropertiesBuilder> implements UserPropertiesBuilder {
+    private static final class DefaultUserPropertiesBuilder extends DefaultIDProviderBuilder<UserProperties, UserPropertiesBuilder, DefaultUserPropertiesBuilder> implements UserPropertiesBuilder {
 
-		private DefaultUserPropertiesBuilder(String name, long id, GlobalStoreRootBuilder parent) {
-			super(name, id, parent);
-		}
-	}
+        private DefaultUserPropertiesBuilder(String name, long id, GlobalStoreRootBuilder parent) {
+            super(name, id, parent);
+        }
+    }
 
 }

@@ -10,14 +10,14 @@ import static org.junit.Assert.assertThat;
 
 public class FormatTemplateContainerMockTest extends MockTest {
 
-	@Test
-	public void testFormatTemplateContainerWith() {
-		assertThat(formatTemplateContainerWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testFormatTemplateContainerWith() {
+        assertThat(formatTemplateContainerWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return FormatTemplateContainerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return FormatTemplateContainerMock.class;
+    }
 
 }

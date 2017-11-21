@@ -9,9 +9,9 @@ import static org.mockito.Mockito.when;
 
 public final class OptionFactoryProviderMock {
 
-	private OptionFactoryProviderMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private OptionFactoryProviderMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
     public static <T extends OptionFactoryProvider, TBUILDER extends OptionFactoryProviderBuilder<T, TBUILDER>> TruncatedOptionFactoryProviderBuilder<T> optionFactoryProviderWith(TBUILDER optionFactoryProvider) {
         return new TruncatedDefaultOptionFactoryProviderBuilder<>(optionFactoryProvider);
@@ -37,7 +37,7 @@ public final class OptionFactoryProviderMock {
             super(optionFactoryProvider);
         }
 
-		@Override
+        @Override
         public final EBUILDER anOptionFactory(OptionFactoryBuilder optionFactory) {
             when(getBuildable().getOptionFactory()).thenReturn(getBuildable(optionFactory));
             return getInterfaceBuilder();
@@ -46,12 +46,11 @@ public final class OptionFactoryProviderMock {
 
     private static final class TruncatedDefaultOptionFactoryProviderBuilder<T extends OptionFactoryProvider> extends DefaultOptionFactoryProviderBuilder<T, TruncatedOptionFactoryProviderBuilder<T>, TruncatedDefaultOptionFactoryProviderBuilder<T>> implements TruncatedOptionFactoryProviderBuilder<T> {
 
-        TruncatedDefaultOptionFactoryProviderBuilder() {
-            super();
+        private TruncatedDefaultOptionFactoryProviderBuilder() {
         }
 
-        <TBUILDER extends OptionFactoryProviderBuilder<T, TBUILDER>> TruncatedDefaultOptionFactoryProviderBuilder(TBUILDER optionFactoryProvider) {
+        private <TBUILDER extends OptionFactoryProviderBuilder<T, TBUILDER>> TruncatedDefaultOptionFactoryProviderBuilder(TBUILDER optionFactoryProvider) {
             super(optionFactoryProvider);
         }
-	}
+    }
 }

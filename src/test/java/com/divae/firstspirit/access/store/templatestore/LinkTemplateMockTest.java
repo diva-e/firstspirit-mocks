@@ -16,21 +16,21 @@ import static org.junit.Assert.assertThat;
 
 public class LinkTemplateMockTest extends MockTest {
 
-	@Test
-	public void testLinkTemplateWith() {
-		assertThat(linkTemplateWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testLinkTemplateWith() {
+        assertThat(linkTemplateWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return LinkTemplateMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return LinkTemplateMock.class;
+    }
 
-	@Test
-	public void testCreatesLink() {
-		LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
-		LinkTemplate linkTemplate = build(linkTemplateWith("test", 2, null).createsLink(LinkMock::linkWith, languageBuilder));
-		Language language = build(languageBuilder);
-		assertThat(linkTemplate.createLink(language), is(notNullValue()));
-	}
+    @Test
+    public void testCreatesLink() {
+        LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
+        LinkTemplate linkTemplate = build(linkTemplateWith("test", 2, null).createsLink(LinkMock::linkWith, languageBuilder));
+        Language language = build(languageBuilder);
+        assertThat(linkTemplate.createLink(language), is(notNullValue()));
+    }
 }

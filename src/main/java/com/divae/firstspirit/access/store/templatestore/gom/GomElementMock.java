@@ -31,7 +31,6 @@ public final class GomElementMock {
     public static class DefaultGomElementBuilder<T extends GomElement, EBUILDER extends GomElementBuilder<T, EBUILDER>, TBUILDER extends DefaultGomElementBuilder<T, EBUILDER, TBUILDER>> extends DefaultBuilder<T, EBUILDER, TBUILDER> implements GomElementBuilder<T, EBUILDER> {
 
         protected DefaultGomElementBuilder() {
-            super();
         }
 
         @Override
@@ -44,8 +43,7 @@ public final class GomElementMock {
 
     private static final class TruncatedDefaultGomElementBuilder<T extends GomElement> extends DefaultGomElementBuilder<T, TruncatedGomElementBuilder<T>, TruncatedDefaultGomElementBuilder<T>> implements TruncatedGomElementBuilder<T> {
 
-        TruncatedDefaultGomElementBuilder() {
-            super();
+        private TruncatedDefaultGomElementBuilder() {
         }
     }
 }

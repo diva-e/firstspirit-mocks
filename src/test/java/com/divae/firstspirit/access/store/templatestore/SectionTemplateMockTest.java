@@ -16,22 +16,22 @@ import static org.junit.Assert.assertThat;
 
 public class SectionTemplateMockTest extends MockTest {
 
-	@Test
-	public void testSectionTemplateWith() {
-		assertThat(sectionTemplateWith("test", 2, TEMPLATESTORE, null), is(notNullValue()));
-	}
+    @Test
+    public void testSectionTemplateWith() {
+        assertThat(sectionTemplateWith("test", 2, TEMPLATESTORE, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SectionTemplateMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SectionTemplateMock.class;
+    }
 
-	@Test
-	public void testAChannelSource() {
-		TemplateSetMock.TemplateSetBuilder templateSetBuilder = templateSetWith("test");
-		String channelSource = "channelSource";
-		SectionTemplate sectionTemplate = build(sectionTemplateWith("test", 2, TEMPLATESTORE, null).aChannelSource(channelSource, templateSetBuilder));
-		TemplateSet templateSet = build(templateSetBuilder);
-		assertThat(sectionTemplate.getChannelSource(templateSet), is(channelSource));
-	}
+    @Test
+    public void testAChannelSource() {
+        TemplateSetMock.TemplateSetBuilder templateSetBuilder = templateSetWith("test");
+        String channelSource = "channelSource";
+        SectionTemplate sectionTemplate = build(sectionTemplateWith("test", 2, TEMPLATESTORE, null).aChannelSource(channelSource, templateSetBuilder));
+        TemplateSet templateSet = build(templateSetBuilder);
+        assertThat(sectionTemplate.getChannelSource(templateSet), is(channelSource));
+    }
 }

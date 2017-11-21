@@ -7,21 +7,21 @@ import de.espirit.firstspirit.access.GenerationContext;
 
 public class GenerationContextMock {
 
-	private GenerationContextMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private GenerationContextMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static GenerationContextBuilder generationContextWith(ProjectBuilder project) {
-		return new DefaultGenerationContextBuilder(project);
-	}
+    public static GenerationContextBuilder generationContextWith(ProjectBuilder project) {
+        return new DefaultGenerationContextBuilder(project);
+    }
 
-	public interface GenerationContextBuilder extends GenerationScriptContextBuilder<GenerationContext, GenerationContextBuilder> {
-	}
+    public interface GenerationContextBuilder extends GenerationScriptContextBuilder<GenerationContext, GenerationContextBuilder> {
+    }
 
-	public static final class DefaultGenerationContextBuilder extends DefaultGenerationScriptContextBuilder<GenerationContext, GenerationContextBuilder, DefaultGenerationContextBuilder> implements GenerationContextBuilder {
+    private static final class DefaultGenerationContextBuilder extends DefaultGenerationScriptContextBuilder<GenerationContext, GenerationContextBuilder, DefaultGenerationContextBuilder> implements GenerationContextBuilder {
 
-		private DefaultGenerationContextBuilder(ProjectBuilder project) {
-			super(project);
-		}
-	}
+        private DefaultGenerationContextBuilder(ProjectBuilder project) {
+            super(project);
+        }
+    }
 }

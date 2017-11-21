@@ -17,20 +17,20 @@ import static org.junit.Assert.assertThat;
 
 public class TemplateStoreRootMockTest extends MockTest {
 
-	@Test
-	public void testTemplateStoreRootWith() {
-		assertThat(templateStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testTemplateStoreRootWith() {
+        assertThat(templateStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TemplateStoreRootMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TemplateStoreRootMock.class;
+    }
 
-	@Test
-	public void testASectionTemplates() {
-		TemplateStoreRootBuilder templateStoreRootBuilder = templateStoreRootWith(1, projectWith("test", 0, languageWith("DE")));
-		TemplateStoreRoot templateStoreRoot = build(templateStoreRootBuilder.aSectionTemplates(parent -> sectionTemplatesWith("sectionTemplates", 2, parent)));
-		Assert.assertThat(templateStoreRoot.getSectionTemplates().getUid(), is("sectionTemplates"));
-	}
+    @Test
+    public void testASectionTemplates() {
+        TemplateStoreRootBuilder templateStoreRootBuilder = templateStoreRootWith(1, projectWith("test", 0, languageWith("DE")));
+        TemplateStoreRoot templateStoreRoot = build(templateStoreRootBuilder.aSectionTemplates(parent -> sectionTemplatesWith("sectionTemplates", 2, parent)));
+        Assert.assertThat(templateStoreRoot.getSectionTemplates().getUid(), is("sectionTemplates"));
+    }
 }

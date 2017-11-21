@@ -10,14 +10,14 @@ import static org.junit.Assert.assertThat;
 
 public class ProjectPropertiesMockTest extends MockTest {
 
-	@Test
-	public void testProjectPropertiesWith() {
-		assertThat(projectPropertiesWith("ui", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testProjectPropertiesWith() {
+        assertThat(projectPropertiesWith("ui", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ProjectPropertiesMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ProjectPropertiesMock.class;
+    }
 
 }

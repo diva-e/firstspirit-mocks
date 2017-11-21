@@ -8,26 +8,26 @@ import static org.mockito.Mockito.when;
 
 public final class IdProvidingFormDataMock {
 
-	private IdProvidingFormDataMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private IdProvidingFormDataMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static IdProvidingFormDataBuilder idProvidingFormDataWith(Long id) {
-		return new DefaultIdProvidingFormDataBuilder(id);
-	}
+    public static IdProvidingFormDataBuilder idProvidingFormDataWith(Long id) {
+        return new DefaultIdProvidingFormDataBuilder(id);
+    }
 
-	public interface IdProvidingFormDataBuilder extends FormDataBuilder<IdProvidingFormData, IdProvidingFormDataBuilder> {
-	}
+    public interface IdProvidingFormDataBuilder extends FormDataBuilder<IdProvidingFormData, IdProvidingFormDataBuilder> {
+    }
 
-	public static final class DefaultIdProvidingFormDataBuilder extends DefaultFormDataBuilder<IdProvidingFormData, IdProvidingFormDataBuilder, DefaultIdProvidingFormDataBuilder> implements IdProvidingFormDataBuilder {
+    private static final class DefaultIdProvidingFormDataBuilder extends DefaultFormDataBuilder<IdProvidingFormData, IdProvidingFormDataBuilder, DefaultIdProvidingFormDataBuilder> implements IdProvidingFormDataBuilder {
 
-		private DefaultIdProvidingFormDataBuilder(Long id) {
-			super(id);
-			withId(id);
-		}
+        private DefaultIdProvidingFormDataBuilder(Long id) {
+            super(id);
+            withId(id);
+        }
 
-		private void withId(Long id) {
-			when(getBuildable().getId()).thenReturn(id);
-		}
-	}
+        private void withId(Long id) {
+            when(getBuildable().getId()).thenReturn(id);
+        }
+    }
 }

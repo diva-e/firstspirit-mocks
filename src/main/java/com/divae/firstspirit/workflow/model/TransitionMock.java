@@ -8,27 +8,27 @@ import static org.mockito.Mockito.when;
 
 public final class TransitionMock {
 
-	private TransitionMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private TransitionMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static TransitionBuilder transitionWith(long id) {
-		return new DefaultTransitionBuilder(id);
-	}
+    public static TransitionBuilder transitionWith(long id) {
+        return new DefaultTransitionBuilder(id);
+    }
 
-	public interface TransitionBuilder extends Builder<Transition, TransitionBuilder> {
-	}
+    public interface TransitionBuilder extends Builder<Transition, TransitionBuilder> {
+    }
 
-	public static final class DefaultTransitionBuilder extends DefaultBuilder<Transition, TransitionBuilder, DefaultTransitionBuilder> implements TransitionBuilder {
+    private static final class DefaultTransitionBuilder extends DefaultBuilder<Transition, TransitionBuilder, DefaultTransitionBuilder> implements TransitionBuilder {
 
-		private DefaultTransitionBuilder(long id) {
-			super(id);
-			anId(id);
-		}
+        private DefaultTransitionBuilder(long id) {
+            super(id);
+            anId(id);
+        }
 
-		private void anId(long id) {
-			when(getBuildable().getID()).thenReturn(id);
-		}
-	}
+        private void anId(long id) {
+            when(getBuildable().getID()).thenReturn(id);
+        }
+    }
 
 }

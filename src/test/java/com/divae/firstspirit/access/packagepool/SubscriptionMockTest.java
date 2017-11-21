@@ -13,15 +13,15 @@ import static org.junit.Assert.assertThat;
 
 public class SubscriptionMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SubscriptionMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SubscriptionMock.class;
+    }
 
-	@Test
-	public void testASubscriber() {
-		String subscriberName = "test";
-		Subscription subscription = build(subscriptionWith().aSubscriber(projectWith(subscriberName, 0, languageWith("DE"))));
-		assertThat(subscription.getSubscriber().getName(), is(subscriberName));
-	}
+    @Test
+    public void testASubscriber() {
+        String subscriberName = "test";
+        Subscription subscription = build(subscriptionWith().aSubscriber(projectWith(subscriberName, 0, languageWith("DE"))));
+        assertThat(subscription.getSubscriber().getName(), is(subscriberName));
+    }
 }

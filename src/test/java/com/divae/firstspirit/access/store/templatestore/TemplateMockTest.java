@@ -13,19 +13,19 @@ import static org.junit.Assert.assertThat;
 
 public class TemplateMockTest extends MockTest {
 
-	@Test
-	public void testTemplateWith() {
-		assertThat(templateWith("test", 2, TEMPLATESTORE, null), is(notNullValue()));
-	}
+    @Test
+    public void testTemplateWith() {
+        assertThat(templateWith("test", 2, TEMPLATESTORE, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TemplateMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TemplateMock.class;
+    }
 
-	@Test
-	public void testWithGomSource() {
-		Template template = build(templateWith("test", 2, TEMPLATESTORE, null).aGomSource("gomSource"));
-		assertThat(template.getGomSource(), is("gomSource"));
-	}
+    @Test
+    public void testWithGomSource() {
+        Template template = build(templateWith("test", 2, TEMPLATESTORE, null).aGomSource("gomSource"));
+        assertThat(template.getGomSource(), is("gomSource"));
+    }
 }

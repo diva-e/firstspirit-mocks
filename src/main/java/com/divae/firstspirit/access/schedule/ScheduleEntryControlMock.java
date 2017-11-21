@@ -14,50 +14,50 @@ import static org.mockito.Mockito.when;
 
 public final class ScheduleEntryControlMock {
 
-	private ScheduleEntryControlMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ScheduleEntryControlMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ScheduleEntryControlBuilder scheduleEntryControlWith(long id) {
-		return new DefaultScheduleEntryControlBuilder(id);
-	}
+    public static ScheduleEntryControlBuilder scheduleEntryControlWith(long id) {
+        return new DefaultScheduleEntryControlBuilder(id);
+    }
 
-	public interface ScheduleEntryControlBuilder extends Builder<ScheduleEntryControl, ScheduleEntryControlBuilder> {
-		ScheduleEntryControlBuilder aScheduleEntry(ScheduleEntryBuilder scheduleEntry);
+    public interface ScheduleEntryControlBuilder extends Builder<ScheduleEntryControl, ScheduleEntryControlBuilder> {
+        ScheduleEntryControlBuilder aScheduleEntry(ScheduleEntryBuilder scheduleEntry);
 
-		ScheduleEntryControlBuilder aState(Supplier<ScheduleEntryStateBuilder> supplier);
+        ScheduleEntryControlBuilder aState(Supplier<ScheduleEntryStateBuilder> supplier);
 
-		ScheduleEntryControlBuilder isRunning(boolean isRunning);
-	}
+        ScheduleEntryControlBuilder isRunning(boolean isRunning);
+    }
 
-	public static final class DefaultScheduleEntryControlBuilder extends DefaultBuilder<ScheduleEntryControl, ScheduleEntryControlBuilder, DefaultScheduleEntryControlBuilder> implements ScheduleEntryControlBuilder {
+    public static final class DefaultScheduleEntryControlBuilder extends DefaultBuilder<ScheduleEntryControl, ScheduleEntryControlBuilder, DefaultScheduleEntryControlBuilder> implements ScheduleEntryControlBuilder {
 
-		private DefaultScheduleEntryControlBuilder(long id) {
-			super(id);
-			anId(id);
-		}
+        private DefaultScheduleEntryControlBuilder(long id) {
+            super(id);
+            anId(id);
+        }
 
-		@Override
-		public final ScheduleEntryControlBuilder aScheduleEntry(ScheduleEntryBuilder scheduleEntry) {
-			when(getBuildable().getScheduleEntry()).thenReturn(getBuildable(scheduleEntry));
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleEntryControlBuilder aScheduleEntry(ScheduleEntryBuilder scheduleEntry) {
+            when(getBuildable().getScheduleEntry()).thenReturn(getBuildable(scheduleEntry));
+            return getBuilder();
+        }
 
-		@Override
-		public final ScheduleEntryControlBuilder aState(Supplier<ScheduleEntryStateBuilder> supplier) {
-			ScheduleEntryState scheduleEntryState = build(supplier.get());
-			when(getBuildable().getState()).thenReturn(scheduleEntryState);
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleEntryControlBuilder aState(Supplier<ScheduleEntryStateBuilder> supplier) {
+            ScheduleEntryState scheduleEntryState = build(supplier.get());
+            when(getBuildable().getState()).thenReturn(scheduleEntryState);
+            return getBuilder();
+        }
 
-		@Override
-		public final ScheduleEntryControlBuilder isRunning(boolean isRunning) {
-			when(getBuildable().isRunning()).thenReturn(isRunning);
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleEntryControlBuilder isRunning(boolean isRunning) {
+            when(getBuildable().isRunning()).thenReturn(isRunning);
+            return getBuilder();
+        }
 
-		private void anId(long id) {
-			when(getBuildable().getId()).thenReturn(id);
-		}
-	}
+        private void anId(long id) {
+            when(getBuildable().getId()).thenReturn(id);
+        }
+    }
 }

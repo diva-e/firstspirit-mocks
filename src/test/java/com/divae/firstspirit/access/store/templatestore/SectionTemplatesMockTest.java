@@ -17,19 +17,19 @@ import static org.junit.Assert.assertThat;
 
 public class SectionTemplatesMockTest extends MockTest {
 
-	@Test
-	public void testSectionTemplatesWith() {
-		assertThat(sectionTemplatesWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testSectionTemplatesWith() {
+        assertThat(sectionTemplatesWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SectionTemplatesMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SectionTemplatesMock.class;
+    }
 
-	@Test
-	public void testATemplate() {
-		SectionTemplates sectionTemplates = build(templateStoreRootWith(1, projectWith("test", 0, languageWith("DE"))).aSectionTemplates(parent -> sectionTemplatesWith("sectionTemplates", 2, parent).aTemplate(sectionTemplateParent -> sectionTemplateWith("sectionTemplate", 3, TEMPLATESTORE, sectionTemplateParent)))).getSectionTemplates();
-		assertThat(sectionTemplates.getTemplate("sectionTemplate"), is(sectionTemplates.getChildren().iterator().next()));
-	}
+    @Test
+    public void testATemplate() {
+        SectionTemplates sectionTemplates = build(templateStoreRootWith(1, projectWith("test", 0, languageWith("DE"))).aSectionTemplates(parent -> sectionTemplatesWith("sectionTemplates", 2, parent).aTemplate(sectionTemplateParent -> sectionTemplateWith("sectionTemplate", 3, TEMPLATESTORE, sectionTemplateParent)))).getSectionTemplates();
+        assertThat(sectionTemplates.getTemplate("sectionTemplate"), is(sectionTemplates.getChildren().iterator().next()));
+    }
 }

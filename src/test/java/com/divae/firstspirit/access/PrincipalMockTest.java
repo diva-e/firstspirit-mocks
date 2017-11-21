@@ -4,9 +4,9 @@ import com.divae.firstspirit.MockTest;
 
 public class PrincipalMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PrincipalMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PrincipalMock.class;
+    }
 
 }

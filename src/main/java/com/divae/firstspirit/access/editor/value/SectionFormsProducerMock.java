@@ -18,36 +18,36 @@ import static org.mockito.Mockito.when;
 
 public final class SectionFormsProducerMock {
 
-	private SectionFormsProducerMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SectionFormsProducerMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static SectionFormsProducerBuilder sectionFormsProducerWith() {
-		return new DefaultSectionFormsProducerBuilder();
-	}
+    public static SectionFormsProducerBuilder sectionFormsProducerWith() {
+        return new DefaultSectionFormsProducerBuilder();
+    }
 
-	public interface SectionFormsProducerBuilder extends FormDataProducerBuilder<SectionFormsProducer, SectionFormsProducerBuilder> {
+    public interface SectionFormsProducerBuilder extends FormDataProducerBuilder<SectionFormsProducer, SectionFormsProducerBuilder> {
         <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, OTBUILDER withSectionTemplate);
 
         <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder allowedTemplates(List<OTBUILDER> sectionTemplates);
     }
 
-	public static final class DefaultSectionFormsProducerBuilder extends DefaultFormDataProducerBuilder<SectionFormsProducer, SectionFormsProducerBuilder, DefaultSectionFormsProducerBuilder> implements SectionFormsProducerBuilder {
+    public static final class DefaultSectionFormsProducerBuilder extends DefaultFormDataProducerBuilder<SectionFormsProducer, SectionFormsProducerBuilder, DefaultSectionFormsProducerBuilder> implements SectionFormsProducerBuilder {
 
-		private DefaultSectionFormsProducerBuilder() {
-		}
+        private DefaultSectionFormsProducerBuilder() {
+        }
 
-		@Override
+        @Override
         public final <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, OTBUILDER sectionTemplate) {
             IdProvidingFormData idProvidingFormData = build(supplier.get());
             when(getBuildable().create(getBuildable(sectionTemplate))).thenReturn(idProvidingFormData);
             return getBuilder();
-		}
+        }
 
-		@Override
+        @Override
         public final <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionFormsProducerBuilder allowedTemplates(List<OTBUILDER> sectionTemplates) {
             when(getBuildable().getAllowedTemplates()).thenReturn(sectionTemplates.stream().map(DefaultBuilder::getBuildable).collect(toList()));
-			return getBuilder();
-		}
-	}
+            return getBuilder();
+        }
+    }
 }

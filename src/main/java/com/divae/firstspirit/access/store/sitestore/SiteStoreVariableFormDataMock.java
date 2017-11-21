@@ -7,20 +7,20 @@ import de.espirit.firstspirit.access.store.sitestore.SiteStoreVariableFormData;
 
 public final class SiteStoreVariableFormDataMock {
 
-	private SiteStoreVariableFormDataMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SiteStoreVariableFormDataMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static SiteStoreVariableFormDataBuilder siteStoreVariableFormDataWith() {
-		return new DefaultSiteStoreVariableFormDataBuilder();
-	}
+    public static SiteStoreVariableFormDataBuilder siteStoreVariableFormDataWith() {
+        return new DefaultSiteStoreVariableFormDataBuilder();
+    }
 
-	public interface SiteStoreVariableFormDataBuilder extends FormDataBuilder<SiteStoreVariableFormData, SiteStoreVariableFormDataBuilder> {
-	}
+    public interface SiteStoreVariableFormDataBuilder extends FormDataBuilder<SiteStoreVariableFormData, SiteStoreVariableFormDataBuilder> {
+    }
 
-	public static final class DefaultSiteStoreVariableFormDataBuilder extends DefaultFormDataBuilder<SiteStoreVariableFormData, SiteStoreVariableFormDataBuilder, DefaultSiteStoreVariableFormDataBuilder> implements SiteStoreVariableFormDataBuilder {
+    private static final class DefaultSiteStoreVariableFormDataBuilder extends DefaultFormDataBuilder<SiteStoreVariableFormData, SiteStoreVariableFormDataBuilder, DefaultSiteStoreVariableFormDataBuilder> implements SiteStoreVariableFormDataBuilder {
 
-		DefaultSiteStoreVariableFormDataBuilder() {
-		}
-	}
+        private DefaultSiteStoreVariableFormDataBuilder() {
+        }
+    }
 }

@@ -11,21 +11,21 @@ import static org.junit.Assert.assertThat;
 
 public class UserMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return UserMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return UserMock.class;
+    }
 
-	@Test
-	public void testAName() {
-		User user = build(userWith(0L).aName("name"));
-		assertThat(user.getName(), is("name"));
-	}
+    @Test
+    public void testAName() {
+        User user = build(userWith(0L).aName("name"));
+        assertThat(user.getName(), is("name"));
+    }
 
 
-	@Test
-	public void testALoginName() {
-		User user = build(userWith(0L).aLoginName("test"));
-		assertThat(user.getLoginName(), is("test"));
-	}
+    @Test
+    public void testALoginName() {
+        User user = build(userWith(0L).aLoginName("test"));
+        assertThat(user.getLoginName(), is("test"));
+    }
 }

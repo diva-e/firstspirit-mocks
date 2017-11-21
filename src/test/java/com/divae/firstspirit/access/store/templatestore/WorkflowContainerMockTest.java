@@ -10,14 +10,14 @@ import static org.junit.Assert.assertThat;
 
 public class WorkflowContainerMockTest extends MockTest {
 
-	@Test
-	public void testWorkflowContainerWith() {
-		assertThat(workflowContainerWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testWorkflowContainerWith() {
+        assertThat(workflowContainerWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return WorkflowContainerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return WorkflowContainerMock.class;
+    }
 
 }

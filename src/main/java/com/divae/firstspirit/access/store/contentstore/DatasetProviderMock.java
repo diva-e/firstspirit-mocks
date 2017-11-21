@@ -70,10 +70,10 @@ public final class DatasetProviderMock {
 
     private static final class TruncatedDefaultDatasetProviderBuilder<T extends DatasetProvider> extends DefaultDatasetProviderBuilder<T, TruncatedDatasetProviderBuilder<T>, TruncatedDefaultDatasetProviderBuilder<T>> implements TruncatedDatasetProviderBuilder<T> {
 
-        TruncatedDefaultDatasetProviderBuilder() {
+        private TruncatedDefaultDatasetProviderBuilder() {
         }
 
-        <OTBUILDER extends DatasetProviderBuilder<T, OTBUILDER>> TruncatedDefaultDatasetProviderBuilder(OTBUILDER datasetProvider) {
+        private <OTBUILDER extends DatasetProviderBuilder<T, OTBUILDER>> TruncatedDefaultDatasetProviderBuilder(OTBUILDER datasetProvider) {
             super(datasetProvider);
         }
     }

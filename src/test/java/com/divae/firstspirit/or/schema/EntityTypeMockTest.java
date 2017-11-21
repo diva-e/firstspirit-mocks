@@ -11,15 +11,15 @@ import static org.junit.Assert.assertThat;
 
 public class EntityTypeMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return EntityTypeMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return EntityTypeMock.class;
+    }
 
-	@Test
-	public void testAName() {
-		String name = "test";
-		EntityType entityType = build(entityTypeWith().aName(name));
-		assertThat(entityType.getName(), is(name));
-	}
+    @Test
+    public void testAName() {
+        String name = "test";
+        EntityType entityType = build(entityTypeWith().aName(name));
+        assertThat(entityType.getName(), is(name));
+    }
 }

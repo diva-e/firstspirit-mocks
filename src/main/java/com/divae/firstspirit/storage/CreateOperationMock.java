@@ -13,28 +13,28 @@ import static org.mockito.Mockito.when;
 
 public final class CreateOperationMock {
 
-	private CreateOperationMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private CreateOperationMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static CreateOperationBuilder createOperationWith() {
-		return new DefaultCreateOperationBuilder();
-	}
+    public static CreateOperationBuilder createOperationWith() {
+        return new DefaultCreateOperationBuilder();
+    }
 
-	public interface CreateOperationBuilder extends RevisionOperationBuilder<BasicElementInfo, CreateOperation, CreateOperationBuilder> {
-		CreateOperationBuilder createdElement(Supplier<BasicElementInfoBuilder> supplier);
-	}
+    public interface CreateOperationBuilder extends RevisionOperationBuilder<BasicElementInfo, CreateOperation, CreateOperationBuilder> {
+        CreateOperationBuilder createdElement(Supplier<BasicElementInfoBuilder> supplier);
+    }
 
-	public static final class DefaultCreateOperationBuilder extends DefaultRevisionOperationBuilder<BasicElementInfo, CreateOperation, CreateOperationBuilder, DefaultCreateOperationBuilder> implements CreateOperationBuilder {
+    public static final class DefaultCreateOperationBuilder extends DefaultRevisionOperationBuilder<BasicElementInfo, CreateOperation, CreateOperationBuilder, DefaultCreateOperationBuilder> implements CreateOperationBuilder {
 
-		private DefaultCreateOperationBuilder() {
-		}
+        private DefaultCreateOperationBuilder() {
+        }
 
-		@Override
-		public final CreateOperationBuilder createdElement(Supplier<BasicElementInfoBuilder> supplier) {
-			BasicElementInfo basicElementInfo = build(supplier.get());
-			when(getBuildable().getCreatedElement()).thenReturn(basicElementInfo);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final CreateOperationBuilder createdElement(Supplier<BasicElementInfoBuilder> supplier) {
+            BasicElementInfo basicElementInfo = build(supplier.get());
+            when(getBuildable().getCreatedElement()).thenReturn(basicElementInfo);
+            return getBuilder();
+        }
+    }
 }

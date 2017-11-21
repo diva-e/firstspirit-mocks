@@ -15,21 +15,21 @@ import static org.junit.Assert.assertThat;
 
 public class SectionMockTest extends MockTest {
 
-	@Test
-	public void testSectionWith() {
-		assertThat(sectionWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testSectionWith() {
+        assertThat(sectionWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SectionMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SectionMock.class;
+    }
 
-	@Test
-	public void testWithTemplate() {
-		SectionTemplate sectionTemplate = build(sectionTemplateWith("tgif", 2, TEMPLATESTORE, null));
-		Section<SectionTemplate> section = build(sectionWith("test", 2, null).aTemplate(sectionTemplate));
+    @Test
+    public void testWithTemplate() {
+        SectionTemplate sectionTemplate = build(sectionTemplateWith("tgif", 2, TEMPLATESTORE, null));
+        Section<SectionTemplate> section = build(sectionWith("test", 2, null).aTemplate(sectionTemplate));
 
-		assertThat(section.getTemplate(), is(sectionTemplate));
-	}
+        assertThat(section.getTemplate(), is(sectionTemplate));
+    }
 }

@@ -16,24 +16,26 @@ public final class GomIncludeConfigurationAndOptionFactoryProviderMock {
         throw new UnsupportedOperationException("Don't use default constructor");
     }
 
-    public static GomIncludeConfigurationAndOptionFactoryProviderBuilder gomIncludeConfigurationWith() {
+    public static GomIncludeConfigurationAndOptionFactoryProviderBuilder gomIncludeConfigurationAndOptionsFactoryProviderWith() {
         return new DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder();
     }
 
-    public interface GomIncludeConfigurationAndOptionFactoryProviderBuilder<T extends GomIncludeConfiguration & OptionFactoryProvider, TBUILDER extends GomIncludeConfigurationAndOptionFactoryProviderBuilder<T, TBUILDER>> extends GomElementBuilder<T, TBUILDER>, OptionFactoryProviderBuilder<T, TBUILDER> {
+    public interface GomIncludeConfigurationAndOptionFactoryProviderBuilder extends GomElementBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder>, OptionFactoryProviderBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder> {
     }
 
-    public static class DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder<T extends GomIncludeConfiguration & OptionFactoryProvider, EBUILDER extends GomIncludeConfigurationAndOptionFactoryProviderBuilder<T, EBUILDER>, TBUILDER extends DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder<T, EBUILDER, TBUILDER>> extends DefaultGomElementBuilder<T, EBUILDER, TBUILDER> implements GomIncludeConfigurationAndOptionFactoryProviderBuilder<T, EBUILDER> {
+    public interface GomIncludeConfigurationAndOptionFactoryProvider extends GomIncludeConfiguration, OptionFactoryProvider {
+    }
 
-        private final TruncatedOptionFactoryProviderBuilder<T> optionFactoryProvider;
+    public static class DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder extends DefaultGomElementBuilder<GomIncludeConfigurationAndOptionFactoryProvider, GomIncludeConfigurationAndOptionFactoryProviderBuilder, DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder> implements GomIncludeConfigurationAndOptionFactoryProviderBuilder {
 
-        protected DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder() {
-            super();
+        private final TruncatedOptionFactoryProviderBuilder<GomIncludeConfigurationAndOptionFactoryProvider> optionFactoryProvider;
+
+        private DefaultGomIncludeConfigurationAndOptionFactoryProviderBuilder() {
             optionFactoryProvider = optionFactoryProviderWith(getInterfaceBuilder());
         }
 
         @Override
-        public EBUILDER anOptionFactory(final OptionFactoryBuilder optionFactory) {
+        public GomIncludeConfigurationAndOptionFactoryProviderBuilder anOptionFactory(final OptionFactoryBuilder optionFactory) {
             optionFactoryProvider.anOptionFactory(optionFactory);
             return getInterfaceBuilder();
         }

@@ -13,28 +13,28 @@ import static org.mockito.Mockito.when;
 
 public final class UrlRegistryAgentMock {
 
-	private UrlRegistryAgentMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private UrlRegistryAgentMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static UrlRegistryAgentBuilder urlRegistryAgentWith() {
-		return new DefaultUrlRegistryAgentBuilder();
-	}
+    public static UrlRegistryAgentBuilder urlRegistryAgentWith() {
+        return new DefaultUrlRegistryAgentBuilder();
+    }
 
-	public interface UrlRegistryAgentBuilder extends Builder<UrlRegistryAgent, UrlRegistryAgentBuilder> {
-		UrlRegistryAgentBuilder entries(List<IDProviderKeyBuilder> idProviderKeys, String path);
-	}
+    public interface UrlRegistryAgentBuilder extends Builder<UrlRegistryAgent, UrlRegistryAgentBuilder> {
+        UrlRegistryAgentBuilder entries(List<IDProviderKeyBuilder> idProviderKeys, String path);
+    }
 
-	public static final class DefaultUrlRegistryAgentBuilder extends DefaultBuilder<UrlRegistryAgent, UrlRegistryAgentBuilder, DefaultUrlRegistryAgentBuilder> implements UrlRegistryAgentBuilder {
+    public static final class DefaultUrlRegistryAgentBuilder extends DefaultBuilder<UrlRegistryAgent, UrlRegistryAgentBuilder, DefaultUrlRegistryAgentBuilder> implements UrlRegistryAgentBuilder {
 
-		private DefaultUrlRegistryAgentBuilder() {
-		}
+        private DefaultUrlRegistryAgentBuilder() {
+        }
 
-		@Override
-		public final UrlRegistryAgentBuilder entries(List<IDProviderKeyBuilder> idProviderKeys, String path) {
-			when(getBuildable().getEntries(path)).thenReturn(idProviderKeys.stream().map(BuilderMock::build).collect(toList()));
-			return getBuilder();
-		}
-	}
+        @Override
+        public final UrlRegistryAgentBuilder entries(List<IDProviderKeyBuilder> idProviderKeys, String path) {
+            when(getBuildable().getEntries(path)).thenReturn(idProviderKeys.stream().map(BuilderMock::build).collect(toList()));
+            return getBuilder();
+        }
+    }
 
 }

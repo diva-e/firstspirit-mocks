@@ -17,25 +17,25 @@ import static org.junit.Assert.assertThat;
 
 public class SessionMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SessionMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SessionMock.class;
+    }
 
-	@Test
-	public void testASelectStringSelectEntityList() {
-		String entityTypeName = "test";
-		EntityList entityList = build(entityListWith());
-		Session session = build(sessionWith().aSelect(SelectMock::selectWith, entityTypeName, entityList));
-		Select select = session.createSelect(entityTypeName);
-		assertThat(select, is(notNullValue()));
-		assertThat(session.executeQuery(select), is(entityList));
-	}
+    @Test
+    public void testASelectStringSelectEntityList() {
+        String entityTypeName = "test";
+        EntityList entityList = build(entityListWith());
+        Session session = build(sessionWith().aSelect(SelectMock::selectWith, entityTypeName, entityList));
+        Select select = session.createSelect(entityTypeName);
+        assertThat(select, is(notNullValue()));
+        assertThat(session.executeQuery(select), is(entityList));
+    }
 
-	@Test
-	public void testASelectStringConstraint() {
-		String entityTypeName = "test";
-		Session session = build(sessionWith().aSelect(ConstraintMock::constraintWith, entityTypeName));
-		assertThat(session.createSelect(entityTypeName).getConstraint(), is(notNullValue()));
-	}
+    @Test
+    public void testASelectStringConstraint() {
+        String entityTypeName = "test";
+        Session session = build(sessionWith().aSelect(ConstraintMock::constraintWith, entityTypeName));
+        assertThat(session.createSelect(entityTypeName).getConstraint(), is(notNullValue()));
+    }
 }

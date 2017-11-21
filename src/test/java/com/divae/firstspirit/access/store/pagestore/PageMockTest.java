@@ -17,34 +17,34 @@ import static org.junit.Assert.assertThat;
 
 public class PageMockTest extends MockTest {
 
-	@Test
-	public void testPageWithStringLongLanguageInfoLanguageInfo() {
-		String uid = "test";
-		assertThat(pageWith(uid, 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testPageWithStringLongLanguageInfoLanguageInfo() {
+        String uid = "test";
+        assertThat(pageWith(uid, 2, null), is(notNullValue()));
+    }
 
-	@Test
-	public void testPageWithStringLongStringTemplateSetLanguageInfoLanguageInfo() {
-		String uid = "test";
-		assertThat(pageWith(uid, 2, "test", templateSetWith("test"), null), is(notNullValue()));
-	}
+    @Test
+    public void testPageWithStringLongStringTemplateSetLanguageInfoLanguageInfo() {
+        String uid = "test";
+        assertThat(pageWith(uid, 2, "test", templateSetWith("test"), null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PageMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PageMock.class;
+    }
 
-	@Test
-	public void testAFormData() {
-		Page page = build(pageWith("uid", 2, null).aFormData(FormDataMock::formDataWith));
-		assertThat(page.getFormData(), is(notNullValue()));
-	}
+    @Test
+    public void testAFormData() {
+        Page page = build(pageWith("uid", 2, null).aFormData(FormDataMock::formDataWith));
+        assertThat(page.getFormData(), is(notNullValue()));
+    }
 
-	@Test
-	public void testATemplate() {
-		PageTemplateBuilder pageTemplateBuilder = pageTemplateWith("tgif", 2, null);
-		PageTemplate template = build(pageTemplateBuilder);
-		Page page = build(pageWith("uid", 3, null).aTemplate(pageTemplateBuilder));
-		assertThat(page.getTemplate(), is(template));
-	}
+    @Test
+    public void testATemplate() {
+        PageTemplateBuilder pageTemplateBuilder = pageTemplateWith("tgif", 2, null);
+        PageTemplate template = build(pageTemplateBuilder);
+        Page page = build(pageWith("uid", 3, null).aTemplate(pageTemplateBuilder));
+        assertThat(page.getTemplate(), is(template));
+    }
 }

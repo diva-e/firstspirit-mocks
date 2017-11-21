@@ -18,31 +18,31 @@ import static org.mockito.Mockito.when;
 
 public final class ContentStoreRootMock {
 
-	private ContentStoreRootMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ContentStoreRootMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ContentStoreRootBuilder contentStoreRootWith(long id, ProjectBuilder project) {
-		return new DefaultContentStoreRootBuilder(id, project);
-	}
+    public static ContentStoreRootBuilder contentStoreRootWith(long id, ProjectBuilder project) {
+        return new DefaultContentStoreRootBuilder(id, project);
+    }
 
-	public interface ContentStoreRootBuilder extends StoreBuilder<ContentStoreRoot, ContentStoreRootBuilder>, ContentFolderBuilder<ContentStoreRoot, ContentStoreRootBuilder> {
-		ContentStoreRootBuilder aContent2(Function<ContentStoreRootBuilder, Content2Builder> function, String content2ByName);
-	}
+    public interface ContentStoreRootBuilder extends StoreBuilder<ContentStoreRoot, ContentStoreRootBuilder>, ContentFolderBuilder<ContentStoreRoot, ContentStoreRootBuilder> {
+        ContentStoreRootBuilder aContent2(Function<ContentStoreRootBuilder, Content2Builder> function, String content2ByName);
+    }
 
-	public static final class DefaultContentStoreRootBuilder extends DefaultStoreBuilder<ContentStoreRoot, ContentStoreRootBuilder, DefaultContentStoreRootBuilder> implements ContentStoreRootBuilder {
+    public static final class DefaultContentStoreRootBuilder extends DefaultStoreBuilder<ContentStoreRoot, ContentStoreRootBuilder, DefaultContentStoreRootBuilder> implements ContentStoreRootBuilder {
 
-		private DefaultContentStoreRootBuilder(long id, ProjectBuilder project) {
-			super(id, CONTENTSTORE, Type.CONTENTSTORE, project);
-			contentFolderWith(getBuilder());
-		}
+        private DefaultContentStoreRootBuilder(long id, ProjectBuilder project) {
+            super(id, CONTENTSTORE, Type.CONTENTSTORE, project);
+            contentFolderWith(getBuilder());
+        }
 
-		@Override
-		public final ContentStoreRootBuilder aContent2(Function<ContentStoreRootBuilder, Content2Builder> function, String content2ByName) {
-			Content2 content2 = build(function.apply(getBuilder()));
-			when(getBuildable().getContent2ByName(content2ByName)).thenReturn(content2);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final ContentStoreRootBuilder aContent2(Function<ContentStoreRootBuilder, Content2Builder> function, String content2ByName) {
+            Content2 content2 = build(function.apply(getBuilder()));
+            when(getBuildable().getContent2ByName(content2ByName)).thenReturn(content2);
+            return getBuilder();
+        }
+    }
 
 }

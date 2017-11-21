@@ -12,13 +12,13 @@ import static org.junit.Assert.assertThat;
 
 public class PageStoreRootMockTest extends MockTest {
 
-	@Test
-	public void testPageStoreRootWith() {
-		assertThat(pageStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testPageStoreRootWith() {
+        assertThat(pageStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PageStoreRootMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PageStoreRootMock.class;
+    }
 }

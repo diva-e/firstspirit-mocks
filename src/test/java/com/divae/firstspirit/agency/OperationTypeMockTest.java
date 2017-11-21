@@ -4,9 +4,9 @@ import com.divae.firstspirit.MockTest;
 
 public class OperationTypeMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return OperationTypeMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return OperationTypeMock.class;
+    }
 
 }

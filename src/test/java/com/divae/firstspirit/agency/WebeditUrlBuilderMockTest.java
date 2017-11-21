@@ -4,9 +4,9 @@ import com.divae.firstspirit.MockTest;
 
 public class WebeditUrlBuilderMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return WebeditUrlBuilderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return WebeditUrlBuilderMock.class;
+    }
 
 }

@@ -15,40 +15,40 @@ import static org.junit.Assert.assertThat;
 
 public class DataProviderMockTest extends MockTest {
 
-	@Test
-	public void testDataProviderWithName() {
-		assertThat(dataProviderWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testDataProviderWithName() {
+        assertThat(dataProviderWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Test
-	public void testDataProviderWithDataProvider() {
-		assertThat(dataProviderWith(dataProviderWith("test", 2, null)), is(notNullValue()));
-	}
+    @Test
+    public void testDataProviderWithDataProvider() {
+        assertThat(dataProviderWith(dataProviderWith("test", 2, null)), is(notNullValue()));
+    }
 
-	@Test
-	public void testDataProviderWithUid() {
-		assertThat(dataProviderWith("test", 2, GLOBALSTORE, null), is(notNullValue()));
-	}
+    @Test
+    public void testDataProviderWithUid() {
+        assertThat(dataProviderWith("test", 2, GLOBALSTORE, null), is(notNullValue()));
+    }
 
-	@Test
-	public void testDataProviderWithNamePageStoreRoot() {
-		assertThat(dataProviderWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testDataProviderWithNamePageStoreRoot() {
+        assertThat(dataProviderWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Test
-	public void testDataProviderWithUidPageStoreRoot() {
-		assertThat(dataProviderWith("test", 2, PAGESTORE, null), is(notNullValue()));
-	}
+    @Test
+    public void testDataProviderWithUidPageStoreRoot() {
+        assertThat(dataProviderWith("test", 2, PAGESTORE, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return DataProviderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return DataProviderMock.class;
+    }
 
 
-	@Test
-	public void testAFormData() {
-		DataProvider dataProvider = build(dataProviderWith("uid", 2, null).aFormData(FormDataMock::formDataWith));
-		assertThat(dataProvider.getFormData(), is(notNullValue()));
-	}
+    @Test
+    public void testAFormData() {
+        DataProvider dataProvider = build(dataProviderWith("uid", 2, null).aFormData(FormDataMock::formDataWith));
+        assertThat(dataProvider.getFormData(), is(notNullValue()));
+    }
 }

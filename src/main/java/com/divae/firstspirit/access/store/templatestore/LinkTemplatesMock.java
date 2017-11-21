@@ -12,22 +12,22 @@ import static de.espirit.firstspirit.access.store.templatestore.LinkTemplate.UID
 
 public final class LinkTemplatesMock {
 
-	private LinkTemplatesMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private LinkTemplatesMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static LinkTemplatesBuilder linkTemplatesWith(String uid, long id, TemplateStoreRootBuilder parent) {
-		return new DefaultLinkTemplatesBuilder(uid, id, parent);
-	}
+    public static LinkTemplatesBuilder linkTemplatesWith(String uid, long id, TemplateStoreRootBuilder parent) {
+        return new DefaultLinkTemplatesBuilder(uid, id, parent);
+    }
 
-	public interface LinkTemplatesBuilder extends TemplateContainerBuilder<LinkTemplate, LinkTemplates, LinkTemplatesBuilder>, IDProviderBuilder<LinkTemplates, LinkTemplatesBuilder> {
-	}
+    public interface LinkTemplatesBuilder extends TemplateContainerBuilder<LinkTemplate, LinkTemplates, LinkTemplatesBuilder>, IDProviderBuilder<LinkTemplates, LinkTemplatesBuilder> {
+    }
 
-	public static final class DefaultLinkTemplatesBuilder extends DefaultTemplateContainerBuilder<LinkTemplate, LinkTemplates, LinkTemplatesBuilder, DefaultLinkTemplatesBuilder> implements LinkTemplatesBuilder {
+    private static final class DefaultLinkTemplatesBuilder extends DefaultTemplateContainerBuilder<LinkTemplate, LinkTemplates, LinkTemplatesBuilder, DefaultLinkTemplatesBuilder> implements LinkTemplatesBuilder {
 
-		private DefaultLinkTemplatesBuilder(String uid, long id, TemplateStoreRootBuilder parent) {
-			super(uid, id, UID_TYPE, parent);
-		}
+        private DefaultLinkTemplatesBuilder(String uid, long id, TemplateStoreRootBuilder parent) {
+            super(uid, id, UID_TYPE, parent);
+        }
 
-	}
+    }
 }

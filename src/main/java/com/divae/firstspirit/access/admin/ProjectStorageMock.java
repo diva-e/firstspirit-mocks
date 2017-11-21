@@ -14,28 +14,28 @@ import static org.mockito.Mockito.when;
 
 public final class ProjectStorageMock {
 
-	private ProjectStorageMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ProjectStorageMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ProjectStorageBuilder projectStorageWith() {
-		return new DefaultProjectStorageBuilder();
-	}
+    public static ProjectStorageBuilder projectStorageWith() {
+        return new DefaultProjectStorageBuilder();
+    }
 
-	public interface ProjectStorageBuilder extends Builder<ProjectStorage, ProjectStorageBuilder> {
-		ProjectStorageBuilder projects(Supplier<ProjectBuilder[]> supplier);
-	}
+    public interface ProjectStorageBuilder extends Builder<ProjectStorage, ProjectStorageBuilder> {
+        ProjectStorageBuilder projects(Supplier<ProjectBuilder[]> supplier);
+    }
 
-	public static final class DefaultProjectStorageBuilder extends DefaultBuilder<ProjectStorage, ProjectStorageBuilder, DefaultProjectStorageBuilder> implements ProjectStorageBuilder {
+    public static final class DefaultProjectStorageBuilder extends DefaultBuilder<ProjectStorage, ProjectStorageBuilder, DefaultProjectStorageBuilder> implements ProjectStorageBuilder {
 
-		private DefaultProjectStorageBuilder() {
-		}
+        private DefaultProjectStorageBuilder() {
+        }
 
-		@Override
-		public final ProjectStorageBuilder projects(Supplier<ProjectBuilder[]> supplier) {
-			Project[] projects = Stream.of(supplier.get()).map(BuilderMock::build).toArray(Project[]::new);
-			when(getBuildable().getProjects()).thenReturn(projects);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final ProjectStorageBuilder projects(Supplier<ProjectBuilder[]> supplier) {
+            Project[] projects = Stream.of(supplier.get()).map(BuilderMock::build).toArray(Project[]::new);
+            when(getBuildable().getProjects()).thenReturn(projects);
+            return getBuilder();
+        }
+    }
 }

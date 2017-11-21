@@ -13,29 +13,29 @@ import static org.mockito.Mockito.when;
 
 public final class LinkMock {
 
-	private LinkMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private LinkMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static LinkBuilder linkWith() {
-		return new DefaultLinkBuilder();
-	}
+    public static LinkBuilder linkWith() {
+        return new DefaultLinkBuilder();
+    }
 
-	public interface LinkBuilder extends Builder<Link, LinkBuilder> {
-		<T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> LinkBuilder aFormData(Supplier<TBUILDER> supplier);
-	}
+    public interface LinkBuilder extends Builder<Link, LinkBuilder> {
+        <T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> LinkBuilder aFormData(Supplier<TBUILDER> supplier);
+    }
 
-	public static final class DefaultLinkBuilder extends DefaultBuilder<Link, LinkBuilder, DefaultLinkBuilder> implements LinkBuilder {
+    public static final class DefaultLinkBuilder extends DefaultBuilder<Link, LinkBuilder, DefaultLinkBuilder> implements LinkBuilder {
 
-		private DefaultLinkBuilder() {
-		}
+        private DefaultLinkBuilder() {
+        }
 
-		@Override
-		public final <T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> LinkBuilder aFormData(Supplier<TBUILDER> supplier) {
-			FormData formData = build(supplier.get());
-			when(getBuildable().getFormData()).thenReturn(formData);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final <T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> LinkBuilder aFormData(Supplier<TBUILDER> supplier) {
+            FormData formData = build(supplier.get());
+            when(getBuildable().getFormData()).thenReturn(formData);
+            return getBuilder();
+        }
+    }
 
 }

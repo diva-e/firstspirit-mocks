@@ -11,22 +11,22 @@ import static de.espirit.firstspirit.access.store.templatestore.PageTemplate.UID
 
 public final class PageTemplatesMock {
 
-	private PageTemplatesMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private PageTemplatesMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static PageTemplatesBuilder pageTemplatesWith(String uid, long id, TemplateStoreRootBuilder parent) {
-		return new DefaultPageTemplatesBuilder(uid, id, parent);
-	}
+    public static PageTemplatesBuilder pageTemplatesWith(String uid, long id, TemplateStoreRootBuilder parent) {
+        return new DefaultPageTemplatesBuilder(uid, id, parent);
+    }
 
-	public interface PageTemplatesBuilder extends TemplateContainerBuilder<PageTemplate, PageTemplates, PageTemplatesBuilder> {
-	}
+    public interface PageTemplatesBuilder extends TemplateContainerBuilder<PageTemplate, PageTemplates, PageTemplatesBuilder> {
+    }
 
-	public static final class DefaultPageTemplatesBuilder extends DefaultTemplateContainerBuilder<PageTemplate, PageTemplates, PageTemplatesBuilder, DefaultPageTemplatesBuilder> implements PageTemplatesBuilder {
+    private static final class DefaultPageTemplatesBuilder extends DefaultTemplateContainerBuilder<PageTemplate, PageTemplates, PageTemplatesBuilder, DefaultPageTemplatesBuilder> implements PageTemplatesBuilder {
 
-		private DefaultPageTemplatesBuilder(String uid, long id, TemplateStoreRootBuilder parent) {
-			super(uid, id, UID_TYPE, parent);
-		}
+        private DefaultPageTemplatesBuilder(String uid, long id, TemplateStoreRootBuilder parent) {
+            super(uid, id, UID_TYPE, parent);
+        }
 
-	}
+    }
 }

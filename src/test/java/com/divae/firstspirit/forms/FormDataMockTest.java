@@ -16,23 +16,23 @@ import static org.junit.Assert.assertThat;
 
 public class FormDataMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return FormDataMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return FormDataMock.class;
+    }
 
-	@Test
-	public void testAValue() {
-		LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
-		String name = "name";
-		FormData formData = build(formDataWith().aValue(FormFieldMock::formFieldWith, languageBuilder, name));
-		Language language = build(languageBuilder);
-		assertThat(formData.get(language, name), is(notNullValue()));
-	}
+    @Test
+    public void testAValue() {
+        LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
+        String name = "name";
+        FormData formData = build(formDataWith().aValue(FormFieldMock::formFieldWith, languageBuilder, name));
+        Language language = build(languageBuilder);
+        assertThat(formData.get(language, name), is(notNullValue()));
+    }
 
-	@Test
-	public void testAForm() {
-		FormData formData = build(formDataWith().aForm(() -> gomEditorProviderWith("test")));
-		assertThat(formData.getForm().getUid(), is("test"));
-	}
+    @Test
+    public void testAForm() {
+        FormData formData = build(formDataWith().aForm(() -> gomEditorProviderWith("test")));
+        assertThat(formData.getForm().getUid(), is("test"));
+    }
 }

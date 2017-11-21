@@ -22,41 +22,41 @@ import static org.mockito.Mockito.when;
 
 public final class RevisionMetaDataMock {
 
-	private RevisionMetaDataMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private RevisionMetaDataMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static RevisionMetaDataBuilder revisionMetaDataWith() {
-		return new DefaultRevisionMetaDataBuilder();
-	}
+    public static RevisionMetaDataBuilder revisionMetaDataWith() {
+        return new DefaultRevisionMetaDataBuilder();
+    }
 
-	public interface RevisionMetaDataBuilder extends Builder<RevisionMetaData, RevisionMetaDataBuilder> {
-		<E, T extends RevisionOperation<E>, TBUILDER extends RevisionOperationBuilder<E, T, TBUILDER>> RevisionMetaDataBuilder anOperation(Supplier<TBUILDER> supplier);
+    public interface RevisionMetaDataBuilder extends Builder<RevisionMetaData, RevisionMetaDataBuilder> {
+        <E, T extends RevisionOperation<E>, TBUILDER extends RevisionOperationBuilder<E, T, TBUILDER>> RevisionMetaDataBuilder anOperation(Supplier<TBUILDER> supplier);
 
-		<TBUILDER extends RevisionChangeDetailBuilder<RevisionChangeDetail, TBUILDER>> RevisionMetaDataBuilder changedStoreElements(Map<BasicElementInfoBuilder, Map<ChangeType, TBUILDER>> changedStoreElements);
-	}
+        <TBUILDER extends RevisionChangeDetailBuilder<RevisionChangeDetail, TBUILDER>> RevisionMetaDataBuilder changedStoreElements(Map<BasicElementInfoBuilder, Map<ChangeType, TBUILDER>> changedStoreElements);
+    }
 
-	public static final class DefaultRevisionMetaDataBuilder extends DefaultBuilder<RevisionMetaData, RevisionMetaDataBuilder, DefaultRevisionMetaDataBuilder> implements RevisionMetaDataBuilder {
+    public static final class DefaultRevisionMetaDataBuilder extends DefaultBuilder<RevisionMetaData, RevisionMetaDataBuilder, DefaultRevisionMetaDataBuilder> implements RevisionMetaDataBuilder {
 
-		private DefaultRevisionMetaDataBuilder() {
-		}
+        private DefaultRevisionMetaDataBuilder() {
+        }
 
-		@Override
-		public final <E, T extends RevisionOperation<E>, TBUILDER extends RevisionOperationBuilder<E, T, TBUILDER>> RevisionMetaDataBuilder anOperation(Supplier<TBUILDER> supplier) {
-			T revisionOperation = build(supplier.get());
-			Mockito.<Object>when(getBuildable().getOperation()).thenReturn(revisionOperation);
-			return getBuilder();
-		}
+        @Override
+        public final <E, T extends RevisionOperation<E>, TBUILDER extends RevisionOperationBuilder<E, T, TBUILDER>> RevisionMetaDataBuilder anOperation(Supplier<TBUILDER> supplier) {
+            T revisionOperation = build(supplier.get());
+            Mockito.<Object>when(getBuildable().getOperation()).thenReturn(revisionOperation);
+            return getBuilder();
+        }
 
-		@Override
-		public final <TBUILDER extends RevisionChangeDetailBuilder<RevisionChangeDetail, TBUILDER>> RevisionMetaDataBuilder changedStoreElements(Map<BasicElementInfoBuilder, Map<ChangeType, TBUILDER>> changedStoreElements) {
-			Map<BasicElementInfo, Map<ChangeType, RevisionChangeDetail>> changedStoreElementsMap = changedStoreElements.entrySet().stream().collect(toMap(changedStoreElementEntry ->
-					getBuildable(changedStoreElementEntry.getKey()), changedStoreElementEntry ->
-					changedStoreElementEntry.getValue().entrySet().stream().collect(toMap(Entry::getKey, changeTypeRevisionChangeDetailBuilderEntry ->
-							getBuildable(changeTypeRevisionChangeDetailBuilderEntry.getValue()))))
-			);
-			when(getBuildable().getChangedStoreElements()).thenReturn(changedStoreElementsMap);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final <TBUILDER extends RevisionChangeDetailBuilder<RevisionChangeDetail, TBUILDER>> RevisionMetaDataBuilder changedStoreElements(Map<BasicElementInfoBuilder, Map<ChangeType, TBUILDER>> changedStoreElements) {
+            Map<BasicElementInfo, Map<ChangeType, RevisionChangeDetail>> changedStoreElementsMap = changedStoreElements.entrySet().stream().collect(toMap(changedStoreElementEntry ->
+                    getBuildable(changedStoreElementEntry.getKey()), changedStoreElementEntry ->
+                    changedStoreElementEntry.getValue().entrySet().stream().collect(toMap(Entry::getKey, changeTypeRevisionChangeDetailBuilderEntry ->
+                            getBuildable(changeTypeRevisionChangeDetailBuilderEntry.getValue()))))
+            );
+            when(getBuildable().getChangedStoreElements()).thenReturn(changedStoreElementsMap);
+            return getBuilder();
+        }
+    }
 }

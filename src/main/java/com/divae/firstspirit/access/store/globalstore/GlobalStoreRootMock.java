@@ -17,29 +17,29 @@ import static org.mockito.Mockito.when;
 
 public final class GlobalStoreRootMock {
 
-	private GlobalStoreRootMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private GlobalStoreRootMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static GlobalStoreRootBuilder globalStoreRootWith(long id, ProjectBuilder project) {
-		return new DefaultGlobalStoreRootBuilder(id, project);
-	}
+    public static GlobalStoreRootBuilder globalStoreRootWith(long id, ProjectBuilder project) {
+        return new DefaultGlobalStoreRootBuilder(id, project);
+    }
 
-	public interface GlobalStoreRootBuilder extends StoreBuilder<GlobalStoreRoot, GlobalStoreRootBuilder> {
-		GlobalStoreRootBuilder projectProperties(Function<GlobalStoreRootBuilder, ProjectPropertiesBuilder> function);
-	}
+    public interface GlobalStoreRootBuilder extends StoreBuilder<GlobalStoreRoot, GlobalStoreRootBuilder> {
+        GlobalStoreRootBuilder projectProperties(Function<GlobalStoreRootBuilder, ProjectPropertiesBuilder> function);
+    }
 
-	public static final class DefaultGlobalStoreRootBuilder extends DefaultStoreBuilder<GlobalStoreRoot, GlobalStoreRootBuilder, DefaultGlobalStoreRootBuilder> implements GlobalStoreRootBuilder {
+    public static final class DefaultGlobalStoreRootBuilder extends DefaultStoreBuilder<GlobalStoreRoot, GlobalStoreRootBuilder, DefaultGlobalStoreRootBuilder> implements GlobalStoreRootBuilder {
 
-		private DefaultGlobalStoreRootBuilder(long id, ProjectBuilder project) {
-			super(id, GLOBALSTORE, Type.GLOBALSTORE, project);
-		}
+        private DefaultGlobalStoreRootBuilder(long id, ProjectBuilder project) {
+            super(id, GLOBALSTORE, Type.GLOBALSTORE, project);
+        }
 
-		@Override
-		public final GlobalStoreRootBuilder projectProperties(Function<GlobalStoreRootBuilder, ProjectPropertiesBuilder> function) {
-			ProjectProperties projectProperties = build(function.apply(getBuilder()));
-			when(getBuildable().getProjectProperties()).thenReturn(projectProperties);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final GlobalStoreRootBuilder projectProperties(Function<GlobalStoreRootBuilder, ProjectPropertiesBuilder> function) {
+            ProjectProperties projectProperties = build(function.apply(getBuilder()));
+            when(getBuildable().getProjectProperties()).thenReturn(projectProperties);
+            return getBuilder();
+        }
+    }
 }

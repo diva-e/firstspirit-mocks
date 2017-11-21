@@ -25,40 +25,40 @@ import static org.mockito.Mockito.mock;
 
 public class FeatureAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return FeatureAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return FeatureAgentMock.class;
+    }
 
-	@Test
-	public void testCreatesFeature() {
-		Revision revision = build(revisionWith(1L));
-		FeatureAgent featureAgent = build(featureAgentWith().createsFeature(FeatureDescriptorMock::featureDescriptorWith, "name", revision, true));
-		assertThat(featureAgent.createFeature("name", revision, true), is(notNullValue()));
-	}
+    @Test
+    public void testCreatesFeature() {
+        Revision revision = build(revisionWith(1L));
+        FeatureAgent featureAgent = build(featureAgentWith().createsFeature(FeatureDescriptorMock::featureDescriptorWith, "name", revision, true));
+        assertThat(featureAgent.createFeature("name", revision, true), is(notNullValue()));
+    }
 
-	@Test
-	public void testCreatesFeatureModel() {
-		FeatureDescriptorBuilder featureDescriptorBuilder = featureDescriptorWith();
-		FeatureAgent featureAgent = build(featureAgentWith().createsFeatureModel(FeatureModelMock::featureModelWith, featureDescriptorBuilder));
-		FeatureDescriptor featureDescriptor = build(featureDescriptorBuilder);
-		assertThat(featureAgent.createFeatureModel(featureDescriptor), is(notNullValue()));
-	}
+    @Test
+    public void testCreatesFeatureModel() {
+        FeatureDescriptorBuilder featureDescriptorBuilder = featureDescriptorWith();
+        FeatureAgent featureAgent = build(featureAgentWith().createsFeatureModel(FeatureModelMock::featureModelWith, featureDescriptorBuilder));
+        FeatureDescriptor featureDescriptor = build(featureDescriptorBuilder);
+        assertThat(featureAgent.createFeatureModel(featureDescriptor), is(notNullValue()));
+    }
 
-	@Test
-	public void testCreatesFeatureTransportFile() {
-		FeatureDescriptorBuilder featureDescriptorBuilder = featureDescriptorWith();
-		FeatureAgent featureAgent = build(featureAgentWith().createsFeatureTransportFile(ServerActionHandleMock::<FeatureProgress, Boolean>serverActionHandleWith, featureDescriptorBuilder));
-		FeatureDescriptor featureDescriptor = build(featureDescriptorBuilder);
-		assertThat(featureAgent.createFeatureTransportFile(featureDescriptor), is(notNullValue()));
-	}
+    @Test
+    public void testCreatesFeatureTransportFile() {
+        FeatureDescriptorBuilder featureDescriptorBuilder = featureDescriptorWith();
+        FeatureAgent featureAgent = build(featureAgentWith().createsFeatureTransportFile(ServerActionHandleMock::<FeatureProgress, Boolean>serverActionHandleWith, featureDescriptorBuilder));
+        FeatureDescriptor featureDescriptor = build(featureDescriptorBuilder);
+        assertThat(featureAgent.createFeatureTransportFile(featureDescriptor), is(notNullValue()));
+    }
 
-	@Test
-	public void testADownloadFeatureFile() throws IOException {
-		FeatureFileMock.FeatureFileBuilder featureFileBuilder = featureFileWith();
-		InputStream inputStream = mock(InputStream.class);
-		FeatureAgent featureAgent = build(featureAgentWith().aDownloadFeatureFile(inputStream, featureFileBuilder));
-		FeatureFile featureFile = build(featureFileBuilder);
-		assertThat(featureAgent.downloadFeatureFile(featureFile), is(inputStream));
-	}
+    @Test
+    public void testADownloadFeatureFile() throws IOException {
+        FeatureFileMock.FeatureFileBuilder featureFileBuilder = featureFileWith();
+        InputStream inputStream = mock(InputStream.class);
+        FeatureAgent featureAgent = build(featureAgentWith().aDownloadFeatureFile(inputStream, featureFileBuilder));
+        FeatureFile featureFile = build(featureFileBuilder);
+        assertThat(featureAgent.downloadFeatureFile(featureFile), is(inputStream));
+    }
 }

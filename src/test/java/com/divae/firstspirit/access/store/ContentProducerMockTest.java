@@ -18,45 +18,45 @@ import static org.junit.Assert.assertThat;
 
 public class ContentProducerMockTest extends MockTest {
 
-	@Test
-	public void testContentProducerWithStringLongListLanguageInfo() {
-		assertThat(build(contentProducerWith("test", 2, GLOBALSTORE, null)), is(notNullValue()));
-	}
+    @Test
+    public void testContentProducerWithStringLongListLanguageInfo() {
+        assertThat(build(contentProducerWith("test", 2, GLOBALSTORE, null)), is(notNullValue()));
+    }
 
 
-	@Test
-	public void testContentProducerWithStringLongStringTemplateSetListLanguageInfo() {
-		assertThat(contentProducerWith("test", 2, GLOBALSTORE, "", templateSetWith("test"), null), is(notNullValue()));
-	}
+    @Test
+    public void testContentProducerWithStringLongStringTemplateSetListLanguageInfo() {
+        assertThat(contentProducerWith("test", 2, GLOBALSTORE, "", templateSetWith("test"), null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ContentProducerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ContentProducerMock.class;
+    }
 
-	@Test
-	public void testDefaults() {
-		ContentProducer contentProducer = build(contentProducerWith("test", 2, GLOBALSTORE, null));
-		TemplateSet templateSet = build(templateSetWith("test"));
-		assertThat(contentProducer.getExtension(templateSet), is(""));
-	}
+    @Test
+    public void testDefaults() {
+        ContentProducer contentProducer = build(contentProducerWith("test", 2, GLOBALSTORE, null));
+        TemplateSet templateSet = build(templateSetWith("test"));
+        assertThat(contentProducer.getExtension(templateSet), is(""));
+    }
 
-	@Test
-	public void testWithExtension() {
-		String extension = "test";
-		TemplateSetBuilder templateSetBuilder = templateSetWith("test");
-		ContentProducer contentProducer = build(contentProducerWith("test", 2, GLOBALSTORE, extension, templateSetBuilder, null));
-		TemplateSet templateSet = build(templateSetBuilder);
-		assertThat(contentProducer.getExtension(templateSet), is(extension));
-	}
+    @Test
+    public void testWithExtension() {
+        String extension = "test";
+        TemplateSetBuilder templateSetBuilder = templateSetWith("test");
+        ContentProducer contentProducer = build(contentProducerWith("test", 2, GLOBALSTORE, extension, templateSetBuilder, null));
+        TemplateSet templateSet = build(templateSetBuilder);
+        assertThat(contentProducer.getExtension(templateSet), is(extension));
+    }
 
-	@Test
-	public void testWithGetStoredUrl() {
-		LanguageBuilder languageBuilder = languageWith("DE");
-		TemplateSetBuilder templateSetBuilder = templateSetWith("test");
-		TemplateSet templateSet = build(templateSetBuilder);
+    @Test
+    public void testWithGetStoredUrl() {
+        LanguageBuilder languageBuilder = languageWith("DE");
+        TemplateSetBuilder templateSetBuilder = templateSetWith("test");
+        TemplateSet templateSet = build(templateSetBuilder);
 
-		ContentProducer contentProducer = build(contentProducerWith("test", 2, GLOBALSTORE, null).aStoredUrl("test", languageBuilder, templateSetBuilder, null));
-		assertThat(contentProducer.getStoredUrl(build(languageBuilder), templateSet, null), is("test"));
-	}
+        ContentProducer contentProducer = build(contentProducerWith("test", 2, GLOBALSTORE, null).aStoredUrl("test", languageBuilder, templateSetBuilder, null));
+        assertThat(contentProducer.getStoredUrl(build(languageBuilder), templateSet, null), is("test"));
+    }
 }

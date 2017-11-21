@@ -17,15 +17,15 @@ import static org.mockito.Mockito.mock;
 
 public class ModuleAdminAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ModuleAdminAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ModuleAdminAgentMock.class;
+    }
 
-	@Test
-	public void testInstall() throws ModuleException, IOException {
-		InputStream fsmStream = mock(InputStream.class);
-		ModuleAdminAgent moduleAdminAgent = build(moduleAdminAgentWith().install(ModuleResultMock::moduleResultWith, fsmStream, true));
-		assertThat(moduleAdminAgent.install(fsmStream, true), is(notNullValue()));
-	}
+    @Test
+    public void testInstall() throws ModuleException, IOException {
+        InputStream fsmStream = mock(InputStream.class);
+        ModuleAdminAgent moduleAdminAgent = build(moduleAdminAgentWith().install(ModuleResultMock::moduleResultWith, fsmStream, true));
+        assertThat(moduleAdminAgent.install(fsmStream, true), is(notNullValue()));
+    }
 }

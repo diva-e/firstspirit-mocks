@@ -11,19 +11,19 @@ import static org.junit.Assert.assertThat;
 
 public class GCAPageMockTest extends MockTest {
 
-	@Test
-	public void testGcaPageWithStringLongGlobalStoreRootBuilder() {
-		assertThat(gcaPageWith("ui", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testGcaPageWithStringLongGlobalStoreRootBuilder() {
+        assertThat(gcaPageWith("ui", 2, null), is(notNullValue()));
+    }
 
-	@Test
-	public void testGcaPageWithStringLongStringTemplateSetGlobalStoreRootBuilder() {
-		assertThat(gcaPageWith("ui", 2, "extension", templateSetWith("test"), null), is(notNullValue()));
-	}
+    @Test
+    public void testGcaPageWithStringLongStringTemplateSetGlobalStoreRootBuilder() {
+        assertThat(gcaPageWith("ui", 2, "extension", templateSetWith("test"), null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GCAPageMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GCAPageMock.class;
+    }
 
 }

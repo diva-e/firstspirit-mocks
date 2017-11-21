@@ -11,22 +11,22 @@ import static org.junit.Assert.assertThat;
 
 public class OptionMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return OptionMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return OptionMock.class;
+    }
 
-	@Test
-	public void testAValue() {
-		String value = "test";
-		Option option = build(optionWith().aValue(value));
-		assertThat(option.getValue(), is(value));
-	}
+    @Test
+    public void testAValue() {
+        String value = "test";
+        Option option = build(optionWith().aValue(value));
+        assertThat(option.getValue(), is(value));
+    }
 
-	@Test
-	public void testAKey() {
-		String key = "test";
-		Option option = build(optionWith().aKey(key));
-		assertThat(option.getKey(), is(key));
-	}
+    @Test
+    public void testAKey() {
+        String key = "test";
+        Option option = build(optionWith().aKey(key));
+        assertThat(option.getKey(), is(key));
+    }
 }

@@ -12,16 +12,16 @@ import static org.junit.Assert.assertThat;
 
 public class DataChangeDetailMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return DataChangeDetailMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return DataChangeDetailMock.class;
+    }
 
-	@Test
-	public void testAChangeFlag() {
-		DataChangeDetail dataChangeDetail = build(dataChangeDetailWith().aChangeFlag(ADDED));
-		assertThat(dataChangeDetail.getChangeFlag(), is(ADDED));
-	}
+    @Test
+    public void testAChangeFlag() {
+        DataChangeDetail dataChangeDetail = build(dataChangeDetailWith().aChangeFlag(ADDED));
+        assertThat(dataChangeDetail.getChangeFlag(), is(ADDED));
+    }
 
 
 }

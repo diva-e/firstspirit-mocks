@@ -4,9 +4,9 @@ import com.divae.firstspirit.MockTest;
 
 public class SiteStoreVariableFormDataMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SiteStoreVariableFormDataMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SiteStoreVariableFormDataMock.class;
+    }
 
 }

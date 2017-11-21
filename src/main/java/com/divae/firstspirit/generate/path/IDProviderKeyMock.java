@@ -8,28 +8,28 @@ import static org.mockito.Mockito.when;
 
 public final class IDProviderKeyMock {
 
-	private IDProviderKeyMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private IDProviderKeyMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static IDProviderKeyBuilder idProviderKeyWith() {
-		return new DefaultIDProviderKeyBuilder();
-	}
+    public static IDProviderKeyBuilder idProviderKeyWith() {
+        return new DefaultIDProviderKeyBuilder();
+    }
 
-	public interface IDProviderKeyBuilder extends Builder<IDProviderKey, IDProviderKeyBuilder> {
-		IDProviderKeyBuilder aNodeId(long nodeId);
-	}
+    public interface IDProviderKeyBuilder extends Builder<IDProviderKey, IDProviderKeyBuilder> {
+        IDProviderKeyBuilder aNodeId(long nodeId);
+    }
 
-	public static final class DefaultIDProviderKeyBuilder extends DefaultBuilder<IDProviderKey, IDProviderKeyBuilder, DefaultIDProviderKeyBuilder> implements IDProviderKeyBuilder {
+    public static final class DefaultIDProviderKeyBuilder extends DefaultBuilder<IDProviderKey, IDProviderKeyBuilder, DefaultIDProviderKeyBuilder> implements IDProviderKeyBuilder {
 
-		private DefaultIDProviderKeyBuilder() {
-		}
+        private DefaultIDProviderKeyBuilder() {
+        }
 
-		@Override
-		public final IDProviderKeyBuilder aNodeId(long nodeId) {
-			when(getBuildable().getNodeId()).thenReturn(nodeId);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final IDProviderKeyBuilder aNodeId(long nodeId) {
+            when(getBuildable().getNodeId()).thenReturn(nodeId);
+            return getBuilder();
+        }
+    }
 
 }

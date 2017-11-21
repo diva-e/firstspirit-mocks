@@ -10,14 +10,14 @@ import static org.junit.Assert.assertThat;
 
 public class GCAFolderMockTest extends MockTest {
 
-	@Test
-	public void testGcaFolderWith() {
-		assertThat(gcaFolderWith("ui", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testGcaFolderWith() {
+        assertThat(gcaFolderWith("ui", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GCAFolderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GCAFolderMock.class;
+    }
 
 }

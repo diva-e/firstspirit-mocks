@@ -13,19 +13,19 @@ import static org.junit.Assert.assertThat;
 
 public class URLPropertiesMockTest extends MockTest {
 
-	@Test
-	public void testUrlPropertiesWith() {
-		assertThat(urlPropertiesWith("urlProperties", 1, null), is(notNullValue()));
-	}
+    @Test
+    public void testUrlPropertiesWith() {
+        assertThat(urlPropertiesWith("urlProperties", 1, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return URLPropertiesMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return URLPropertiesMock.class;
+    }
 
-	@Test
-	public void testWithLock() {
-		URLProperties urlProperties = build(urlPropertiesWith("urlProperties", 1, null).isLocked(true));
-		assertThat(urlProperties.isLocked(), is(TRUE));
-	}
+    @Test
+    public void testWithLock() {
+        URLProperties urlProperties = build(urlPropertiesWith("urlProperties", 1, null).isLocked(true));
+        assertThat(urlProperties.isLocked(), is(TRUE));
+    }
 }

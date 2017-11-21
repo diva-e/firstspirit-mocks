@@ -12,21 +12,21 @@ import static org.junit.Assert.assertThat;
 
 public class ChannelSourceProviderMockTest extends MockTest {
 
-	@Test
-	public void testChannelSourceProviderWith() {
-		ChannelSourceProviderBuilder channelSourceProviderBuilder = channelSourceProviderWith("test", 2, null);
-		assertThat(channelSourceProviderBuilder, is(notNullValue()));
-	}
+    @Test
+    public void testChannelSourceProviderWith() {
+        ChannelSourceProviderBuilder channelSourceProviderBuilder = channelSourceProviderWith("test", 2, null);
+        assertThat(channelSourceProviderBuilder, is(notNullValue()));
+    }
 
-	@Test
-	public void testChannelSourceProviderWithUidType() {
-		ChannelSourceProviderBuilder channelSourceProviderBuilder = channelSourceProviderWith("test", 2, TEMPLATESTORE, null);
-		assertThat(channelSourceProviderBuilder, is(notNullValue()));
-	}
+    @Test
+    public void testChannelSourceProviderWithUidType() {
+        ChannelSourceProviderBuilder channelSourceProviderBuilder = channelSourceProviderWith("test", 2, TEMPLATESTORE, null);
+        assertThat(channelSourceProviderBuilder, is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ChannelSourceProviderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ChannelSourceProviderMock.class;
+    }
 
 }

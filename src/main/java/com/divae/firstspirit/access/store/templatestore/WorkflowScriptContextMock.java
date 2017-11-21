@@ -16,39 +16,39 @@ import static org.mockito.Mockito.when;
 
 public final class WorkflowScriptContextMock {
 
-	private WorkflowScriptContextMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private WorkflowScriptContextMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static WorkflowScriptContextBuilder workflowScriptContextWith(ProjectBuilder project) {
-		return new DefaultWorkflowScriptContextBuilder(project);
-	}
+    public static WorkflowScriptContextBuilder workflowScriptContextWith(ProjectBuilder project) {
+        return new DefaultWorkflowScriptContextBuilder(project);
+    }
 
-	public interface WorkflowScriptContextBuilder extends GuiScriptContextBuilder<WorkflowScriptContext, WorkflowScriptContextBuilder> {
-		WorkflowScriptContextBuilder transitions(Supplier<TransitionBuilder[]> supplier);
-	}
+    public interface WorkflowScriptContextBuilder extends GuiScriptContextBuilder<WorkflowScriptContext, WorkflowScriptContextBuilder> {
+        WorkflowScriptContextBuilder transitions(Supplier<TransitionBuilder[]> supplier);
+    }
 
-	public static final class DefaultWorkflowScriptContextBuilder extends DefaultGuiScriptContextBuilder<WorkflowScriptContext, WorkflowScriptContextBuilder, DefaultWorkflowScriptContextBuilder> implements WorkflowScriptContextBuilder {
+    public static final class DefaultWorkflowScriptContextBuilder extends DefaultGuiScriptContextBuilder<WorkflowScriptContext, WorkflowScriptContextBuilder, DefaultWorkflowScriptContextBuilder> implements WorkflowScriptContextBuilder {
 
-		private DefaultWorkflowScriptContextBuilder(ProjectBuilder project) {
-			super(project);
-			withDefaults();
-		}
+        private DefaultWorkflowScriptContextBuilder(ProjectBuilder project) {
+            super(project);
+            withDefaults();
+        }
 
-		private void withDefaults() {
-			withEmptyTransitions();
-		}
+        private void withDefaults() {
+            withEmptyTransitions();
+        }
 
-		@Override
-		public final WorkflowScriptContextBuilder transitions(Supplier<TransitionBuilder[]> supplier) {
-			Transition[] transitions = of(supplier.get()).map(BuilderMock::build).toArray(Transition[]::new);
-			when(getBuildable().getTransitions()).thenReturn(transitions);
-			return getBuilder();
-		}
+        @Override
+        public final WorkflowScriptContextBuilder transitions(Supplier<TransitionBuilder[]> supplier) {
+            Transition[] transitions = of(supplier.get()).map(BuilderMock::build).toArray(Transition[]::new);
+            when(getBuildable().getTransitions()).thenReturn(transitions);
+            return getBuilder();
+        }
 
-		private void withEmptyTransitions() {
-			when(getBuildable().getTransitions()).thenReturn(new Transition[]{});
-		}
-	}
+        private void withEmptyTransitions() {
+            when(getBuildable().getTransitions()).thenReturn(new Transition[]{});
+        }
+    }
 
 }

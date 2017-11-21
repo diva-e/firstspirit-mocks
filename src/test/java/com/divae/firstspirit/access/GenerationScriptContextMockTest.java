@@ -12,13 +12,13 @@ import static org.junit.Assert.assertThat;
 
 public class GenerationScriptContextMockTest extends MockTest {
 
-	@Test
-	public void testGenerationScriptContextWith() {
-		assertThat(generationScriptContextWith(projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testGenerationScriptContextWith() {
+        assertThat(generationScriptContextWith(projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GenerationScriptContextMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GenerationScriptContextMock.class;
+    }
 }

@@ -22,12 +22,11 @@ public final class GomIncludeConfigurationMock {
 
     public static class DefaultGomIncludeConfigurationBuilder<T extends GomIncludeConfiguration, EBUILDER extends GomIncludeConfigurationBuilder<T, EBUILDER>, TBUILDER extends DefaultGomIncludeConfigurationBuilder<T, EBUILDER, TBUILDER>> extends DefaultGomElementBuilder<T, EBUILDER, TBUILDER> implements GomIncludeConfigurationBuilder<T, EBUILDER> {
         protected DefaultGomIncludeConfigurationBuilder() {
-            super();
         }
     }
 
     private static final class TruncatedDefaultGomIncludeConfigurationBuilder<T extends GomIncludeConfiguration> extends DefaultGomIncludeConfigurationBuilder<T, TruncatedGomIncludeConfigurationBuilder<T>, TruncatedDefaultGomIncludeConfigurationBuilder<T>> implements TruncatedGomIncludeConfigurationBuilder<T> {
-        TruncatedDefaultGomIncludeConfigurationBuilder() {
+        private TruncatedDefaultGomIncludeConfigurationBuilder() {
             super();
         }
     }

@@ -6,20 +6,20 @@ import de.espirit.firstspirit.ui.operations.RequestOperation.Answer;
 
 public final class AnswerMock {
 
-	private AnswerMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private AnswerMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static AnswerBuilder answerWith() {
-		return new DefaultAnswerBuilder();
-	}
+    public static AnswerBuilder answerWith() {
+        return new DefaultAnswerBuilder();
+    }
 
-	public interface AnswerBuilder extends Builder<Answer, AnswerBuilder> {
-	}
+    public interface AnswerBuilder extends Builder<Answer, AnswerBuilder> {
+    }
 
-	public static final class DefaultAnswerBuilder extends DefaultBuilder<Answer, AnswerBuilder, DefaultAnswerBuilder> implements AnswerBuilder {
+    private static final class DefaultAnswerBuilder extends DefaultBuilder<Answer, AnswerBuilder, DefaultAnswerBuilder> implements AnswerBuilder {
 
-		private DefaultAnswerBuilder() {
-		}
-	}
+        private DefaultAnswerBuilder() {
+        }
+    }
 }

@@ -16,17 +16,17 @@ import static org.junit.Assert.assertThat;
 
 public class UrlRegistryAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return UrlRegistryAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return UrlRegistryAgentMock.class;
+    }
 
-	@Test
-	public void testEntries() {
-		String path = "path";
-		IDProviderKeyMock.IDProviderKeyBuilder idProviderKeyBuilder = idProviderKeyWith();
-		UrlRegistryAgent urlRegistryAgent = build(urlRegistryAgentWith().entries(Collections.singletonList(idProviderKeyBuilder), path));
-		IDProviderKey idProviderKey = build(idProviderKeyBuilder);
-		assertThat(urlRegistryAgent.getEntries(path).get(0), is(idProviderKey));
-	}
+    @Test
+    public void testEntries() {
+        String path = "path";
+        IDProviderKeyMock.IDProviderKeyBuilder idProviderKeyBuilder = idProviderKeyWith();
+        UrlRegistryAgent urlRegistryAgent = build(urlRegistryAgentWith().entries(Collections.singletonList(idProviderKeyBuilder), path));
+        IDProviderKey idProviderKey = build(idProviderKeyBuilder);
+        assertThat(urlRegistryAgent.getEntries(path).get(0), is(idProviderKey));
+    }
 }

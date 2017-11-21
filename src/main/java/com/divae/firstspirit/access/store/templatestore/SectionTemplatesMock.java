@@ -17,30 +17,30 @@ import static org.mockito.Mockito.when;
 
 public final class SectionTemplatesMock {
 
-	private SectionTemplatesMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SectionTemplatesMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static SectionTemplatesBuilder sectionTemplatesWith(String uid, long id, TemplateStoreRootBuilder parent) {
-		return new DefaultSectionTemplatesBuilder(uid, id, parent);
-	}
+    public static SectionTemplatesBuilder sectionTemplatesWith(String uid, long id, TemplateStoreRootBuilder parent) {
+        return new DefaultSectionTemplatesBuilder(uid, id, parent);
+    }
 
-	public interface SectionTemplatesBuilder extends TemplateContainerBuilder<SectionTemplate, SectionTemplates, SectionTemplatesBuilder> {
+    public interface SectionTemplatesBuilder extends TemplateContainerBuilder<SectionTemplate, SectionTemplates, SectionTemplatesBuilder> {
         <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionTemplatesBuilder aTemplate(Function<SectionTemplatesBuilder, OTBUILDER> function);
     }
 
-	public static final class DefaultSectionTemplatesBuilder extends DefaultTemplateContainerBuilder<SectionTemplate, SectionTemplates, SectionTemplatesBuilder, DefaultSectionTemplatesBuilder> implements SectionTemplatesBuilder {
+    public static final class DefaultSectionTemplatesBuilder extends DefaultTemplateContainerBuilder<SectionTemplate, SectionTemplates, SectionTemplatesBuilder, DefaultSectionTemplatesBuilder> implements SectionTemplatesBuilder {
 
-		private DefaultSectionTemplatesBuilder(String uid, long id, TemplateStoreRootBuilder parent) {
-			super(uid, id, UID_TYPE, parent);
-		}
+        private DefaultSectionTemplatesBuilder(String uid, long id, TemplateStoreRootBuilder parent) {
+            super(uid, id, UID_TYPE, parent);
+        }
 
-		@Override
+        @Override
         public final <OT extends SectionTemplate, OTBUILDER extends SectionTemplateBuilder<OT, OTBUILDER>> SectionTemplatesBuilder aTemplate(Function<SectionTemplatesBuilder, OTBUILDER> function) {
             SectionTemplate sectionTemplate = build(function.apply(getBuilder()));
-			when(getBuildable().getTemplate(sectionTemplate.getUid())).thenReturn(sectionTemplate);
-			children(singletonList(sectionTemplate));
-			return getBuilder();
-		}
-	}
+            when(getBuildable().getTemplate(sectionTemplate.getUid())).thenReturn(sectionTemplate);
+            children(singletonList(sectionTemplate));
+            return getBuilder();
+        }
+    }
 }

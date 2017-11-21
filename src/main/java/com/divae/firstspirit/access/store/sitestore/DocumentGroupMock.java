@@ -12,31 +12,31 @@ import static de.espirit.firstspirit.access.store.sitestore.DocumentGroup.UID_TY
 
 public final class DocumentGroupMock {
 
-	private DocumentGroupMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private DocumentGroupMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DocumentGroupBuilder documentGroupWith(String uid, long id, TBUILDER parent) {
-		return new DefaultDocumentGroupBuilder(uid, id, parent);
-	}
+    public static <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DocumentGroupBuilder documentGroupWith(String uid, long id, TBUILDER parent) {
+        return new DefaultDocumentGroupBuilder(uid, id, parent);
+    }
 
-	public static <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DocumentGroupBuilder documentGroupWith(String uid, long id, String extension, TemplateSetBuilder templateSet, TBUILDER parent) {
-		return new DefaultDocumentGroupBuilder(uid, id, extension, templateSet, parent);
-	}
+    public static <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DocumentGroupBuilder documentGroupWith(String uid, long id, String extension, TemplateSetBuilder templateSet, TBUILDER parent) {
+        return new DefaultDocumentGroupBuilder(uid, id, extension, templateSet, parent);
+    }
 
-	public interface DocumentGroupBuilder extends ContentProducerBuilder<DocumentGroup, DocumentGroupBuilder> {
-	}
+    public interface DocumentGroupBuilder extends ContentProducerBuilder<DocumentGroup, DocumentGroupBuilder> {
+    }
 
-	public static final class DefaultDocumentGroupBuilder extends DefaultContentProducerBuilder<DocumentGroup, DocumentGroupBuilder, DefaultDocumentGroupBuilder> implements DocumentGroupBuilder {
+    private static final class DefaultDocumentGroupBuilder extends DefaultContentProducerBuilder<DocumentGroup, DocumentGroupBuilder, DefaultDocumentGroupBuilder> implements DocumentGroupBuilder {
 
-		private <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DefaultDocumentGroupBuilder(String uid, long id, TBUILDER parent) {
-			super(uid, id, UID_TYPE, parent);
-			aReferenceName(DOCUMENTGROUP.prefix() + uid);
-		}
+        private <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DefaultDocumentGroupBuilder(String uid, long id, TBUILDER parent) {
+            super(uid, id, UID_TYPE, parent);
+            aReferenceName(DOCUMENTGROUP.prefix() + uid);
+        }
 
-		private <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DefaultDocumentGroupBuilder(String uid, long id, String extension, TemplateSetBuilder templateSet, TBUILDER parent) {
-			super(uid, id, UID_TYPE, extension, templateSet, parent);
-			aReferenceName(DOCUMENTGROUP.prefix() + uid);
-		}
-	}
+        private <T extends SiteStoreFolder, TBUILDER extends SiteStoreFolderBuilder<T, TBUILDER>> DefaultDocumentGroupBuilder(String uid, long id, String extension, TemplateSetBuilder templateSet, TBUILDER parent) {
+            super(uid, id, UID_TYPE, extension, templateSet, parent);
+            aReferenceName(DOCUMENTGROUP.prefix() + uid);
+        }
+    }
 }

@@ -17,23 +17,23 @@ import static org.junit.Assert.assertThat;
 
 public class EntityListMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return EntityListMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return EntityListMock.class;
+    }
 
-	@Test
-	public void testValues() {
-		Entity entity = build(entityWith(new UUID(0, 0)));
-		EntityList entityList = build(entityListWith().values(singletonList(entity)));
-		assertThat(entityList.size(), is(1));
-		assertThat(entityList.isEmpty(), is(FALSE));
-		assertThat(entityList.get(0), is(entity));
-	}
+    @Test
+    public void testValues() {
+        Entity entity = build(entityWith(new UUID(0, 0)));
+        EntityList entityList = build(entityListWith().values(singletonList(entity)));
+        assertThat(entityList.size(), is(1));
+        assertThat(entityList.isEmpty(), is(FALSE));
+        assertThat(entityList.get(0), is(entity));
+    }
 
-	@Test(expected = IndexOutOfBoundsException.class)
-	public void testIndexOutOfBoundsException() {
-		EntityList entityList = build(entityListWith());
-		entityList.get(6);
-	}
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testIndexOutOfBoundsException() {
+        EntityList entityList = build(entityListWith());
+        entityList.get(6);
+    }
 }

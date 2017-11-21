@@ -22,30 +22,30 @@ import static org.junit.Assert.assertThat;
 
 public class DatasetContainerMockTest extends MockTest {
 
-	@Test
-	public void testDatasetContainerWith() {
-		assertThat(datasetContainerWith(new UUID(0, 0)), is(notNullValue()));
-	}
+    @Test
+    public void testDatasetContainerWith() {
+        assertThat(datasetContainerWith(new UUID(0, 0)), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return DatasetContainerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return DatasetContainerMock.class;
+    }
 
-	@Test
-	public void testDatasetContainer() {
-		assertThat(datasetContainerWith(new UUID(0, 0)), is(notNullValue()));
-	}
+    @Test
+    public void testDatasetContainer() {
+        assertThat(datasetContainerWith(new UUID(0, 0)), is(notNullValue()));
+    }
 
-	@Test
-	public void testADataset() {
-		DatasetContainerBuilder datasetContainerBuilder = datasetContainerWith(new UUID(0, 0));
-		Content2Mock.content2With("content2", 2, contentStoreRootWith(1, projectWith("project", 0, languageWith("DE")))).aDataset(parent -> {
-			DatasetBuilder datasetBuilder = datasetWith("dataset", 3, parent);
-			datasetContainerBuilder.aDataset(datasetBuilder);
-			return datasetBuilder;
-		}, () -> entityWith(null));
-		DatasetContainer datasetContainer = build(datasetContainerBuilder);
-		assertThat(datasetContainer.getDataset().getId(), is(3L));
-	}
+    @Test
+    public void testADataset() {
+        DatasetContainerBuilder datasetContainerBuilder = datasetContainerWith(new UUID(0, 0));
+        Content2Mock.content2With("content2", 2, contentStoreRootWith(1, projectWith("project", 0, languageWith("DE")))).aDataset(parent -> {
+            DatasetBuilder datasetBuilder = datasetWith("dataset", 3, parent);
+            datasetContainerBuilder.aDataset(datasetBuilder);
+            return datasetBuilder;
+        }, () -> entityWith(null));
+        DatasetContainer datasetContainer = build(datasetContainerBuilder);
+        assertThat(datasetContainer.getDataset().getId(), is(3L));
+    }
 }

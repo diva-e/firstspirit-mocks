@@ -28,7 +28,7 @@ public final class SectionTemplateMock {
 
     public static class DefaultSectionTemplateBuilder<T extends SectionTemplate, EBUILDER extends SectionTemplateBuilder<T, EBUILDER>, TBUILDER extends DefaultSectionTemplateBuilder<T, EBUILDER, TBUILDER>> extends DefaultTemplateBuilder<T, EBUILDER, TBUILDER> implements SectionTemplateBuilder<T, EBUILDER> {
 
-        private DefaultSectionTemplateBuilder(String uid, long id, UidType uidType, SectionTemplatesBuilder parent) {
+        protected DefaultSectionTemplateBuilder(String uid, long id, UidType uidType, SectionTemplatesBuilder parent) {
             super(uid, id, uidType, parent);
         }
 

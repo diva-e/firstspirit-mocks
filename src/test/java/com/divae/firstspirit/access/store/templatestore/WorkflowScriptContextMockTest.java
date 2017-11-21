@@ -17,27 +17,27 @@ import static org.junit.Assert.assertThat;
 
 public class WorkflowScriptContextMockTest extends MockTest {
 
-	@Test
-	public void testWorkflowScriptContextWith() {
-		assertThat(workflowScriptContextWith(projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testWorkflowScriptContextWith() {
+        assertThat(workflowScriptContextWith(projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return WorkflowScriptContextMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return WorkflowScriptContextMock.class;
+    }
 
-	@Test
-	public void testTransitions() {
-		WorkflowScriptContext workflowScriptContext = build(workflowScriptContextWith(projectWith("test", 0, languageWith("DE"))).transitions(() -> new TransitionBuilder[]{transitionWith(0L)}));
-		Transition[] transitions = workflowScriptContext.getTransitions();
-		assertThat(transitions.length, is(1));
-		assertThat(transitions[0].getID(), is(0L));
-	}
+    @Test
+    public void testTransitions() {
+        WorkflowScriptContext workflowScriptContext = build(workflowScriptContextWith(projectWith("test", 0, languageWith("DE"))).transitions(() -> new TransitionBuilder[]{transitionWith(0L)}));
+        Transition[] transitions = workflowScriptContext.getTransitions();
+        assertThat(transitions.length, is(1));
+        assertThat(transitions[0].getID(), is(0L));
+    }
 
-	@Test
-	public void testDefaults() {
-		WorkflowScriptContext workflowScriptContext = build(workflowScriptContextWith(projectWith("test", 0, languageWith("DE"))));
-		assertThat(workflowScriptContext.getTransitions().length, is(0));
-	}
+    @Test
+    public void testDefaults() {
+        WorkflowScriptContext workflowScriptContext = build(workflowScriptContextWith(projectWith("test", 0, languageWith("DE"))));
+        assertThat(workflowScriptContext.getTransitions().length, is(0));
+    }
 }

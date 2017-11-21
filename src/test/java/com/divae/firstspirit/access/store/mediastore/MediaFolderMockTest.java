@@ -29,64 +29,64 @@ import static org.junit.Assert.fail;
 
 public class MediaFolderMockTest extends MockTest {
 
-	@Test
-	public void testMediaFolderWith() {
-		String uid = "test";
-		assertThat(mediaFolderWith(uid, 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testMediaFolderWith() {
+        String uid = "test";
+        assertThat(mediaFolderWith(uid, 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return MediaFolderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return MediaFolderMock.class;
+    }
 
-	@Test
-	public void testCreatesMediaFolderMediaFolder() throws DuplicateReferenceNameException, LockException, ElementDeletedException {
-		String uid = "child";
-		LanguageBuilder languageBuilder = languageWith("DE");
-		MediaFolder mediaFolder = (MediaFolder) build(mediaStoreRootWith(1, projectWith("test", 0, languageBuilder)).children(parent -> {
-			try {
-				return singletonList(mediaFolderWith("parent", 2, parent).createsMediaFolder(mediaFolderParent -> mediaFolderWith(uid, 3, mediaFolderParent)));
-			} catch (LockException | ElementDeletedException e) {
-				fail(e.getMessage());
-				return emptyList();
-			}
-		})).getChildren().iterator().next();
-		MediaFolder mediaFolderChild = mediaFolder.createMediaFolder(uid, true);
-		assertThat(mediaFolderChild.getUid(), is(uid));
-		assertThat(mediaFolderChild.getParent().getId(), is(2L));
-	}
+    @Test
+    public void testCreatesMediaFolderMediaFolder() throws DuplicateReferenceNameException, LockException, ElementDeletedException {
+        String uid = "child";
+        LanguageBuilder languageBuilder = languageWith("DE");
+        MediaFolder mediaFolder = (MediaFolder) build(mediaStoreRootWith(1, projectWith("test", 0, languageBuilder)).children(parent -> {
+            try {
+                return singletonList(mediaFolderWith("parent", 2, parent).createsMediaFolder(mediaFolderParent -> mediaFolderWith(uid, 3, mediaFolderParent)));
+            } catch (LockException | ElementDeletedException e) {
+                fail(e.getMessage());
+                return emptyList();
+            }
+        })).getChildren().iterator().next();
+        MediaFolder mediaFolderChild = mediaFolder.createMediaFolder(uid, true);
+        assertThat(mediaFolderChild.getUid(), is(uid));
+        assertThat(mediaFolderChild.getParent().getId(), is(2L));
+    }
 
-	@Test
-	public void testCreatesMediaMediaIntegerLanguage() throws DuplicateReferenceNameException, LockException, ElementDeletedException {
-		LanguageBuilder languageBuilder = languageWith("DE");
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageBuilder);
-		String uid = "child";
-		MediaFolder mediaFolder = (MediaFolder) build(mediaStoreRootWith(1, projectBuilder).children(parent -> {
-			try {
-				return singletonList(mediaFolderWith("parent", 2, parent).createsMedia(mediaFolderParent -> mediaWith(uid, 3, mediaFolderParent), FILE, languageBuilder));
-			} catch (LockException | ElementDeletedException e) {
-				fail(e.getMessage());
-				return emptyList();
-			}
-		})).getChildren().iterator().next();
-		assertThat(mediaFolder.createMedia(uid, uid, FILE, false, of(build(languageBuilder),
-				uid), true).getUid(), is(uid));
-	}
+    @Test
+    public void testCreatesMediaMediaIntegerLanguage() throws DuplicateReferenceNameException, LockException, ElementDeletedException {
+        LanguageBuilder languageBuilder = languageWith("DE");
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageBuilder);
+        String uid = "child";
+        MediaFolder mediaFolder = (MediaFolder) build(mediaStoreRootWith(1, projectBuilder).children(parent -> {
+            try {
+                return singletonList(mediaFolderWith("parent", 2, parent).createsMedia(mediaFolderParent -> mediaWith(uid, 3, mediaFolderParent), FILE, languageBuilder));
+            } catch (LockException | ElementDeletedException e) {
+                fail(e.getMessage());
+                return emptyList();
+            }
+        })).getChildren().iterator().next();
+        assertThat(mediaFolder.createMedia(uid, uid, FILE, false, of(build(languageBuilder),
+                uid), true).getUid(), is(uid));
+    }
 
-	@Test
-	public void testAStoredUrl() {
-		LanguageBuilder languageBuilder = languageWith("DE").isMasterLanguage();
-		MediaFolder mediaFolder = build(mediaFolderWith("parent", 2, null).aStoredUrl("test", languageBuilder));
-		Language masterLanguage = build(languageBuilder);
-		assertThat(mediaFolder.getStoredUrl(masterLanguage), is("test"));
-	}
+    @Test
+    public void testAStoredUrl() {
+        LanguageBuilder languageBuilder = languageWith("DE").isMasterLanguage();
+        MediaFolder mediaFolder = build(mediaFolderWith("parent", 2, null).aStoredUrl("test", languageBuilder));
+        Language masterLanguage = build(languageBuilder);
+        assertThat(mediaFolder.getStoredUrl(masterLanguage), is("test"));
+    }
 
-	@Test
-	public void testDefaults() {
-		String uid = "test";
-		MediaFolder mediaFolder = build(mediaFolderWith(uid, 2, null));
-		assertThat(mediaFolder.getReferenceName(), is(MEDIAFOLDER.prefix() + uid));
-		assertThat(mediaFolder.isFolder(), is(TRUE));
-	}
+    @Test
+    public void testDefaults() {
+        String uid = "test";
+        MediaFolder mediaFolder = build(mediaFolderWith(uid, 2, null));
+        assertThat(mediaFolder.getReferenceName(), is(MEDIAFOLDER.prefix() + uid));
+        assertThat(mediaFolder.isFolder(), is(TRUE));
+    }
 }

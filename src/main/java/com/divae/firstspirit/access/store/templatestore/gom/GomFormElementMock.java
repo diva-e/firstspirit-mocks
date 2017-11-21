@@ -8,25 +8,25 @@ import static org.mockito.Mockito.when;
 
 public final class GomFormElementMock {
 
-	private GomFormElementMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private GomFormElementMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static GomFormElementBuilder gomFormElementWith(String name) {
-		return new DefaultGomFormElementBuilder(name);
-	}
+    public static GomFormElementBuilder gomFormElementWith(String name) {
+        return new DefaultGomFormElementBuilder(name);
+    }
 
     public interface GomFormElementBuilder extends GomElementBuilder<GomFormElement, GomFormElementBuilder> {
     }
 
-    public static final class DefaultGomFormElementBuilder extends DefaultGomElementBuilder<GomFormElement, GomFormElementBuilder, DefaultGomFormElementBuilder> implements GomFormElementBuilder {
+    private static final class DefaultGomFormElementBuilder extends DefaultGomElementBuilder<GomFormElement, GomFormElementBuilder, DefaultGomFormElementBuilder> implements GomFormElementBuilder {
 
-		private DefaultGomFormElementBuilder(String name) {
-			aName(name);
-		}
+        private DefaultGomFormElementBuilder(String name) {
+            aName(name);
+        }
 
-		private void aName(String name) {
-			when(getBuildable().name()).thenReturn(name);
-		}
-	}
+        private void aName(String name) {
+            when(getBuildable().name()).thenReturn(name);
+        }
+    }
 }

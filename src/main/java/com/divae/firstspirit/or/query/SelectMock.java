@@ -13,28 +13,28 @@ import static org.mockito.Mockito.when;
 
 public final class SelectMock {
 
-	private SelectMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SelectMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static SelectBuilder selectWith() {
-		return new DefaultSelectBuilder();
-	}
+    public static SelectBuilder selectWith() {
+        return new DefaultSelectBuilder();
+    }
 
-	public interface SelectBuilder extends Builder<Select, SelectBuilder> {
-		SelectBuilder aConstraint(Supplier<ConstraintBuilder> supplier);
-	}
+    public interface SelectBuilder extends Builder<Select, SelectBuilder> {
+        SelectBuilder aConstraint(Supplier<ConstraintBuilder> supplier);
+    }
 
-	public static final class DefaultSelectBuilder extends DefaultBuilder<Select, SelectBuilder, DefaultSelectBuilder> implements SelectBuilder {
+    public static final class DefaultSelectBuilder extends DefaultBuilder<Select, SelectBuilder, DefaultSelectBuilder> implements SelectBuilder {
 
-		private DefaultSelectBuilder() {
-		}
+        private DefaultSelectBuilder() {
+        }
 
-		@Override
-		public final SelectBuilder aConstraint(Supplier<ConstraintBuilder> supplier) {
-			Constraint constraint = build(supplier.get());
-			when(getBuildable().getConstraint()).thenReturn(constraint);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final SelectBuilder aConstraint(Supplier<ConstraintBuilder> supplier) {
+            Constraint constraint = build(supplier.get());
+            when(getBuildable().getConstraint()).thenReturn(constraint);
+            return getBuilder();
+        }
+    }
 }

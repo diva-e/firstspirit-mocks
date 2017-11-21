@@ -14,27 +14,27 @@ import static org.junit.Assert.assertThat;
 
 public class DocumentGroupMockTest extends MockTest {
 
-	@Test
-	public void testDocumentGroupWithStringLongLanguageInfoLanguageInfo() {
-		String uid = "test";
-		assertThat(documentGroupWith(uid, 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testDocumentGroupWithStringLongLanguageInfoLanguageInfo() {
+        String uid = "test";
+        assertThat(documentGroupWith(uid, 2, null), is(notNullValue()));
+    }
 
-	@Test
-	public void testDocumentGroupWithStringLongStringTemplateSetLanguageInfoLanguageInfo() {
-		String uid = "test";
-		assertThat(documentGroupWith(uid, 2, "test", templateSetWith("test"), null), is(notNullValue()));
-	}
+    @Test
+    public void testDocumentGroupWithStringLongStringTemplateSetLanguageInfoLanguageInfo() {
+        String uid = "test";
+        assertThat(documentGroupWith(uid, 2, "test", templateSetWith("test"), null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return DocumentGroupMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return DocumentGroupMock.class;
+    }
 
-	@Test
-	public void testDefaults() {
-		String uid = "test";
-		DocumentGroup documentGroup = build(documentGroupWith(uid, 2, null));
-		assertThat(documentGroup.getReferenceName(), is(DOCUMENTGROUP.prefix() + uid));
-	}
+    @Test
+    public void testDefaults() {
+        String uid = "test";
+        DocumentGroup documentGroup = build(documentGroupWith(uid, 2, null));
+        assertThat(documentGroup.getReferenceName(), is(DOCUMENTGROUP.prefix() + uid));
+    }
 }

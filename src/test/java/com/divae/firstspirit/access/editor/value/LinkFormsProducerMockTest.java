@@ -23,20 +23,20 @@ import static org.junit.Assert.assertThat;
 
 public class LinkFormsProducerMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return LinkFormsProducerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return LinkFormsProducerMock.class;
+    }
 
-	@Test
-	public void testCreate() {
-		LanguageBuilder languageBuilder = languageWith("DE");
-		LinkTemplateBuilder linkTemplateBuilder = linkTemplateWith("test", 3, linkTemplatesWith("linkTemplates", 2, templateStoreRootWith(1, projectWith("test", 0, languageBuilder))));
-		IdProvidingFormDataBuilder idProvidingFormDataBuilder = idProvidingFormDataWith(4L);
-		LinkFormsProducer linkFormsProducer = build(linkFormsProducerWith().creates(() -> idProvidingFormDataBuilder, linkTemplateBuilder, languageBuilder));
-		LinkTemplate linkTemplate = build(linkTemplateBuilder);
-		IdProvidingFormData idProvidingFormData = build(idProvidingFormDataBuilder);
-		Language masterLanguage = build(languageBuilder);
-		assertThat(linkFormsProducer.create(linkTemplate, masterLanguage), is(idProvidingFormData));
-	}
+    @Test
+    public void testCreate() {
+        LanguageBuilder languageBuilder = languageWith("DE");
+        LinkTemplateBuilder linkTemplateBuilder = linkTemplateWith("test", 3, linkTemplatesWith("linkTemplates", 2, templateStoreRootWith(1, projectWith("test", 0, languageBuilder))));
+        IdProvidingFormDataBuilder idProvidingFormDataBuilder = idProvidingFormDataWith(4L);
+        LinkFormsProducer linkFormsProducer = build(linkFormsProducerWith().creates(() -> idProvidingFormDataBuilder, linkTemplateBuilder, languageBuilder));
+        LinkTemplate linkTemplate = build(linkTemplateBuilder);
+        IdProvidingFormData idProvidingFormData = build(idProvidingFormDataBuilder);
+        Language masterLanguage = build(languageBuilder);
+        assertThat(linkFormsProducer.create(linkTemplate, masterLanguage), is(idProvidingFormData));
+    }
 }

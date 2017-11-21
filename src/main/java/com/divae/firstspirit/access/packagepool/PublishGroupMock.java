@@ -8,33 +8,33 @@ import static org.mockito.Mockito.when;
 
 public final class PublishGroupMock {
 
-	private PublishGroupMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private PublishGroupMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static PublishGroupBuilder publishGroupWith(long id) {
-		return new DefaultPublishGroupBuilder(id);
-	}
+    public static PublishGroupBuilder publishGroupWith(long id) {
+        return new DefaultPublishGroupBuilder(id);
+    }
 
-	public interface PublishGroupBuilder extends Builder<PublishGroup, PublishGroupBuilder> {
-		PublishGroupBuilder aName(String name);
-	}
+    public interface PublishGroupBuilder extends Builder<PublishGroup, PublishGroupBuilder> {
+        PublishGroupBuilder aName(String name);
+    }
 
-	public static final class DefaultPublishGroupBuilder extends DefaultBuilder<PublishGroup, PublishGroupBuilder, DefaultPublishGroupBuilder> implements PublishGroupBuilder {
+    public static final class DefaultPublishGroupBuilder extends DefaultBuilder<PublishGroup, PublishGroupBuilder, DefaultPublishGroupBuilder> implements PublishGroupBuilder {
 
-		private DefaultPublishGroupBuilder(long id) {
-			super(id);
-			anId(id);
-		}
+        private DefaultPublishGroupBuilder(long id) {
+            super(id);
+            anId(id);
+        }
 
-		@Override
-		public final PublishGroupBuilder aName(String name) {
-			when(getBuildable().getName()).thenReturn(name);
-			return getBuilder();
-		}
+        @Override
+        public final PublishGroupBuilder aName(String name) {
+            when(getBuildable().getName()).thenReturn(name);
+            return getBuilder();
+        }
 
-		private void anId(long id) {
-			when(getBuildable().getId()).thenReturn(id);
-		}
-	}
+        private void anId(long id) {
+            when(getBuildable().getId()).thenReturn(id);
+        }
+    }
 }

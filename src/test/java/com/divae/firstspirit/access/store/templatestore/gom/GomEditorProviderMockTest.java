@@ -18,31 +18,31 @@ import static org.junit.Assert.assertThat;
 
 public class GomEditorProviderMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GomEditorProviderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GomEditorProviderMock.class;
+    }
 
-	@Test
-	public void testValues() {
-		GomEditorProvider gomEditorProvider = build(gomEditorProviderWith("test").values(() -> singletonList(gomFormElementWith("test"))));
-		Iterator<GomFormElement> iterator = gomEditorProvider.forms().iterator();
-		assertThat(iterator.hasNext(), is(TRUE));
-		GomFormElement gomFormElement = iterator.next();
-		assertThat(gomFormElement.name(), is("test"));
-		assertThat(gomEditorProvider.findEditor("test"), is(gomFormElement));
-	}
+    @Test
+    public void testValues() {
+        GomEditorProvider gomEditorProvider = build(gomEditorProviderWith("test").values(() -> singletonList(gomFormElementWith("test"))));
+        Iterator<GomFormElement> iterator = gomEditorProvider.forms().iterator();
+        assertThat(iterator.hasNext(), is(TRUE));
+        GomFormElement gomFormElement = iterator.next();
+        assertThat(gomFormElement.name(), is("test"));
+        assertThat(gomEditorProvider.findEditor("test"), is(gomFormElement));
+    }
 
-	@Test
-	public void testDefaults() {
-		GomEditorProvider gomEditorProvider = build(gomEditorProviderWith("test"));
-		Iterator<GomFormElement> iterator = gomEditorProvider.forms().iterator();
-		assertThat(iterator.hasNext(), is(FALSE));
-	}
+    @Test
+    public void testDefaults() {
+        GomEditorProvider gomEditorProvider = build(gomEditorProviderWith("test"));
+        Iterator<GomFormElement> iterator = gomEditorProvider.forms().iterator();
+        assertThat(iterator.hasNext(), is(FALSE));
+    }
 
-	@Test(expected = IndexOutOfBoundsException.class)
-	public void testWrongIndex() {
-		GomEditorProvider gomEditorProvider = build(gomEditorProviderWith("test"));
-		gomEditorProvider.get(0);
-	}
+    @Test(expected = IndexOutOfBoundsException.class)
+    public void testWrongIndex() {
+        GomEditorProvider gomEditorProvider = build(gomEditorProviderWith("test"));
+        gomEditorProvider.get(0);
+    }
 }

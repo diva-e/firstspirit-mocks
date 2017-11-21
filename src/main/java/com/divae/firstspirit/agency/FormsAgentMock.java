@@ -13,28 +13,28 @@ import static org.mockito.Mockito.when;
 
 public final class FormsAgentMock {
 
-	private FormsAgentMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private FormsAgentMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static FormsAgentBuilder formsAgentWith() {
-		return new DefaultFormsAgentBuilder();
-	}
+    public static FormsAgentBuilder formsAgentWith() {
+        return new DefaultFormsAgentBuilder();
+    }
 
-	public interface FormsAgentBuilder extends Builder<FormsAgent, FormsAgentBuilder> {
-		FormsAgentBuilder aForm(Supplier<FormBuilder> supplier, String formDefinition);
-	}
+    public interface FormsAgentBuilder extends Builder<FormsAgent, FormsAgentBuilder> {
+        FormsAgentBuilder aForm(Supplier<FormBuilder> supplier, String formDefinition);
+    }
 
-	public static final class DefaultFormsAgentBuilder extends DefaultBuilder<FormsAgent, FormsAgentBuilder, DefaultFormsAgentBuilder> implements FormsAgentBuilder {
+    public static final class DefaultFormsAgentBuilder extends DefaultBuilder<FormsAgent, FormsAgentBuilder, DefaultFormsAgentBuilder> implements FormsAgentBuilder {
 
-		private DefaultFormsAgentBuilder() {
-		}
+        private DefaultFormsAgentBuilder() {
+        }
 
-		@Override
-		public FormsAgentBuilder aForm(Supplier<FormBuilder> supplier, String formDefinition) {
-			Form form = build(supplier.get());
-			when(getBuildable().getForm(formDefinition)).thenReturn(form);
-			return getBuilder();
-		}
-	}
+        @Override
+        public FormsAgentBuilder aForm(Supplier<FormBuilder> supplier, String formDefinition) {
+            Form form = build(supplier.get());
+            when(getBuildable().getForm(formDefinition)).thenReturn(form);
+            return getBuilder();
+        }
+    }
 }

@@ -17,17 +17,17 @@ import static org.junit.Assert.assertThat;
 
 public class ValidationAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ValidationAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ValidationAgentMock.class;
+    }
 
-	@Test
-	public void testAReleaseValidation() {
-		Media media = build(mediaWith("test", 2, null));
-		MultiFormValidationReportBuilder multiFormValidationReportBuilder = multiFormValidationReportWith().isValid(true);
-		ValidationAgent validationAgent = build(validationAgentWith().aReleaseValidation(multiFormValidationReportBuilder, media));
-		MultiFormValidationReport multiFormValidationReport = build(multiFormValidationReportBuilder);
-		assertThat(validationAgent.validate(media, RELEASE), is(multiFormValidationReport));
-	}
+    @Test
+    public void testAReleaseValidation() {
+        Media media = build(mediaWith("test", 2, null));
+        MultiFormValidationReportBuilder multiFormValidationReportBuilder = multiFormValidationReportWith().isValid(true);
+        ValidationAgent validationAgent = build(validationAgentWith().aReleaseValidation(multiFormValidationReportBuilder, media));
+        MultiFormValidationReport multiFormValidationReport = build(multiFormValidationReportBuilder);
+        assertThat(validationAgent.validate(media, RELEASE), is(multiFormValidationReport));
+    }
 }

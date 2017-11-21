@@ -14,17 +14,17 @@ import static org.junit.Assert.assertThat;
 
 public class OptionFactoryProviderMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return OptionFactoryProviderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return OptionFactoryProviderMock.class;
+    }
 
-	@Test
-	public void anOptionFactory() throws Exception {
-		OptionFactoryBuilder optionFactoryBuilder = optionFactoryWith();
-		OptionFactoryProvider optionFactoryProvider = build(optionFactoryProviderWith().anOptionFactory(optionFactoryBuilder));
-		OptionFactory optionFactory = build(optionFactoryBuilder);
-		assertThat(optionFactoryProvider.getOptionFactory(), is(optionFactory));
-	}
+    @Test
+    public void anOptionFactory() throws Exception {
+        OptionFactoryBuilder optionFactoryBuilder = optionFactoryWith();
+        OptionFactoryProvider optionFactoryProvider = build(optionFactoryProviderWith().anOptionFactory(optionFactoryBuilder));
+        OptionFactory optionFactory = build(optionFactoryBuilder);
+        assertThat(optionFactoryProvider.getOptionFactory(), is(optionFactory));
+    }
 
 }

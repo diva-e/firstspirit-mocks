@@ -13,29 +13,29 @@ import static org.mockito.Mockito.when;
 
 public final class FeatureProgressMock {
 
-	private FeatureProgressMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private FeatureProgressMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static FeatureProgressBuilder featureProgressWith() {
-		return new DefaultFeatureProgressBuilder();
-	}
+    public static FeatureProgressBuilder featureProgressWith() {
+        return new DefaultFeatureProgressBuilder();
+    }
 
-	public interface FeatureProgressBuilder extends ActionProgressBuilder<FeatureProgress, FeatureProgressBuilder> {
-		FeatureProgressBuilder aFeatureFile(Supplier<FeatureFileBuilder> supplier);
-	}
+    public interface FeatureProgressBuilder extends ActionProgressBuilder<FeatureProgress, FeatureProgressBuilder> {
+        FeatureProgressBuilder aFeatureFile(Supplier<FeatureFileBuilder> supplier);
+    }
 
-	public static final class DefaultFeatureProgressBuilder extends DefaultActionProgressBuilder<FeatureProgress, FeatureProgressBuilder, DefaultFeatureProgressBuilder> implements FeatureProgressBuilder {
+    public static final class DefaultFeatureProgressBuilder extends DefaultActionProgressBuilder<FeatureProgress, FeatureProgressBuilder, DefaultFeatureProgressBuilder> implements FeatureProgressBuilder {
 
-		private DefaultFeatureProgressBuilder() {
-		}
+        private DefaultFeatureProgressBuilder() {
+        }
 
-		@Override
-		public final FeatureProgressBuilder aFeatureFile(Supplier<FeatureFileBuilder> supplier) {
-			FeatureFile featureFile = build(supplier.get());
-			when(getBuildable().getFeatureFile()).thenReturn(featureFile);
-			return getBuilder();
-		}
+        @Override
+        public final FeatureProgressBuilder aFeatureFile(Supplier<FeatureFileBuilder> supplier) {
+            FeatureFile featureFile = build(supplier.get());
+            when(getBuildable().getFeatureFile()).thenReturn(featureFile);
+            return getBuilder();
+        }
 
-	}
+    }
 }
