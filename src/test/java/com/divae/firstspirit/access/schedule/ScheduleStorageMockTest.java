@@ -23,37 +23,37 @@ import static org.junit.Assert.assertThat;
 
 public class ScheduleStorageMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ScheduleStorageMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ScheduleStorageMock.class;
+    }
 
-	@Test
-	public void testScheduleEntries() {
-		ProjectBuilder project = projectWith("test", 0, languageWith("DE"));
-		ScheduleStorage scheduleStorage = build(scheduleStorageWith().scheduleEntries(() -> singletonMap(project, singletonList(scheduleEntryWith(0L, project)))));
-		List<ScheduleEntry> scheduleEntries = scheduleStorage.getScheduleEntries(build(project));
-		assertThat(scheduleEntries.size(), is(1));
-		assertThat(scheduleEntries.get(0).getId(), is(0L));
-	}
+    @Test
+    public void testScheduleEntries() {
+        ProjectBuilder project = projectWith("test", 0, languageWith("DE"));
+        ScheduleStorage scheduleStorage = build(scheduleStorageWith().scheduleEntries(() -> singletonMap(project, singletonList(scheduleEntryWith(0L, project)))));
+        List<ScheduleEntry> scheduleEntries = scheduleStorage.getScheduleEntries(build(project));
+        assertThat(scheduleEntries.size(), is(1));
+        assertThat(scheduleEntries.get(0).getId(), is(0L));
+    }
 
-	@Test
-	public void testRunningEntries() {
-		ScheduleStorage scheduleStorage = build(scheduleStorageWith().runningEntries(singletonList(scheduleEntryControlWith(0L))));
-		List<ScheduleEntryControl> scheduleEntryControls = scheduleStorage.getRunningEntries();
-		assertThat(scheduleEntryControls.size(), is(1));
-		assertThat(scheduleEntryControls.get(0).getId(), is(0L));
-	}
+    @Test
+    public void testRunningEntries() {
+        ScheduleStorage scheduleStorage = build(scheduleStorageWith().runningEntries(singletonList(scheduleEntryControlWith(0L))));
+        List<ScheduleEntryControl> scheduleEntryControls = scheduleStorage.getRunningEntries();
+        assertThat(scheduleEntryControls.size(), is(1));
+        assertThat(scheduleEntryControls.get(0).getId(), is(0L));
+    }
 
-	@Test
-	public void testAHistory() {
-		ProjectBuilder project = projectWith("test", 0, languageWith("DE"));
-		Date fromDate = new Date();
-		Date untilDate = new Date();
-		int maxCount = 1;
-		ScheduleStorage scheduleStorage = build(scheduleStorageWith().aHistory(() -> singletonMap(project, singletonList(scheduleEntryControlWith(0L).aScheduleEntry(scheduleEntryWith(0L, project)))), fromDate, untilDate, maxCount));
-		List<ScheduleEntryControl> scheduleEntryControls = scheduleStorage.getHistory(fromDate, untilDate, maxCount, build(project));
-		assertThat(scheduleEntryControls.size(), is(1));
-		assertThat(scheduleEntryControls.get(0).getId(), is(0L));
-	}
+    @Test
+    public void testAHistory() {
+        ProjectBuilder project = projectWith("test", 0, languageWith("DE"));
+        Date fromDate = new Date();
+        Date untilDate = new Date();
+        int maxCount = 1;
+        ScheduleStorage scheduleStorage = build(scheduleStorageWith().aHistory(() -> singletonMap(project, singletonList(scheduleEntryControlWith(0L).aScheduleEntry(scheduleEntryWith(0L, project)))), fromDate, untilDate, maxCount));
+        List<ScheduleEntryControl> scheduleEntryControls = scheduleStorage.getHistory(fromDate, untilDate, maxCount, build(project));
+        assertThat(scheduleEntryControls.size(), is(1));
+        assertThat(scheduleEntryControls.get(0).getId(), is(0L));
+    }
 }

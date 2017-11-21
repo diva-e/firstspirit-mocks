@@ -12,16 +12,16 @@ import static org.junit.Assert.assertThat;
 
 public class MultiFormValidationReportMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return MultiFormValidationReportMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return MultiFormValidationReportMock.class;
+    }
 
-	@Test
-	public void testIsValid() {
-		MultiFormValidationReport multiFormValidationReport = build(multiFormValidationReportWith().isValid(true));
-		assertThat(multiFormValidationReport.isValid(), is(TRUE));
-	}
+    @Test
+    public void testIsValid() {
+        MultiFormValidationReport multiFormValidationReport = build(multiFormValidationReportWith().isValid(true));
+        assertThat(multiFormValidationReport.isValid(), is(TRUE));
+    }
 
 
 }

@@ -16,21 +16,21 @@ import static org.mockito.Mockito.mock;
 
 public class ServerActionHandleMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ServerActionHandleMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ServerActionHandleMock.class;
+    }
 
-	@Test
-	public void testAProgress() {
-		ServerActionHandle<ActionProgress, Serializable> serverActionHandle = build(serverActionHandleWith().aProgress(ActionProgressMock::actionProgressWith, true));
-		assertThat(serverActionHandle.getProgress(true), is(notNullValue()));
-	}
+    @Test
+    public void testAProgress() {
+        ServerActionHandle<ActionProgress, Serializable> serverActionHandle = build(serverActionHandleWith().aProgress(ActionProgressMock::actionProgressWith, true));
+        assertThat(serverActionHandle.getProgress(true), is(notNullValue()));
+    }
 
-	@Test
-	public void testAResult() throws Exception {
-		Serializable serializable = mock(Serializable.class);
-		ServerActionHandle<ActionProgress, Serializable> serverActionHandle = build(serverActionHandleWith().aResult(serializable, true));
-		assertThat(serverActionHandle.getResult(true), is(serializable));
-	}
+    @Test
+    public void testAResult() throws Exception {
+        Serializable serializable = mock(Serializable.class);
+        ServerActionHandle<ActionProgress, Serializable> serverActionHandle = build(serverActionHandleWith().aResult(serializable, true));
+        assertThat(serverActionHandle.getResult(true), is(serializable));
+    }
 }

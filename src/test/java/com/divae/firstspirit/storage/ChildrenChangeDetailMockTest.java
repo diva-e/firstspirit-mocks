@@ -18,30 +18,30 @@ import static org.junit.Assert.assertThat;
 
 public class ChildrenChangeDetailMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ChildrenChangeDetailMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ChildrenChangeDetailMock.class;
+    }
 
-	@Test
-	public void testAddedElements() {
-		BasicElementInfoBuilder basicElementInfoBuilder = basicElementInfoWith("test");
-		ChildrenChangeDetail childrenChangeDetail = build(childrenChangeDetailWith().addedElements(() -> singletonList(basicElementInfoBuilder)));
-		BasicElementInfo basicElementInfo = build(basicElementInfoBuilder);
-		assertThat(childrenChangeDetail.getAddedElements(), is(singletonList(basicElementInfo)));
-	}
+    @Test
+    public void testAddedElements() {
+        BasicElementInfoBuilder basicElementInfoBuilder = basicElementInfoWith("test");
+        ChildrenChangeDetail childrenChangeDetail = build(childrenChangeDetailWith().addedElements(() -> singletonList(basicElementInfoBuilder)));
+        BasicElementInfo basicElementInfo = build(basicElementInfoBuilder);
+        assertThat(childrenChangeDetail.getAddedElements(), is(singletonList(basicElementInfo)));
+    }
 
-	@Test
-	public void testRemovedElements() {
-		BasicElementInfoBuilder basicElementInfoBuilder = basicElementInfoWith("test");
-		ChildrenChangeDetail childrenChangeDetail = build(childrenChangeDetailWith().removedElements(() -> singletonList(basicElementInfoBuilder)));
-		BasicElementInfo removedElementInfo = build(basicElementInfoBuilder);
-		assertThat(childrenChangeDetail.getRemovedElements(), is(singletonList(removedElementInfo)));
-	}
+    @Test
+    public void testRemovedElements() {
+        BasicElementInfoBuilder basicElementInfoBuilder = basicElementInfoWith("test");
+        ChildrenChangeDetail childrenChangeDetail = build(childrenChangeDetailWith().removedElements(() -> singletonList(basicElementInfoBuilder)));
+        BasicElementInfo removedElementInfo = build(basicElementInfoBuilder);
+        assertThat(childrenChangeDetail.getRemovedElements(), is(singletonList(removedElementInfo)));
+    }
 
-	@Test
-	public void testReorderedElements() {
-		ChildrenChangeDetail childrenChangeDetail = build(childrenChangeDetailWith().reorderedElements(Collections::emptyMap));
-		assertThat(childrenChangeDetail.getReorderedElements(), is(notNullValue()));
-	}
+    @Test
+    public void testReorderedElements() {
+        ChildrenChangeDetail childrenChangeDetail = build(childrenChangeDetailWith().reorderedElements(Collections::emptyMap));
+        assertThat(childrenChangeDetail.getReorderedElements(), is(notNullValue()));
+    }
 }

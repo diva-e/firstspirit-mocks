@@ -15,21 +15,21 @@ import static org.junit.Assert.assertThat;
 
 public class PageTemplateMockTest extends MockTest {
 
-	@Test
-	public void testLinkTemplateWith() {
-		assertThat(pageTemplateWith("tgif", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testLinkTemplateWith() {
+        assertThat(pageTemplateWith("tgif", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PageTemplateMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PageTemplateMock.class;
+    }
 
-	@Test
-	public void testAChannelSource() {
-		TemplateSetMock.TemplateSetBuilder templateSetBuilder = templateSetWith("test");
-		PageTemplate pageTemplate = build(pageTemplateWith("test", 2, null).aChannelSource("insert coin here", templateSetBuilder));
-		TemplateSet templateSet = build(templateSetBuilder);
-		assertThat(pageTemplate.getChannelSource(templateSet), is("insert coin here"));
-	}
+    @Test
+    public void testAChannelSource() {
+        TemplateSetMock.TemplateSetBuilder templateSetBuilder = templateSetWith("test");
+        PageTemplate pageTemplate = build(pageTemplateWith("test", 2, null).aChannelSource("insert coin here", templateSetBuilder));
+        TemplateSet templateSet = build(templateSetBuilder);
+        assertThat(pageTemplate.getChannelSource(templateSet), is("insert coin here"));
+    }
 }

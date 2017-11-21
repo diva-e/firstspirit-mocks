@@ -13,26 +13,26 @@ import static org.junit.Assert.assertThat;
 
 public class LanguageMockTest extends MockTest {
 
-	@Test
-	public void testLanguageWith() {
-		assertThat(languageWith("test"), is(notNullValue()));
-	}
+    @Test
+    public void testLanguageWith() {
+        assertThat(languageWith("test"), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return LanguageMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return LanguageMock.class;
+    }
 
-	@Test
-	public void testDefaults() {
-		String abbreviation = "test";
-		Language language = build(languageWith(abbreviation));
-		assertThat(language.getAbbreviation(), is(abbreviation));
-	}
+    @Test
+    public void testDefaults() {
+        String abbreviation = "test";
+        Language language = build(languageWith(abbreviation));
+        assertThat(language.getAbbreviation(), is(abbreviation));
+    }
 
-	@Test
-	public void testIsMasterLanguage() {
-		Language language = build(languageWith("test").isMasterLanguage());
-		assertThat(language.isMasterLanguage(), is(TRUE));
-	}
+    @Test
+    public void testIsMasterLanguage() {
+        Language language = build(languageWith("test").isMasterLanguage());
+        assertThat(language.isMasterLanguage(), is(TRUE));
+    }
 }

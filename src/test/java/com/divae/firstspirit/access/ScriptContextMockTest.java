@@ -11,16 +11,16 @@ import static org.junit.Assert.assertThat;
 
 public class ScriptContextMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ScriptContextMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ScriptContextMock.class;
+    }
 
-	@Test
-	public void testAProperty() {
-		String key = "key";
-		String value = "value";
-		ScriptContext scriptContext = build(scriptContextWith().aProperty(value, key));
-		assertThat(scriptContext.getProperty(key), is(value));
-	}
+    @Test
+    public void testAProperty() {
+        String key = "key";
+        String value = "value";
+        ScriptContext scriptContext = build(scriptContextWith().aProperty(value, key));
+        assertThat(scriptContext.getProperty(key), is(value));
+    }
 }

@@ -18,28 +18,28 @@ import static org.mockito.Mockito.when;
 
 public final class ShowFormDialogOperationMock {
 
-	private ShowFormDialogOperationMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ShowFormDialogOperationMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ShowFormDialogOperationBuilder showFormDialogOperationWith() {
-		return new DefaultShowFormDialogOperationBuilder();
-	}
+    public static ShowFormDialogOperationBuilder showFormDialogOperationWith() {
+        return new DefaultShowFormDialogOperationBuilder();
+    }
 
-	public interface ShowFormDialogOperationBuilder extends Builder<ShowFormDialogOperation, ShowFormDialogOperationBuilder> {
-		<T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> ShowFormDialogOperationBuilder performs(Supplier<TBUILDER> supplier, FormBuilder form, List<LanguageBuilder> languages) throws ShowFormDialogOperation.InvalidRulesetDefinition;
-	}
+    public interface ShowFormDialogOperationBuilder extends Builder<ShowFormDialogOperation, ShowFormDialogOperationBuilder> {
+        <T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> ShowFormDialogOperationBuilder performs(Supplier<TBUILDER> supplier, FormBuilder form, List<LanguageBuilder> languages) throws ShowFormDialogOperation.InvalidRulesetDefinition;
+    }
 
-	public static final class DefaultShowFormDialogOperationBuilder extends DefaultBuilder<ShowFormDialogOperation, ShowFormDialogOperationBuilder, DefaultShowFormDialogOperationBuilder> implements ShowFormDialogOperationBuilder {
+    public static final class DefaultShowFormDialogOperationBuilder extends DefaultBuilder<ShowFormDialogOperation, ShowFormDialogOperationBuilder, DefaultShowFormDialogOperationBuilder> implements ShowFormDialogOperationBuilder {
 
-		private DefaultShowFormDialogOperationBuilder() {
-		}
+        private DefaultShowFormDialogOperationBuilder() {
+        }
 
-		@Override
-		public final <T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> ShowFormDialogOperationBuilder performs(Supplier<TBUILDER> supplier, FormBuilder form, List<LanguageBuilder> languages) throws ShowFormDialogOperation.InvalidRulesetDefinition {
-			T formData = build(supplier.get());
-			when(getBuildable().perform(getBuildable(form), languages.stream().map(BuilderMock::build).collect(toList()))).thenReturn(formData);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final <T extends FormData, TBUILDER extends FormDataBuilder<T, TBUILDER>> ShowFormDialogOperationBuilder performs(Supplier<TBUILDER> supplier, FormBuilder form, List<LanguageBuilder> languages) throws ShowFormDialogOperation.InvalidRulesetDefinition {
+            T formData = build(supplier.get());
+            when(getBuildable().perform(getBuildable(form), languages.stream().map(BuilderMock::build).collect(toList()))).thenReturn(formData);
+            return getBuilder();
+        }
+    }
 }

@@ -9,27 +9,27 @@ import static org.mockito.Mockito.when;
 
 public final class SubscriptionMock {
 
-	private SubscriptionMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SubscriptionMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static SubscriptionBuilder subscriptionWith() {
-		return new DefaultSubscriptionBuilder();
-	}
+    public static SubscriptionBuilder subscriptionWith() {
+        return new DefaultSubscriptionBuilder();
+    }
 
-	public interface SubscriptionBuilder extends Builder<Subscription, SubscriptionBuilder> {
-		SubscriptionBuilder aSubscriber(ProjectBuilder project);
-	}
+    public interface SubscriptionBuilder extends Builder<Subscription, SubscriptionBuilder> {
+        SubscriptionBuilder aSubscriber(ProjectBuilder project);
+    }
 
-	public static final class DefaultSubscriptionBuilder extends DefaultBuilder<Subscription, SubscriptionBuilder, DefaultSubscriptionBuilder> implements SubscriptionBuilder {
+    public static final class DefaultSubscriptionBuilder extends DefaultBuilder<Subscription, SubscriptionBuilder, DefaultSubscriptionBuilder> implements SubscriptionBuilder {
 
-		private DefaultSubscriptionBuilder() {
-		}
+        private DefaultSubscriptionBuilder() {
+        }
 
-		@Override
-		public final SubscriptionBuilder aSubscriber(ProjectBuilder project) {
-			when(getBuildable().getSubscriber()).thenReturn(getBuildable(project));
-			return getBuilder();
-		}
-	}
+        @Override
+        public final SubscriptionBuilder aSubscriber(ProjectBuilder project) {
+            when(getBuildable().getSubscriber()).thenReturn(getBuildable(project));
+            return getBuilder();
+        }
+    }
 }

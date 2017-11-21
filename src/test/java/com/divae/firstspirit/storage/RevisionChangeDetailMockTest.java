@@ -12,15 +12,15 @@ import static org.junit.Assert.assertThat;
 
 public class RevisionChangeDetailMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return RevisionChangeDetailMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return RevisionChangeDetailMock.class;
+    }
 
 
-	@Test
-	public void testAChangeType() {
-		RevisionChangeDetail revisionChangeDetail = build(revisionChangeDetailWith().aChangeType(CHILDREN));
-		assertThat(revisionChangeDetail.getChangeType(), is(CHILDREN));
-	}
+    @Test
+    public void testAChangeType() {
+        RevisionChangeDetail revisionChangeDetail = build(revisionChangeDetailWith().aChangeType(CHILDREN));
+        assertThat(revisionChangeDetail.getChangeType(), is(CHILDREN));
+    }
 }

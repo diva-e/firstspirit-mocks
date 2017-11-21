@@ -14,17 +14,17 @@ import static org.junit.Assert.assertThat;
 
 public class OperationAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return OperationAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return OperationAgentMock.class;
+    }
 
-	@Test
-	public void testOperation() {
-		Object object = new Object();
-		OperationTypeBuilder<Object> operationTypeBuilder = operationTypeWith();
-		OperationAgent operationAgent = build(operationAgentWith().anOperation(object, operationTypeBuilder));
-		OperationType<Object> operationType = build(operationTypeBuilder);
-		assertThat(operationAgent.getOperation(operationType), is(object));
-	}
+    @Test
+    public void testOperation() {
+        Object object = new Object();
+        OperationTypeBuilder<Object> operationTypeBuilder = operationTypeWith();
+        OperationAgent operationAgent = build(operationAgentWith().anOperation(object, operationTypeBuilder));
+        OperationType<Object> operationType = build(operationTypeBuilder);
+        assertThat(operationAgent.getOperation(operationType), is(object));
+    }
 }

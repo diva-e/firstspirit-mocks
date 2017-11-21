@@ -8,36 +8,36 @@ import static org.mockito.Mockito.when;
 
 public final class UserMock {
 
-	private UserMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private UserMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static UserBuilder userWith(long id) {
-		return new DefaultUserBuilder(id);
-	}
+    public static UserBuilder userWith(long id) {
+        return new DefaultUserBuilder(id);
+    }
 
-	public interface UserBuilder extends PrincipalBuilder<User, UserBuilder> {
-		UserBuilder aName(String name);
+    public interface UserBuilder extends PrincipalBuilder<User, UserBuilder> {
+        UserBuilder aName(String name);
 
-		UserBuilder aLoginName(String loginName);
-	}
+        UserBuilder aLoginName(String loginName);
+    }
 
-	public static final class DefaultUserBuilder extends DefaultPrincipalBuilder<User, UserBuilder, DefaultUserBuilder> implements UserBuilder {
+    public static final class DefaultUserBuilder extends DefaultPrincipalBuilder<User, UserBuilder, DefaultUserBuilder> implements UserBuilder {
 
-		private DefaultUserBuilder(long id) {
-			super(id);
-		}
+        private DefaultUserBuilder(long id) {
+            super(id);
+        }
 
-		@Override
-		public final UserBuilder aName(String name) {
-			when(getBuildable().getName()).thenReturn(name);
-			return getBuilder();
-		}
+        @Override
+        public final UserBuilder aName(String name) {
+            when(getBuildable().getName()).thenReturn(name);
+            return getBuilder();
+        }
 
-		@Override
-		public final UserBuilder aLoginName(String loginName) {
-			when(getBuildable().getLoginName()).thenReturn(loginName);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final UserBuilder aLoginName(String loginName) {
+            when(getBuildable().getLoginName()).thenReturn(loginName);
+            return getBuilder();
+        }
+    }
 }

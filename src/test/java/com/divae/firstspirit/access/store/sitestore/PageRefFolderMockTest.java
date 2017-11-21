@@ -14,22 +14,22 @@ import static org.junit.Assert.assertThat;
 
 public class PageRefFolderMockTest extends MockTest {
 
-	@Test
-	public void testPageRefFolderWith() {
-		assertThat(pageRefFolderWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testPageRefFolderWith() {
+        assertThat(pageRefFolderWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PageRefFolderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PageRefFolderMock.class;
+    }
 
-	@Test
-	public void testDefaults() {
-		String uid = "test";
-		PageRefFolder pageRefFolder;
-		pageRefFolder = build(pageRefFolderWith(uid, 2, null));
-		assertThat(pageRefFolder.getReferenceName(), is(PAGEREFFOLDER.prefix() + uid));
-		assertThat(pageRefFolder.isFolder(), is(TRUE));
-	}
+    @Test
+    public void testDefaults() {
+        String uid = "test";
+        PageRefFolder pageRefFolder;
+        pageRefFolder = build(pageRefFolderWith(uid, 2, null));
+        assertThat(pageRefFolder.getReferenceName(), is(PAGEREFFOLDER.prefix() + uid));
+        assertThat(pageRefFolder.isFolder(), is(TRUE));
+    }
 }

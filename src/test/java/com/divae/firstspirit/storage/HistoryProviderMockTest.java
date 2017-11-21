@@ -17,21 +17,21 @@ import static org.junit.Assert.assertThat;
 
 public class HistoryProviderMockTest extends MockTest {
 
-	@Test
-	public void testHistoryProviderWithHistoryProvider() {
-		assertThat(historyProviderWith(historyProviderWith()), is(notNullValue()));
-	}
+    @Test
+    public void testHistoryProviderWithHistoryProvider() {
+        assertThat(historyProviderWith(historyProviderWith()), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return HistoryProviderMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return HistoryProviderMock.class;
+    }
 
-	@Test
-	public void testAHistory() {
-		HistoryProvider historyProvider = build(historyProviderWith().aHistory(() -> singletonList(revisionWith(1L))));
-		List<Revision> revisions = historyProvider.getHistory();
-		assertThat(revisions.size(), is(1));
-		assertThat(revisions.get(0).getId(), is(1L));
-	}
+    @Test
+    public void testAHistory() {
+        HistoryProvider historyProvider = build(historyProviderWith().aHistory(() -> singletonList(revisionWith(1L))));
+        List<Revision> revisions = historyProvider.getHistory();
+        assertThat(revisions.size(), is(1));
+        assertThat(revisions.get(0).getId(), is(1L));
+    }
 }

@@ -12,14 +12,14 @@ import static org.junit.Assert.assertThat;
 
 public class FeatureProgressMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return FeatureProgressMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return FeatureProgressMock.class;
+    }
 
-	@Test
-	public void testAFeatureFile() {
-		FeatureProgress featureProgress = build(featureProgressWith().aFeatureFile(FeatureFileMock::featureFileWith));
-		assertThat(featureProgress.getFeatureFile(), is(notNullValue()));
-	}
+    @Test
+    public void testAFeatureFile() {
+        FeatureProgress featureProgress = build(featureProgressWith().aFeatureFile(FeatureFileMock::featureFileWith));
+        assertThat(featureProgress.getFeatureFile(), is(notNullValue()));
+    }
 }

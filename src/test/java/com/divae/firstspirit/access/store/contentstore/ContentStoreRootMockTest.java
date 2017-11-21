@@ -16,22 +16,22 @@ import static org.junit.Assert.assertThat;
 
 public class ContentStoreRootMockTest extends MockTest {
 
-	@Test
-	public void testContentStoreRootWith() {
-		assertThat(contentStoreRootWith(1, projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testContentStoreRootWith() {
+        assertThat(contentStoreRootWith(1, projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ContentStoreRootMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ContentStoreRootMock.class;
+    }
 
-	@Test
-	public void testWithContent2StringContent2() {
-		String content2ByName = "test";
-		ContentStoreRoot contentStoreRoot = build(contentStoreRootWith(1, projectWith("project", 0, languageWith("DE"))).aContent2(parent -> content2With("test", 2, parent), content2ByName));
-		Content2 content2 = contentStoreRoot.getContent2ByName(content2ByName);
-		assertThat(content2.getUid(), is("test"));
-		assertThat(content2.getStore().getId(), is(1L));
-	}
+    @Test
+    public void testWithContent2StringContent2() {
+        String content2ByName = "test";
+        ContentStoreRoot contentStoreRoot = build(contentStoreRootWith(1, projectWith("project", 0, languageWith("DE"))).aContent2(parent -> content2With("test", 2, parent), content2ByName));
+        Content2 content2 = contentStoreRoot.getContent2ByName(content2ByName);
+        assertThat(content2.getUid(), is("test"));
+        assertThat(content2.getStore().getId(), is(1L));
+    }
 }

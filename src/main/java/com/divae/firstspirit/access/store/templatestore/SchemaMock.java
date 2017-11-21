@@ -16,41 +16,41 @@ import static org.mockito.Mockito.when;
 
 public final class SchemaMock {
 
-	private SchemaMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SchemaMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> SchemaBuilder schemaWith(String uid, long id, TBUILDER parent) {
-		return new DefaultSchemaBuilder(uid, id, parent);
-	}
+    public static <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> SchemaBuilder schemaWith(String uid, long id, TBUILDER parent) {
+        return new DefaultSchemaBuilder(uid, id, parent);
+    }
 
-	public interface SchemaBuilder extends TemplateStoreElementBuilder<Schema, SchemaBuilder> {
-		SchemaBuilder aSession(Supplier<SessionBuilder> supplier);
+    public interface SchemaBuilder extends TemplateStoreElementBuilder<Schema, SchemaBuilder> {
+        SchemaBuilder aSession(Supplier<SessionBuilder> supplier);
 
-		SchemaBuilder aSession(Supplier<SessionBuilder> supplier, boolean release);
-	}
+        SchemaBuilder aSession(Supplier<SessionBuilder> supplier, boolean release);
+    }
 
-	public static final class DefaultSchemaBuilder extends DefaultTemplateStoreElementBuilder<Schema, SchemaBuilder, DefaultSchemaBuilder> implements SchemaBuilder {
+    public static final class DefaultSchemaBuilder extends DefaultTemplateStoreElementBuilder<Schema, SchemaBuilder, DefaultSchemaBuilder> implements SchemaBuilder {
 
-		private <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> DefaultSchemaBuilder(String uid, long id, TBUILDER parent) {
-			super(uid, id, UID_TYPE, parent);
-		}
+        private <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> DefaultSchemaBuilder(String uid, long id, TBUILDER parent) {
+            super(uid, id, UID_TYPE, parent);
+        }
 
-		@Override
-		public final SchemaBuilder aSession(Supplier<SessionBuilder> supplier) {
-			Session session = build(supplier.get());
-			when(getBuildable().getSession()).thenReturn(session);
-			return getBuilder();
-		}
+        @Override
+        public final SchemaBuilder aSession(Supplier<SessionBuilder> supplier) {
+            Session session = build(supplier.get());
+            when(getBuildable().getSession()).thenReturn(session);
+            return getBuilder();
+        }
 
-		@Override
-		public final SchemaBuilder aSession(Supplier<SessionBuilder> supplier, boolean release) {
-			Session session = build(supplier.get());
-			if (!release) {
-				when(getBuildable().getSession()).thenReturn(session);
-			}
-			when(getBuildable().getSession(release)).thenReturn(session);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final SchemaBuilder aSession(Supplier<SessionBuilder> supplier, boolean release) {
+            Session session = build(supplier.get());
+            if (!release) {
+                when(getBuildable().getSession()).thenReturn(session);
+            }
+            when(getBuildable().getSession(release)).thenReturn(session);
+            return getBuilder();
+        }
+    }
 }

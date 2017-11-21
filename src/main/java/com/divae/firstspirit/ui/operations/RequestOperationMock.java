@@ -13,38 +13,38 @@ import static org.mockito.Mockito.when;
 
 public final class RequestOperationMock {
 
-	private RequestOperationMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private RequestOperationMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static RequestOperationBuilder requestOperationWith() {
-		return new DefaultRequestOperationBuilder();
-	}
+    public static RequestOperationBuilder requestOperationWith() {
+        return new DefaultRequestOperationBuilder();
+    }
 
-	public interface RequestOperationBuilder extends Builder<RequestOperation, RequestOperationBuilder> {
-		RequestOperationBuilder ok(Supplier<AnswerBuilder> supplier);
+    public interface RequestOperationBuilder extends Builder<RequestOperation, RequestOperationBuilder> {
+        RequestOperationBuilder ok(Supplier<AnswerBuilder> supplier);
 
-		RequestOperationBuilder performs(Supplier<AnswerBuilder> supplier, String question);
-	}
+        RequestOperationBuilder performs(Supplier<AnswerBuilder> supplier, String question);
+    }
 
-	public static final class DefaultRequestOperationBuilder extends DefaultBuilder<RequestOperation, RequestOperationBuilder, DefaultRequestOperationBuilder> implements RequestOperationBuilder {
+    public static final class DefaultRequestOperationBuilder extends DefaultBuilder<RequestOperation, RequestOperationBuilder, DefaultRequestOperationBuilder> implements RequestOperationBuilder {
 
-		private DefaultRequestOperationBuilder() {
-		}
+        private DefaultRequestOperationBuilder() {
+        }
 
-		@Override
-		public final RequestOperationBuilder ok(Supplier<AnswerBuilder> supplier) {
-			Answer answer = build(supplier.get());
-			when(getBuildable().addOk()).thenReturn(answer);
-			return getBuilder();
-		}
+        @Override
+        public final RequestOperationBuilder ok(Supplier<AnswerBuilder> supplier) {
+            Answer answer = build(supplier.get());
+            when(getBuildable().addOk()).thenReturn(answer);
+            return getBuilder();
+        }
 
-		@Override
-		public final RequestOperationBuilder performs(Supplier<AnswerBuilder> supplier, String question) {
-			Answer answer = build(supplier.get());
-			when(getBuildable().perform(question)).thenReturn(answer);
-			return getBuilder();
-		}
+        @Override
+        public final RequestOperationBuilder performs(Supplier<AnswerBuilder> supplier, String question) {
+            Answer answer = build(supplier.get());
+            when(getBuildable().perform(question)).thenReturn(answer);
+            return getBuilder();
+        }
 
-	}
+    }
 }

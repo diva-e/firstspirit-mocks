@@ -16,42 +16,42 @@ import static org.mockito.Mockito.when;
 
 public final class UserServiceMock {
 
-	private UserServiceMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private UserServiceMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static UserServiceBuilder userServiceWith(ProjectBuilder projectBuilder) {
-		return new DefaultUserServiceBuilder(projectBuilder);
-	}
+    public static UserServiceBuilder userServiceWith(ProjectBuilder projectBuilder) {
+        return new DefaultUserServiceBuilder(projectBuilder);
+    }
 
-	public interface UserServiceBuilder extends Builder<UserService, UserServiceBuilder> {
-		<T extends Store, TBUILDER extends StoreBuilder<T, TBUILDER>> UserServiceBuilder aStore(Supplier<TBUILDER> supplier, boolean releaseOnly);
+    public interface UserServiceBuilder extends Builder<UserService, UserServiceBuilder> {
+        <T extends Store, TBUILDER extends StoreBuilder<T, TBUILDER>> UserServiceBuilder aStore(Supplier<TBUILDER> supplier, boolean releaseOnly);
 
-		UserServiceBuilder aConnection(ConnectionBuilder connection);
-	}
+        UserServiceBuilder aConnection(ConnectionBuilder connection);
+    }
 
-	public static final class DefaultUserServiceBuilder extends DefaultBuilder<UserService, UserServiceBuilder, DefaultUserServiceBuilder> implements UserServiceBuilder {
+    public static final class DefaultUserServiceBuilder extends DefaultBuilder<UserService, UserServiceBuilder, DefaultUserServiceBuilder> implements UserServiceBuilder {
 
-		private DefaultUserServiceBuilder(ProjectBuilder projectBuilder) {
-			when(getBuildable().getProject()).thenReturn(getBuildable(projectBuilder));
-		}
+        private DefaultUserServiceBuilder(ProjectBuilder projectBuilder) {
+            when(getBuildable().getProject()).thenReturn(getBuildable(projectBuilder));
+        }
 
-		@Override
-		public final <T extends Store, TBUILDER extends StoreBuilder<T, TBUILDER>> UserServiceBuilder aStore(Supplier<TBUILDER> supplier, boolean releaseOnly) {
-			Store store = build(supplier.get().anUserService(getBuilder()));
-			when(getBuildable().getStore(store.getType(), releaseOnly)).thenReturn(store);
-			return getBuilder();
-		}
+        @Override
+        public final <T extends Store, TBUILDER extends StoreBuilder<T, TBUILDER>> UserServiceBuilder aStore(Supplier<TBUILDER> supplier, boolean releaseOnly) {
+            Store store = build(supplier.get().anUserService(getBuilder()));
+            when(getBuildable().getStore(store.getType(), releaseOnly)).thenReturn(store);
+            return getBuilder();
+        }
 
-		@Override
-		public final UserServiceBuilder aConnection(ConnectionBuilder connection) {
-			Connection buildable = getBuildable(connection);
-			if (!getBuildable().equals(buildable.getService(UserService.class))) {
-				throw new IllegalArgumentException("Connection has not this user service. Please correct this.");
-			}
+        @Override
+        public final UserServiceBuilder aConnection(ConnectionBuilder connection) {
+            Connection buildable = getBuildable(connection);
+            if (!getBuildable().equals(buildable.getService(UserService.class))) {
+                throw new IllegalArgumentException("Connection has not this user service. Please correct this.");
+            }
 
-			when(getBuildable().getConnection()).thenReturn(buildable);
-			return getBuilder();
-		}
-	}
+            when(getBuildable().getConnection()).thenReturn(buildable);
+            return getBuilder();
+        }
+    }
 }

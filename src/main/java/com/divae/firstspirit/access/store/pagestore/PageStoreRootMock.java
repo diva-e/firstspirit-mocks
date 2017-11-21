@@ -22,34 +22,34 @@ import static de.espirit.firstspirit.access.store.IDProvider.UidType.PAGESTORE;
 
 public final class PageStoreRootMock {
 
-	private PageStoreRootMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private PageStoreRootMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static PageStoreRootBuilder pageStoreRootWith(long id, ProjectBuilder project) {
-		return new DefaultPageStoreRootBuilder(id, project);
-	}
+    public static PageStoreRootBuilder pageStoreRootWith(long id, ProjectBuilder project) {
+        return new DefaultPageStoreRootBuilder(id, project);
+    }
 
-	public interface PageStoreRootBuilder extends StoreBuilder<PageStoreRoot, PageStoreRootBuilder>, PageFolderBuilder<PageStoreRoot, PageStoreRootBuilder> {
-	}
+    public interface PageStoreRootBuilder extends StoreBuilder<PageStoreRoot, PageStoreRootBuilder>, PageFolderBuilder<PageStoreRoot, PageStoreRootBuilder> {
+    }
 
-	public final static class DefaultPageStoreRootBuilder extends DefaultStoreBuilder<PageStoreRoot, PageStoreRootBuilder, DefaultPageStoreRootBuilder> implements PageStoreRootBuilder {
-		private final TruncatedPageFolderBuilder<PageStoreRoot> pageFolderBuilder;
+    public final static class DefaultPageStoreRootBuilder extends DefaultStoreBuilder<PageStoreRoot, PageStoreRootBuilder, DefaultPageStoreRootBuilder> implements PageStoreRootBuilder {
+        private final TruncatedPageFolderBuilder<PageStoreRoot> pageFolderBuilder;
 
-		private DefaultPageStoreRootBuilder(long id, ProjectBuilder project) {
-			super(id, PAGESTORE, Type.PAGESTORE, project);
-			pageFolderBuilder = pageFolderWith(getBuilder());
-		}
+        private DefaultPageStoreRootBuilder(long id, ProjectBuilder project) {
+            super(id, PAGESTORE, Type.PAGESTORE, project);
+            pageFolderBuilder = pageFolderWith(getBuilder());
+        }
 
-		@Override
-		public <OT extends PageFolder, OTBUILDER extends PageFolderBuilder<OT, OTBUILDER>> PageStoreRootBuilder createsPageFolder(Function<PageStoreRootBuilder, OTBUILDER> function, String uid, Map<Language, String> lang2DisplayName, boolean unifyNameOnServer) throws DuplicateReferenceNameException, ElementDeletedException, LockException {
-			return createsPageFolderWith(() -> function.apply(getBuilder()), uid, lang2DisplayName, unifyNameOnServer);
-		}
+        @Override
+        public <OT extends PageFolder, OTBUILDER extends PageFolderBuilder<OT, OTBUILDER>> PageStoreRootBuilder createsPageFolder(Function<PageStoreRootBuilder, OTBUILDER> function, String uid, Map<Language, String> lang2DisplayName, boolean unifyNameOnServer) throws DuplicateReferenceNameException, ElementDeletedException, LockException {
+            return createsPageFolderWith(() -> function.apply(getBuilder()), uid, lang2DisplayName, unifyNameOnServer);
+        }
 
-		@Override
-		public <OT extends PageFolder, OTBUILDER extends PageFolderBuilder<OT, OTBUILDER>> PageStoreRootBuilder createsPageFolderWith(Supplier<OTBUILDER> supplier, String uid, Map<Language, String> lang2DisplayName, boolean unifyNameOnServer) throws DuplicateReferenceNameException, ElementDeletedException, LockException {
-			pageFolderBuilder.createsPageFolderWith(supplier, uid, lang2DisplayName, unifyNameOnServer);
-			return getBuilder();
-		}
-	}
+        @Override
+        public <OT extends PageFolder, OTBUILDER extends PageFolderBuilder<OT, OTBUILDER>> PageStoreRootBuilder createsPageFolderWith(Supplier<OTBUILDER> supplier, String uid, Map<Language, String> lang2DisplayName, boolean unifyNameOnServer) throws DuplicateReferenceNameException, ElementDeletedException, LockException {
+            pageFolderBuilder.createsPageFolderWith(supplier, uid, lang2DisplayName, unifyNameOnServer);
+            return getBuilder();
+        }
+    }
 }

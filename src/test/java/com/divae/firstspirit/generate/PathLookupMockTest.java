@@ -32,171 +32,171 @@ import static org.junit.Assert.assertThat;
 
 public class PathLookupMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PathLookupMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PathLookupMock.class;
+    }
 
-	@Test
-	public void testAnIdProvider() {
-		LanguageBuilder languageBuilder = languageWith("DE");
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageBuilder);
-		MediaStoreRootBuilder mediaStoreRootBuilder = mediaStoreRootWith(1, projectBuilder).children(parent -> singletonList(mediaWith("test", 2, parent)));
-		String storedUrl = "url";
-		TemplateSetBuilder templateSetBuilder = templateSetWith("test");
-		PathLookup pathLookup = build(pathLookupWith().anIdProvider(languageBuilder, templateSetBuilder, storedUrl, mediaStoreRootBuilder));
-		Media media = (Media) build(mediaStoreRootBuilder).getChildren().iterator().next();
-		assertThat(pathLookup.lookupPath(media, media.getProject().getMasterLanguage(), build(templateSetBuilder)), is(nullValue()));
-	}
+    @Test
+    public void testAnIdProvider() {
+        LanguageBuilder languageBuilder = languageWith("DE");
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageBuilder);
+        MediaStoreRootBuilder mediaStoreRootBuilder = mediaStoreRootWith(1, projectBuilder).children(parent -> singletonList(mediaWith("test", 2, parent)));
+        String storedUrl = "url";
+        TemplateSetBuilder templateSetBuilder = templateSetWith("test");
+        PathLookup pathLookup = build(pathLookupWith().anIdProvider(languageBuilder, templateSetBuilder, storedUrl, mediaStoreRootBuilder));
+        Media media = (Media) build(mediaStoreRootBuilder).getChildren().iterator().next();
+        assertThat(pathLookup.lookupPath(media, media.getProject().getMasterLanguage(), build(templateSetBuilder)), is(nullValue()));
+    }
 
-	@Test
-	public void testAStore() {
-		LanguageBuilder languageBuilder = languageWith("DE");
-		MediaStoreRootBuilder mediaStoreRootBuilder = mediaStoreRootWith(1, projectWith("test", 0, languageBuilder));
-		TemplateSetBuilder templateSetBuilder = templateSetWith("test");
-		PathLookup pathLookup = build(pathLookupWith().aStore(languageBuilder, templateSetBuilder, mediaStoreRootBuilder));
-		MediaStoreRoot mediaStoreRoot = build(mediaStoreRootBuilder);
-		Language masterLanguage = build(languageBuilder);
-		assertThat(pathLookup.lookupPath(mediaStoreRoot, masterLanguage, build(templateSetBuilder)), is(""));
-	}
+    @Test
+    public void testAStore() {
+        LanguageBuilder languageBuilder = languageWith("DE");
+        MediaStoreRootBuilder mediaStoreRootBuilder = mediaStoreRootWith(1, projectWith("test", 0, languageBuilder));
+        TemplateSetBuilder templateSetBuilder = templateSetWith("test");
+        PathLookup pathLookup = build(pathLookupWith().aStore(languageBuilder, templateSetBuilder, mediaStoreRootBuilder));
+        MediaStoreRoot mediaStoreRoot = build(mediaStoreRootBuilder);
+        Language masterLanguage = build(languageBuilder);
+        assertThat(pathLookup.lookupPath(mediaStoreRoot, masterLanguage, build(templateSetBuilder)), is(""));
+    }
 
-	@Test
-	public void testExtractPathWithMediaHttpsUrl() {
-		String uid = "test";
-		Media media = build(mediaWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(media, "https://" + uid);
-		assertThat(extractedPath, is(nullValue()));
-	}
+    @Test
+    public void testExtractPathWithMediaHttpsUrl() {
+        String uid = "test";
+        Media media = build(mediaWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(media, "https://" + uid);
+        assertThat(extractedPath, is(nullValue()));
+    }
 
-	@Test
-	public void testExtractPathWithMediaHttpUrl() {
-		String uid = "test";
-		Media media = build(mediaWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(media, "http://" + uid);
-		assertThat(extractedPath, is(nullValue()));
-	}
+    @Test
+    public void testExtractPathWithMediaHttpUrl() {
+        String uid = "test";
+        Media media = build(mediaWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(media, "http://" + uid);
+        assertThat(extractedPath, is(nullValue()));
+    }
 
-	@Test
-	public void testExtractPathWithMediaNullUrl() {
-		String uid = "test";
-		Media media = build(mediaWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(media, null);
-		assertThat(extractedPath, is(nullValue()));
-	}
+    @Test
+    public void testExtractPathWithMediaNullUrl() {
+        String uid = "test";
+        Media media = build(mediaWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(media, null);
+        assertThat(extractedPath, is(nullValue()));
+    }
 
-	@Test
-	public void testExtractPathWithMediaEmptyUrl() {
-		String uid = "test";
-		Media media = build(mediaWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(media, "");
-		assertThat(extractedPath, is(nullValue()));
-	}
+    @Test
+    public void testExtractPathWithMediaEmptyUrl() {
+        String uid = "test";
+        Media media = build(mediaWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(media, "");
+        assertThat(extractedPath, is(nullValue()));
+    }
 
-	@Test
-	public void testExtractPathWithMediaSlashStartedUrl() {
-		String uid = "test";
-		Media media = build(mediaWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(media, "/" + uid);
-		assertThat(extractedPath, is(nullValue()));
-	}
+    @Test
+    public void testExtractPathWithMediaSlashStartedUrl() {
+        String uid = "test";
+        Media media = build(mediaWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(media, "/" + uid);
+        assertThat(extractedPath, is(nullValue()));
+    }
 
-	@Test
-	public void testExtractPathWithContentProducerSlashStartedUrl() {
-		String uid = "test";
-		Page page = build(pageWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(page, "/" + uid);
-		assertThat(extractedPath, is(""));
-	}
+    @Test
+    public void testExtractPathWithContentProducerSlashStartedUrl() {
+        String uid = "test";
+        Page page = build(pageWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(page, "/" + uid);
+        assertThat(extractedPath, is(""));
+    }
 
-	@Test
-	public void testExtractPathWithContentProducerSlashEndedUrl() {
-		String uid = "test";
-		Page page = build(pageWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(page, uid + "/");
-		assertThat(extractedPath, is(uid));
-	}
+    @Test
+    public void testExtractPathWithContentProducerSlashEndedUrl() {
+        String uid = "test";
+        Page page = build(pageWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(page, uid + "/");
+        assertThat(extractedPath, is(uid));
+    }
 
-	@Test
-	public void testExtractPathWithContentProducerEmptyUrl() {
-		Page page = build(pageWith("test", 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(page, "");
-		assertThat(extractedPath, is(""));
-	}
+    @Test
+    public void testExtractPathWithContentProducerEmptyUrl() {
+        Page page = build(pageWith("test", 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(page, "");
+        assertThat(extractedPath, is(""));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreFolderSlashStartedUrl() {
-		String uid = "test";
-		PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "/" + uid);
-		assertThat(extractedPath, is("/" + uid));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreFolderSlashStartedUrl() {
+        String uid = "test";
+        PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "/" + uid);
+        assertThat(extractedPath, is("/" + uid));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreFolderSlashEndedUrl() {
-		String uid = "test";
-		PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, uid + "/");
-		assertThat(extractedPath, is("/" + uid));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreFolderSlashEndedUrl() {
+        String uid = "test";
+        PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, uid + "/");
+        assertThat(extractedPath, is("/" + uid));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreFolderHttpsUrl() {
-		String uid = "test";
-		PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "https://" + uid);
-		assertThat(extractedPath, is("https://" + uid));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreFolderHttpsUrl() {
+        String uid = "test";
+        PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "https://" + uid);
+        assertThat(extractedPath, is("https://" + uid));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreHttpUrl() {
-		String uid = "test";
-		PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "http://" + uid);
-		assertThat(extractedPath, is("http://" + uid));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreHttpUrl() {
+        String uid = "test";
+        PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "http://" + uid);
+        assertThat(extractedPath, is("http://" + uid));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreEmptyUrl() {
-		String uid = "test";
-		PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "");
-		assertThat(extractedPath, is("/"));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreEmptyUrl() {
+        String uid = "test";
+        PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "");
+        assertThat(extractedPath, is("/"));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreSlashStartedUrl() {
-		String uid = "test";
-		PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "/" + uid);
-		assertThat(extractedPath, is("/" + uid));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreSlashStartedUrl() {
+        String uid = "test";
+        PageRefFolder pageRefFolder = build(pageRefFolderWith(uid, 2, null));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(pageRefFolder, "/" + uid);
+        assertThat(extractedPath, is("/" + uid));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreRootHttpsUrl() {
-		String uid = "test";
-		SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "https://" + uid);
-		assertThat(extractedPath, is(""));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreRootHttpsUrl() {
+        String uid = "test";
+        SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "https://" + uid);
+        assertThat(extractedPath, is(""));
+    }
 
-	@Test
-	public void testExtractPathWitSiteStoreRootHttpUrl() {
-		SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "http://test");
-		assertThat(extractedPath, is(""));
-	}
+    @Test
+    public void testExtractPathWitSiteStoreRootHttpUrl() {
+        SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "http://test");
+        assertThat(extractedPath, is(""));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreRootEmptyUrl() {
-		SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "");
-		assertThat(extractedPath, is(""));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreRootEmptyUrl() {
+        SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "");
+        assertThat(extractedPath, is(""));
+    }
 
-	@Test
-	public void testExtractPathWithSiteStoreRootSlashStartedUrl() {
-		SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
-		String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "/test");
-		assertThat(extractedPath, is(""));
-	}
+    @Test
+    public void testExtractPathWithSiteStoreRootSlashStartedUrl() {
+        SiteStoreRoot siteStoreRoot = build(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))));
+        String extractedPath = DefaultPathLookupBuilder.extractPath(siteStoreRoot, "/test");
+        assertThat(extractedPath, is(""));
+    }
 }

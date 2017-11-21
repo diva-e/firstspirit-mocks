@@ -14,28 +14,28 @@ import static org.junit.Assert.assertThat;
 
 public class TaskResultMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TaskResultMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TaskResultMock.class;
+    }
 
-	@Test
-	public void testATask() {
-		GenerateTaskBuilder generateTaskBuilder = generateTaskWith("test");
-		TaskResult taskResult = build(taskResultWith().aTask(generateTaskBuilder));
-		GenerateTask generateTask = build(generateTaskBuilder);
-		assertThat(taskResult.getTask(), is(generateTask));
-	}
+    @Test
+    public void testATask() {
+        GenerateTaskBuilder generateTaskBuilder = generateTaskWith("test");
+        TaskResult taskResult = build(taskResultWith().aTask(generateTaskBuilder));
+        GenerateTask generateTask = build(generateTaskBuilder);
+        assertThat(taskResult.getTask(), is(generateTask));
+    }
 
-	@Test
-	public void testAnErrorCount() {
-		TaskResult taskResult = build(taskResultWith().anErrorCount(1));
-		assertThat(taskResult.getErrorCount(), is(1));
-	}
+    @Test
+    public void testAnErrorCount() {
+        TaskResult taskResult = build(taskResultWith().anErrorCount(1));
+        assertThat(taskResult.getErrorCount(), is(1));
+    }
 
-	@Test
-	public void testAWarningCount() {
-		TaskResult taskResult = build(taskResultWith().aWarningCount(1));
-		assertThat(taskResult.getWarningCount(), is(1));
-	}
+    @Test
+    public void testAWarningCount() {
+        TaskResult taskResult = build(taskResultWith().aWarningCount(1));
+        assertThat(taskResult.getWarningCount(), is(1));
+    }
 }

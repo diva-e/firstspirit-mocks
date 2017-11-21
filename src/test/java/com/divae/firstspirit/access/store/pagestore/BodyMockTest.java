@@ -11,22 +11,22 @@ import static org.junit.Assert.assertThat;
 
 public class BodyMockTest extends MockTest {
 
-	@Test
-	public void testBodyWithStringLongUidTypeStoreBuilder() {
-		String uid = "test";
-		assertThat(bodyWith(uid, 2, PAGESTORE, null), is(notNullValue()));
-	}
+    @Test
+    public void testBodyWithStringLongUidTypeStoreBuilder() {
+        String uid = "test";
+        assertThat(bodyWith(uid, 2, PAGESTORE, null), is(notNullValue()));
+    }
 
-	@Test
-	public void testBodyWithStringLongStoreBuilder() {
-		String uid = "test";
-		assertThat(bodyWith(uid, 2, null), is(notNullValue()));
+    @Test
+    public void testBodyWithStringLongStoreBuilder() {
+        String uid = "test";
+        assertThat(bodyWith(uid, 2, null), is(notNullValue()));
 
-	}
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return BodyMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return BodyMock.class;
+    }
 
 }

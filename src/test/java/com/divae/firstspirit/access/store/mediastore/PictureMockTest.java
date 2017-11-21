@@ -19,22 +19,22 @@ import static org.mockito.Mockito.mock;
 
 public class PictureMockTest extends MockTest {
 
-	@Test
-	public void testPictureWith() {
-		assertThat(pictureWith("picture", null), is(notNullValue()));
-	}
+    @Test
+    public void testPictureWith() {
+        assertThat(pictureWith("picture", null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PictureMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PictureMock.class;
+    }
 
-	@Test
-	public void testAnInputStream() throws IOException {
-		InputStream stream = mock(InputStream.class);
-		ResolutionBuilder resolutionBuilder = resolutionWith("test");
-		Picture picture = build(pictureWith("picture", null).anInputStream(stream, resolutionBuilder));
-		Resolution resolution = build(resolutionBuilder);
-		assertThat(picture.getInputStream(resolution), is(stream));
-	}
+    @Test
+    public void testAnInputStream() throws IOException {
+        InputStream stream = mock(InputStream.class);
+        ResolutionBuilder resolutionBuilder = resolutionWith("test");
+        Picture picture = build(pictureWith("picture", null).anInputStream(stream, resolutionBuilder));
+        Resolution resolution = build(resolutionBuilder);
+        assertThat(picture.getInputStream(resolution), is(stream));
+    }
 }

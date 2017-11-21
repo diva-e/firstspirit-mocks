@@ -12,21 +12,21 @@ import static org.junit.Assert.assertThat;
 
 public class ScheduleTaskMockTest extends MockTest {
 
-	@Test
-	public void testScheduleTaskWith() {
-		assertThat(scheduleTaskWith("test"), is(notNullValue()));
-	}
+    @Test
+    public void testScheduleTaskWith() {
+        assertThat(scheduleTaskWith("test"), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ScheduleTaskMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ScheduleTaskMock.class;
+    }
 
 
-	@Test
-	public void testDefaults() {
-		String name = "test";
-		ScheduleTask scheduleTask = build(scheduleTaskWith(name));
-		assertThat(scheduleTask.getName(), is(name));
-	}
+    @Test
+    public void testDefaults() {
+        String name = "test";
+        ScheduleTask scheduleTask = build(scheduleTaskWith(name));
+        assertThat(scheduleTask.getName(), is(name));
+    }
 }

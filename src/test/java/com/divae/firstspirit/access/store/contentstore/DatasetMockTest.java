@@ -17,22 +17,22 @@ import static org.junit.Assert.assertThat;
 
 public class DatasetMockTest extends MockTest {
 
-	@Test
-	public void testDatasetWith() {
-		assertThat(datasetWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testDatasetWith() {
+        assertThat(datasetWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return DatasetMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return DatasetMock.class;
+    }
 
-	@Test
-	public void testWithAnEntity() {
-		String uid = "test";
-		EntityMock.EntityBuilder entityBuilder = entityWith(new UUID(0, 0));
-		Dataset dataset = build(datasetWith(uid, 2, null).anEntity(entityBuilder));
-		Entity entity = build(entityBuilder);
-		assertThat(dataset.getEntity(), is(entity));
-	}
+    @Test
+    public void testWithAnEntity() {
+        String uid = "test";
+        EntityMock.EntityBuilder entityBuilder = entityWith(new UUID(0, 0));
+        Dataset dataset = build(datasetWith(uid, 2, null).anEntity(entityBuilder));
+        Entity entity = build(entityBuilder);
+        assertThat(dataset.getEntity(), is(entity));
+    }
 }

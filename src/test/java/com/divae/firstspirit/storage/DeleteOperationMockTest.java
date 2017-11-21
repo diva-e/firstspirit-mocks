@@ -14,16 +14,16 @@ import static org.junit.Assert.assertThat;
 
 public class DeleteOperationMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return DeleteOperationMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return DeleteOperationMock.class;
+    }
 
-	@Test
-	public void testDeletesRootElement() {
-		BasicElementInfoBuilder basicElementInfoBuilder = basicElementInfoWith("test");
-		DeleteOperation deleteOperation = build(deleteOperationWith().deletesRootElement(() -> basicElementInfoBuilder));
-		BasicElementInfo basicElementInfo = build(basicElementInfoBuilder);
-		assertThat(deleteOperation.getDeleteRootElement(), is(basicElementInfo));
-	}
+    @Test
+    public void testDeletesRootElement() {
+        BasicElementInfoBuilder basicElementInfoBuilder = basicElementInfoWith("test");
+        DeleteOperation deleteOperation = build(deleteOperationWith().deletesRootElement(() -> basicElementInfoBuilder));
+        BasicElementInfo basicElementInfo = build(basicElementInfoBuilder);
+        assertThat(deleteOperation.getDeleteRootElement(), is(basicElementInfo));
+    }
 }

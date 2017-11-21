@@ -14,16 +14,16 @@ import static org.junit.Assert.assertThat;
 
 public class ModifyOperationMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ModifyOperationMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ModifyOperationMock.class;
+    }
 
-	@Test
-	public void testAModificationRootElement() {
-		BasicElementInfoBuilder elementInfoBuilder = basicElementInfoWith("test");
-		ModifyOperation modifyOperation = build(modifyOperationWith().aModificationRootElement(() -> elementInfoBuilder));
-		BasicElementInfo basicElementInfo = build(elementInfoBuilder);
-		assertThat(modifyOperation.getModificationRootElement(), is(basicElementInfo));
-	}
+    @Test
+    public void testAModificationRootElement() {
+        BasicElementInfoBuilder elementInfoBuilder = basicElementInfoWith("test");
+        ModifyOperation modifyOperation = build(modifyOperationWith().aModificationRootElement(() -> elementInfoBuilder));
+        BasicElementInfo basicElementInfo = build(elementInfoBuilder);
+        assertThat(modifyOperation.getModificationRootElement(), is(basicElementInfo));
+    }
 }

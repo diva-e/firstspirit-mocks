@@ -12,25 +12,25 @@ import static org.junit.Assert.assertThat;
 
 public class Content2ParamsMockTest extends MockTest {
 
-	@Test
-	public void testContent2ParamsWith() {
-		assertThat(content2ParamsWith("content2Params", null), is(notNullValue()));
-	}
+    @Test
+    public void testContent2ParamsWith() {
+        assertThat(content2ParamsWith("content2Params", null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return Content2ParamsMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return Content2ParamsMock.class;
+    }
 
-	@Test
-	public void testContent2Params() {
-		assertThat(content2ParamsWith("content2Params", null), is(notNullValue()));
-	}
+    @Test
+    public void testContent2Params() {
+        assertThat(content2ParamsWith("content2Params", null), is(notNullValue()));
+    }
 
-	@Test
-	public void testASitemapVariableName() {
-		String sitemapVariableName = "test";
-		Content2Params content2Params = build(content2ParamsWith("content2Params", null).aSitemapVariableName(sitemapVariableName));
-		assertThat(content2Params.getSitemapVariableName(), is(sitemapVariableName));
-	}
+    @Test
+    public void testASitemapVariableName() {
+        String sitemapVariableName = "test";
+        Content2Params content2Params = build(content2ParamsWith("content2Params", null).aSitemapVariableName(sitemapVariableName));
+        assertThat(content2Params.getSitemapVariableName(), is(sitemapVariableName));
+    }
 }

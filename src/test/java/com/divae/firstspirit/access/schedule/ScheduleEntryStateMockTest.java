@@ -17,21 +17,21 @@ import static org.junit.Assert.assertThat;
 
 public class ScheduleEntryStateMockTest extends MockTest {
 
-	@Test
-	public void testScheduleEntryStateWith() {
-		assertThat(scheduleEntryStateWith(0L), is(notNullValue()));
-	}
+    @Test
+    public void testScheduleEntryStateWith() {
+        assertThat(scheduleEntryStateWith(0L), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ScheduleEntryStateMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ScheduleEntryStateMock.class;
+    }
 
-	@Test
-	public void testTaskResults() {
-		ScheduleEntryState scheduleEntryState = build(scheduleEntryStateWith(0L).taskResults(() -> singletonList(taskResultWith())));
-		List<TaskResult> taskResults = scheduleEntryState.getTaskResults();
-		assertThat(taskResults.size(), is(1));
-		assertThat(taskResults.get(0), is(notNullValue()));
-	}
+    @Test
+    public void testTaskResults() {
+        ScheduleEntryState scheduleEntryState = build(scheduleEntryStateWith(0L).taskResults(() -> singletonList(taskResultWith())));
+        List<TaskResult> taskResults = scheduleEntryState.getTaskResults();
+        assertThat(taskResults.size(), is(1));
+        assertThat(taskResults.get(0), is(notNullValue()));
+    }
 }

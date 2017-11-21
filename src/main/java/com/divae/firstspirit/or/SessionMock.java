@@ -17,37 +17,37 @@ import static org.mockito.Mockito.when;
 
 public final class SessionMock {
 
-	private SessionMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SessionMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static SessionBuilder sessionWith() {
-		return new DefaultSessionBuilder();
-	}
+    public static SessionBuilder sessionWith() {
+        return new DefaultSessionBuilder();
+    }
 
-	public interface SessionBuilder extends Builder<Session, SessionBuilder> {
-		SessionBuilder aSelect(Supplier<SelectBuilder> supplier, String entityTypeName, EntityList queryResult);
+    public interface SessionBuilder extends Builder<Session, SessionBuilder> {
+        SessionBuilder aSelect(Supplier<SelectBuilder> supplier, String entityTypeName, EntityList queryResult);
 
-		SessionBuilder aSelect(Supplier<ConstraintBuilder> supplier, String entityTypeName);
-	}
+        SessionBuilder aSelect(Supplier<ConstraintBuilder> supplier, String entityTypeName);
+    }
 
-	public static final class DefaultSessionBuilder extends DefaultBuilder<Session, SessionBuilder, DefaultSessionBuilder> implements SessionBuilder {
+    public static final class DefaultSessionBuilder extends DefaultBuilder<Session, SessionBuilder, DefaultSessionBuilder> implements SessionBuilder {
 
-		private DefaultSessionBuilder() {
-		}
+        private DefaultSessionBuilder() {
+        }
 
-		@Override
-		public final SessionBuilder aSelect(Supplier<SelectBuilder> supplier, String entityTypeName, EntityList queryResult) {
-			Select select = build(supplier.get());
-			when(getBuildable().createSelect(entityTypeName)).thenReturn(select);
-			when(getBuildable().executeQuery(select)).thenReturn(queryResult);
-			return getBuilder();
-		}
+        @Override
+        public final SessionBuilder aSelect(Supplier<SelectBuilder> supplier, String entityTypeName, EntityList queryResult) {
+            Select select = build(supplier.get());
+            when(getBuildable().createSelect(entityTypeName)).thenReturn(select);
+            when(getBuildable().executeQuery(select)).thenReturn(queryResult);
+            return getBuilder();
+        }
 
-		@Override
-		public final SessionBuilder aSelect(Supplier<ConstraintBuilder> supplier, String entityTypeName) {
-			EntityList queryResult = build(entityListWith());
-			return aSelect(() -> selectWith().aConstraint(supplier), entityTypeName, queryResult);
-		}
-	}
+        @Override
+        public final SessionBuilder aSelect(Supplier<ConstraintBuilder> supplier, String entityTypeName) {
+            EntityList queryResult = build(entityListWith());
+            return aSelect(() -> selectWith().aConstraint(supplier), entityTypeName, queryResult);
+        }
+    }
 }

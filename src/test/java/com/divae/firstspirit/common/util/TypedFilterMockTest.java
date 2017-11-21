@@ -4,8 +4,8 @@ import com.divae.firstspirit.MockTest;
 
 public class TypedFilterMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TypedFilterMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TypedFilterMock.class;
+    }
 }

@@ -12,20 +12,20 @@ import static org.junit.Assert.assertThat;
 
 public class RequestOperationMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return RequestOperationMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return RequestOperationMock.class;
+    }
 
-	@Test
-	public void testOk() {
-		RequestOperation requestOperation = build(requestOperationWith().ok(AnswerMock::answerWith));
-		assertThat(requestOperation.addOk(), is(notNullValue()));
-	}
+    @Test
+    public void testOk() {
+        RequestOperation requestOperation = build(requestOperationWith().ok(AnswerMock::answerWith));
+        assertThat(requestOperation.addOk(), is(notNullValue()));
+    }
 
-	@Test
-	public void testPerforms() {
-		RequestOperation requestOperation = build(requestOperationWith().performs(AnswerMock::answerWith, "test"));
-		assertThat(requestOperation.perform("test"), is(notNullValue()));
-	}
+    @Test
+    public void testPerforms() {
+        RequestOperation requestOperation = build(requestOperationWith().performs(AnswerMock::answerWith, "test"));
+        assertThat(requestOperation.perform("test"), is(notNullValue()));
+    }
 }

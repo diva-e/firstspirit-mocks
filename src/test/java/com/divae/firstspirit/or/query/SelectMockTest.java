@@ -12,14 +12,14 @@ import static org.junit.Assert.assertThat;
 
 public class SelectMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SelectMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SelectMock.class;
+    }
 
-	@Test
-	public void testAConstraint() {
-		Select select = build(selectWith().aConstraint(ConstraintMock::constraintWith));
-		assertThat(select.getConstraint(), is(notNullValue()));
-	}
+    @Test
+    public void testAConstraint() {
+        Select select = build(selectWith().aConstraint(ConstraintMock::constraintWith));
+        assertThat(select.getConstraint(), is(notNullValue()));
+    }
 }

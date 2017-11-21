@@ -16,29 +16,29 @@ import static org.mockito.Mockito.when;
 
 public final class TemplateStoreRootMock {
 
-	private TemplateStoreRootMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private TemplateStoreRootMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static TemplateStoreRootBuilder templateStoreRootWith(long id, ProjectBuilder project) {
-		return new DefaultTemplateStoreRootBuilder(id, project);
-	}
+    public static TemplateStoreRootBuilder templateStoreRootWith(long id, ProjectBuilder project) {
+        return new DefaultTemplateStoreRootBuilder(id, project);
+    }
 
-	public interface TemplateStoreRootBuilder extends StoreBuilder<TemplateStoreRoot, TemplateStoreRootBuilder> {
-		TemplateStoreRootBuilder aSectionTemplates(Function<TemplateStoreRootBuilder, SectionTemplatesBuilder> function);
-	}
+    public interface TemplateStoreRootBuilder extends StoreBuilder<TemplateStoreRoot, TemplateStoreRootBuilder> {
+        TemplateStoreRootBuilder aSectionTemplates(Function<TemplateStoreRootBuilder, SectionTemplatesBuilder> function);
+    }
 
-	public static final class DefaultTemplateStoreRootBuilder extends DefaultStoreBuilder<TemplateStoreRoot, TemplateStoreRootBuilder, DefaultTemplateStoreRootBuilder> implements TemplateStoreRootBuilder {
+    public static final class DefaultTemplateStoreRootBuilder extends DefaultStoreBuilder<TemplateStoreRoot, TemplateStoreRootBuilder, DefaultTemplateStoreRootBuilder> implements TemplateStoreRootBuilder {
 
-		private DefaultTemplateStoreRootBuilder(long id, ProjectBuilder project) {
-			super(id, TEMPLATESTORE, Type.TEMPLATESTORE, project);
-		}
+        private DefaultTemplateStoreRootBuilder(long id, ProjectBuilder project) {
+            super(id, TEMPLATESTORE, Type.TEMPLATESTORE, project);
+        }
 
-		@Override
-		public final TemplateStoreRootBuilder aSectionTemplates(Function<TemplateStoreRootBuilder, SectionTemplatesBuilder> function) {
-			SectionTemplates sectionTemplates = build(function.apply(getBuilder()));
-			when(getBuildable().getSectionTemplates()).thenReturn(sectionTemplates);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final TemplateStoreRootBuilder aSectionTemplates(Function<TemplateStoreRootBuilder, SectionTemplatesBuilder> function) {
+            SectionTemplates sectionTemplates = build(function.apply(getBuilder()));
+            when(getBuildable().getSectionTemplates()).thenReturn(sectionTemplates);
+            return getBuilder();
+        }
+    }
 }

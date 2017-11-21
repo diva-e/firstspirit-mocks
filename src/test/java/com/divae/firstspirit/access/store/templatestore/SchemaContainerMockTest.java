@@ -10,13 +10,13 @@ import static org.junit.Assert.assertThat;
 
 public class SchemaContainerMockTest extends MockTest {
 
-	@Test
-	public void testSchemaContainerWith() {
-		assertThat(schemaContainerWith("test", 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testSchemaContainerWith() {
+        assertThat(schemaContainerWith("test", 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SchemaContainerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SchemaContainerMock.class;
+    }
 }

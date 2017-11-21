@@ -6,20 +6,20 @@ import de.espirit.firstspirit.parser.LanguageProvider;
 
 public final class LanguageProviderMock {
 
-	private LanguageProviderMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private LanguageProviderMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static LanguageProviderBuilder languageProviderWith() {
-		return new DefaultLanguageProviderBuilder();
-	}
+    public static LanguageProviderBuilder languageProviderWith() {
+        return new DefaultLanguageProviderBuilder();
+    }
 
-	public interface LanguageProviderBuilder extends Builder<LanguageProvider, LanguageProviderBuilder> {
-	}
+    public interface LanguageProviderBuilder extends Builder<LanguageProvider, LanguageProviderBuilder> {
+    }
 
-	public static final class DefaultLanguageProviderBuilder extends DefaultBuilder<LanguageProvider, LanguageProviderBuilder, DefaultLanguageProviderBuilder> implements LanguageProviderBuilder {
+    private static final class DefaultLanguageProviderBuilder extends DefaultBuilder<LanguageProvider, LanguageProviderBuilder, DefaultLanguageProviderBuilder> implements LanguageProviderBuilder {
 
-		private DefaultLanguageProviderBuilder() {
-		}
-	}
+        private DefaultLanguageProviderBuilder() {
+        }
+    }
 }

@@ -21,28 +21,28 @@ import static org.junit.Assert.assertThat;
 
 public class SectionFormsProducerMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SectionFormsProducerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SectionFormsProducerMock.class;
+    }
 
-	@Test
-	public void testCreates() {
+    @Test
+    public void testCreates() {
         TruncatedSectionTemplateBuilder<SectionTemplate> sectionTemplateBuilder = sectionTemplateWith("test", 2, TEMPLATESTORE, null);
         IdProvidingFormDataBuilder idProvidingFormDataBuilder = idProvidingFormDataWith(0L);
         SectionFormsProducer sectionFormsProducer = build(sectionFormsProducerWith().creates(() -> idProvidingFormDataBuilder, sectionTemplateBuilder));
-		IdProvidingFormData idProvidingFormData = build(idProvidingFormDataBuilder);
-		SectionTemplate sectionTemplate = build(sectionTemplateBuilder);
-		assertThat(sectionFormsProducer.create(sectionTemplate), is(idProvidingFormData));
-	}
+        IdProvidingFormData idProvidingFormData = build(idProvidingFormDataBuilder);
+        SectionTemplate sectionTemplate = build(sectionTemplateBuilder);
+        assertThat(sectionFormsProducer.create(sectionTemplate), is(idProvidingFormData));
+    }
 
-	@Test
-	public void testAllowedTemplates() {
+    @Test
+    public void testAllowedTemplates() {
         TruncatedSectionTemplateBuilder<SectionTemplate> sectionTemplateBuilder = sectionTemplateWith("test", 2, TEMPLATESTORE, null);
         SectionFormsProducer sectionFormsProducer = build(sectionFormsProducerWith().allowedTemplates(singletonList(sectionTemplateBuilder)));
-		SectionTemplate sectionTemplate = build(sectionTemplateBuilder);
-		Collection<SectionTemplate> allowedTemplates = sectionFormsProducer.getAllowedTemplates();
-		assertThat(allowedTemplates.size(), is(1));
-		assertThat(allowedTemplates.iterator().next(), is(sectionTemplate));
-	}
+        SectionTemplate sectionTemplate = build(sectionTemplateBuilder);
+        Collection<SectionTemplate> allowedTemplates = sectionFormsProducer.getAllowedTemplates();
+        assertThat(allowedTemplates.size(), is(1));
+        assertThat(allowedTemplates.iterator().next(), is(sectionTemplate));
+    }
 }

@@ -12,14 +12,14 @@ import static org.junit.Assert.assertThat;
 
 public class FormMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return FormMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return FormMock.class;
+    }
 
-	@Test
-	public void testCreatesFormData() {
-		Form form = build(formWith().createsFormData(FormDataMock::formDataWith));
-		assertThat(form.createFormData(), is(notNullValue()));
-	}
+    @Test
+    public void testCreatesFormData() {
+        Form form = build(formWith().createsFormData(FormDataMock::formDataWith));
+        assertThat(form.createFormData(), is(notNullValue()));
+    }
 }

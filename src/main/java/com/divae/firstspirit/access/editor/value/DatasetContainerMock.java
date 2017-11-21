@@ -11,33 +11,33 @@ import static org.mockito.Mockito.when;
 
 public final class DatasetContainerMock {
 
-	private DatasetContainerMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private DatasetContainerMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static DatasetContainerBuilder datasetContainerWith(UUID gid) {
-		return new DefaultDatasetContainerBuilder(gid);
-	}
+    public static DatasetContainerBuilder datasetContainerWith(UUID gid) {
+        return new DefaultDatasetContainerBuilder(gid);
+    }
 
-	public interface DatasetContainerBuilder extends Builder<DatasetContainer, DatasetContainerBuilder> {
-		DatasetContainerBuilder aDataset(DatasetBuilder dataset);
-	}
+    public interface DatasetContainerBuilder extends Builder<DatasetContainer, DatasetContainerBuilder> {
+        DatasetContainerBuilder aDataset(DatasetBuilder dataset);
+    }
 
-	public static final class DefaultDatasetContainerBuilder extends DefaultBuilder<DatasetContainer, DatasetContainerBuilder, DefaultDatasetContainerBuilder> implements DatasetContainerBuilder {
+    public static final class DefaultDatasetContainerBuilder extends DefaultBuilder<DatasetContainer, DatasetContainerBuilder, DefaultDatasetContainerBuilder> implements DatasetContainerBuilder {
 
-		private DefaultDatasetContainerBuilder(UUID gid) {
-			super(gid);
-			anGid(gid);
-		}
+        private DefaultDatasetContainerBuilder(UUID gid) {
+            super(gid);
+            anGid(gid);
+        }
 
-		@Override
-		public final DatasetContainerBuilder aDataset(DatasetBuilder dataset) {
-			when(getBuildable().getDataset()).thenReturn(getBuildable(dataset));
-			return getBuilder();
-		}
+        @Override
+        public final DatasetContainerBuilder aDataset(DatasetBuilder dataset) {
+            when(getBuildable().getDataset()).thenReturn(getBuildable(dataset));
+            return getBuilder();
+        }
 
-		private void anGid(UUID gid) {
-			when(getBuildable().getGid()).thenReturn(gid);
-		}
-	}
+        private void anGid(UUID gid) {
+            when(getBuildable().getGid()).thenReturn(gid);
+        }
+    }
 }

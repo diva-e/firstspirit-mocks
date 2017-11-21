@@ -20,47 +20,47 @@ import static org.mockito.Mockito.when;
 
 public final class ChildrenChangeDetailMock {
 
-	private ChildrenChangeDetailMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ChildrenChangeDetailMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ChildrenChangeDetailBuilder childrenChangeDetailWith() {
-		return new DefaultChildrenChangeDetailBuilder();
-	}
+    public static ChildrenChangeDetailBuilder childrenChangeDetailWith() {
+        return new DefaultChildrenChangeDetailBuilder();
+    }
 
-	public interface ChildrenChangeDetailBuilder extends RevisionChangeDetailBuilder<ChildrenChangeDetail, ChildrenChangeDetailBuilder> {
-		ChildrenChangeDetailBuilder addedElements(Supplier<List<BasicElementInfoBuilder>> supply);
+    public interface ChildrenChangeDetailBuilder extends RevisionChangeDetailBuilder<ChildrenChangeDetail, ChildrenChangeDetailBuilder> {
+        ChildrenChangeDetailBuilder addedElements(Supplier<List<BasicElementInfoBuilder>> supplier);
 
-		ChildrenChangeDetailBuilder removedElements(Supplier<List<BasicElementInfoBuilder>> supply);
+        ChildrenChangeDetailBuilder removedElements(Supplier<List<BasicElementInfoBuilder>> supplier);
 
-		ChildrenChangeDetailBuilder reorderedElements(Supplier<Map<BasicElementInfoBuilder, Pair<Integer, Integer>>> supply);
-	}
+        ChildrenChangeDetailBuilder reorderedElements(Supplier<Map<BasicElementInfoBuilder, Pair<Integer, Integer>>> supplier);
+    }
 
-	public static final class DefaultChildrenChangeDetailBuilder extends DefaultRevisionChangeDetailBuilder<ChildrenChangeDetail, ChildrenChangeDetailBuilder, DefaultChildrenChangeDetailBuilder> implements ChildrenChangeDetailBuilder {
+    public static final class DefaultChildrenChangeDetailBuilder extends DefaultRevisionChangeDetailBuilder<ChildrenChangeDetail, ChildrenChangeDetailBuilder, DefaultChildrenChangeDetailBuilder> implements ChildrenChangeDetailBuilder {
 
-		private DefaultChildrenChangeDetailBuilder() {
-		}
+        private DefaultChildrenChangeDetailBuilder() {
+        }
 
-		@Override
-		public final ChildrenChangeDetailBuilder addedElements(Supplier<List<BasicElementInfoBuilder>> supply) {
-			List<BasicElementInfo> basicElementInfo = supply.get().stream().map(BuilderMock::build).collect(toList());
-			when(getBuildable().getAddedElements()).thenReturn(basicElementInfo);
-			return getBuilder();
-		}
+        @Override
+        public final ChildrenChangeDetailBuilder addedElements(Supplier<List<BasicElementInfoBuilder>> supplier) {
+            List<BasicElementInfo> basicElementInfo = supplier.get().stream().map(BuilderMock::build).collect(toList());
+            when(getBuildable().getAddedElements()).thenReturn(basicElementInfo);
+            return getBuilder();
+        }
 
-		@Override
-		public final ChildrenChangeDetailBuilder removedElements(Supplier<List<BasicElementInfoBuilder>> supply) {
-			List<BasicElementInfo> basicElementInfo = supply.get().stream().map(BuilderMock::build).collect(toList());
-			when(getBuildable().getRemovedElements()).thenReturn(basicElementInfo);
-			return getBuilder();
-		}
+        @Override
+        public final ChildrenChangeDetailBuilder removedElements(Supplier<List<BasicElementInfoBuilder>> supplier) {
+            List<BasicElementInfo> basicElementInfo = supplier.get().stream().map(BuilderMock::build).collect(toList());
+            when(getBuildable().getRemovedElements()).thenReturn(basicElementInfo);
+            return getBuilder();
+        }
 
-		@Override
-		public final ChildrenChangeDetailBuilder reorderedElements(Supplier<Map<BasicElementInfoBuilder, Pair<Integer, Integer>>> supply) {
-			Map<BasicElementInfo, Pair<Integer, Integer>> reorderedElements = supply.get().entrySet().stream().collect(toMap(entry -> build(entry.getKey()), Entry::getValue));
-			when(getBuildable().getReorderedElements()).thenReturn(reorderedElements);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final ChildrenChangeDetailBuilder reorderedElements(Supplier<Map<BasicElementInfoBuilder, Pair<Integer, Integer>>> supplier) {
+            Map<BasicElementInfo, Pair<Integer, Integer>> reorderedElements = supplier.get().entrySet().stream().collect(toMap(entry -> build(entry.getKey()), Entry::getValue));
+            when(getBuildable().getReorderedElements()).thenReturn(reorderedElements);
+            return getBuilder();
+        }
+    }
 
 }

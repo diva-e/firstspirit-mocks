@@ -9,29 +9,29 @@ import static org.mockito.Mockito.when;
 
 public final class LanguageMock {
 
-	private LanguageMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private LanguageMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static LanguageBuilder languageWith(String abbreviation) {
-		return new DefaultLanguageBuilder(abbreviation);
-	}
+    public static LanguageBuilder languageWith(String abbreviation) {
+        return new DefaultLanguageBuilder(abbreviation);
+    }
 
-	public interface LanguageBuilder extends Builder<Language, LanguageBuilder> {
-		LanguageBuilder isMasterLanguage();
-	}
+    public interface LanguageBuilder extends Builder<Language, LanguageBuilder> {
+        LanguageBuilder isMasterLanguage();
+    }
 
-	public static final class DefaultLanguageBuilder extends DefaultBuilder<Language, LanguageBuilder, DefaultLanguageBuilder> implements LanguageBuilder {
+    public static final class DefaultLanguageBuilder extends DefaultBuilder<Language, LanguageBuilder, DefaultLanguageBuilder> implements LanguageBuilder {
 
-		private DefaultLanguageBuilder(String abbreviation) {
-			super(abbreviation);
-			when(getBuildable().getAbbreviation()).thenReturn(abbreviation);
-		}
+        private DefaultLanguageBuilder(String abbreviation) {
+            super(abbreviation);
+            when(getBuildable().getAbbreviation()).thenReturn(abbreviation);
+        }
 
-		@Override
-		public final LanguageBuilder isMasterLanguage() {
-			when(getBuildable().isMasterLanguage()).thenReturn(TRUE);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final LanguageBuilder isMasterLanguage() {
+            when(getBuildable().isMasterLanguage()).thenReturn(TRUE);
+            return getBuilder();
+        }
+    }
 }

@@ -6,21 +6,21 @@ import de.espirit.common.util.Filter.TypedFilter;
 
 public final class TypedFilterMock {
 
-	private TypedFilterMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private TypedFilterMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static <T> TypedFilterBuilder<T> typedFilterWith() {
-		return new DefaultTypedFilterBuilder<>();
-	}
+    public static <T> TypedFilterBuilder<T> typedFilterWith() {
+        return new DefaultTypedFilterBuilder<>();
+    }
 
-	public interface TypedFilterBuilder<T> extends Builder<TypedFilter<T>, TypedFilterBuilder<T>> {
-	}
+    public interface TypedFilterBuilder<T> extends Builder<TypedFilter<T>, TypedFilterBuilder<T>> {
+    }
 
-	public static final class DefaultTypedFilterBuilder<T> extends DefaultBuilder<TypedFilter<T>, TypedFilterBuilder<T>, DefaultTypedFilterBuilder<T>> implements TypedFilterBuilder<T> {
+    private static final class DefaultTypedFilterBuilder<T> extends DefaultBuilder<TypedFilter<T>, TypedFilterBuilder<T>, DefaultTypedFilterBuilder<T>> implements TypedFilterBuilder<T> {
 
-		private DefaultTypedFilterBuilder() {
-		}
-	}
+        private DefaultTypedFilterBuilder() {
+        }
+    }
 
 }

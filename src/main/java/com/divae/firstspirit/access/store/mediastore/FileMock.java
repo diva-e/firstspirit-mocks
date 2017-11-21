@@ -12,45 +12,45 @@ import static org.mockito.Mockito.when;
 
 public final class FileMock {
 
-	private FileMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private FileMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static FileBuilder fileWith(String name, MediaBuilder parent) {
-		return new DefaultFileBuilder(name, parent);
-	}
+    public static FileBuilder fileWith(String name, MediaBuilder parent) {
+        return new DefaultFileBuilder(name, parent);
+    }
 
-	public interface FileBuilder extends StoreElementBuilder<File, FileBuilder> {
-		FileBuilder anInputStream(InputStream stream) throws IOException;
+    public interface FileBuilder extends StoreElementBuilder<File, FileBuilder> {
+        FileBuilder anInputStream(InputStream stream) throws IOException;
 
-		FileBuilder anExtension(String fileExtension);
+        FileBuilder anExtension(String fileExtension);
 
-		FileBuilder aCrc(long crc);
-	}
+        FileBuilder aCrc(long crc);
+    }
 
-	public static final class DefaultFileBuilder extends DefaultStoreElementBuilder<File, FileBuilder, DefaultFileBuilder> implements FileBuilder {
+    public static final class DefaultFileBuilder extends DefaultStoreElementBuilder<File, FileBuilder, DefaultFileBuilder> implements FileBuilder {
 
-		private DefaultFileBuilder(String name, MediaBuilder parent) {
-			super(name, parent);
-		}
+        private DefaultFileBuilder(String name, MediaBuilder parent) {
+            super(name, parent);
+        }
 
-		@Override
-		public final FileBuilder anInputStream(InputStream stream) throws IOException {
-			when(getBuildable().getInputStream()).thenReturn(stream);
-			return getBuilder();
-		}
+        @Override
+        public final FileBuilder anInputStream(InputStream stream) throws IOException {
+            when(getBuildable().getInputStream()).thenReturn(stream);
+            return getBuilder();
+        }
 
-		@Override
-		public final FileBuilder anExtension(String fileExtension) {
-			when(getBuildable().getExtension()).thenReturn(fileExtension);
-			return getBuilder();
-		}
+        @Override
+        public final FileBuilder anExtension(String fileExtension) {
+            when(getBuildable().getExtension()).thenReturn(fileExtension);
+            return getBuilder();
+        }
 
-		@Override
-		public final FileBuilder aCrc(long crc) {
-			when(getBuildable().getCrc()).thenReturn(crc);
-			return getBuilder();
-		}
+        @Override
+        public final FileBuilder aCrc(long crc) {
+            when(getBuildable().getCrc()).thenReturn(crc);
+            return getBuilder();
+        }
 
-	}
+    }
 }

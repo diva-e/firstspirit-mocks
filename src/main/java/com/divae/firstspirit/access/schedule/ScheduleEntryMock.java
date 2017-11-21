@@ -20,68 +20,68 @@ import static org.mockito.Mockito.when;
 
 public final class ScheduleEntryMock {
 
-	private ScheduleEntryMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ScheduleEntryMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ScheduleEntryBuilder scheduleEntryWith(long id, ProjectBuilder project) {
-		return new DefaultScheduleEntryBuilder(id, project);
-	}
+    public static ScheduleEntryBuilder scheduleEntryWith(long id, ProjectBuilder project) {
+        return new DefaultScheduleEntryBuilder(id, project);
+    }
 
-	public interface ScheduleEntryBuilder extends Builder<ScheduleEntry, ScheduleEntryBuilder> {
-		ScheduleEntryBuilder aName(String name);
+    public interface ScheduleEntryBuilder extends Builder<ScheduleEntry, ScheduleEntryBuilder> {
+        ScheduleEntryBuilder aName(String name);
 
-		ScheduleEntryBuilder aScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException;
+        ScheduleEntryBuilder aScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException;
 
-		<T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> ScheduleEntryBuilder tasks(List<TBUILDER> scheduleTasks);
+        <T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> ScheduleEntryBuilder tasks(List<TBUILDER> scheduleTasks);
 
-		ScheduleEntryBuilder withScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException;
-	}
+        ScheduleEntryBuilder withScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException;
+    }
 
-	public static final class DefaultScheduleEntryBuilder extends DefaultBuilder<ScheduleEntry, ScheduleEntryBuilder, DefaultScheduleEntryBuilder> implements ScheduleEntryBuilder {
+    public static final class DefaultScheduleEntryBuilder extends DefaultBuilder<ScheduleEntry, ScheduleEntryBuilder, DefaultScheduleEntryBuilder> implements ScheduleEntryBuilder {
 
-		@SuppressWarnings("unchecked")
-		private DefaultScheduleEntryBuilder(long id, ProjectBuilder project) {
-			super(id);
-			anId(id);
-			tasks(Collections.<ScheduleTaskBuilder>emptyList());
-			withProject(project);
-		}
+        @SuppressWarnings("unchecked")
+        private DefaultScheduleEntryBuilder(long id, ProjectBuilder project) {
+            super(id);
+            anId(id);
+            tasks(Collections.<ScheduleTaskBuilder>emptyList());
+            withProject(project);
+        }
 
-		@Override
-		public final ScheduleEntryBuilder aName(String name) {
-			when(getBuildable().getName()).thenReturn(name);
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleEntryBuilder aName(String name) {
+            when(getBuildable().getName()).thenReturn(name);
+            return getBuilder();
+        }
 
-		@Override
-		public final ScheduleEntryBuilder aScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException {
-			ScheduleEntryControl scheduleEntryControl = build(supplier.get().aScheduleEntry(getBuilder()));
-			when(getBuildable().execute()).thenReturn(scheduleEntryControl);
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleEntryBuilder aScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException {
+            ScheduleEntryControl scheduleEntryControl = build(supplier.get().aScheduleEntry(getBuilder()));
+            when(getBuildable().execute()).thenReturn(scheduleEntryControl);
+            return getBuilder();
+        }
 
-		private void withProject(ProjectBuilder project) {
-			when(getBuildable().getProject()).thenReturn(getBuildable(project));
-		}
+        private void withProject(ProjectBuilder project) {
+            when(getBuildable().getProject()).thenReturn(getBuildable(project));
+        }
 
-		private void anId(long id) {
-			when(getBuildable().getId()).thenReturn(id);
-		}
+        private void anId(long id) {
+            when(getBuildable().getId()).thenReturn(id);
+        }
 
-		@Override
-		public final <T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> ScheduleEntryBuilder tasks(List<TBUILDER> scheduleTasks) {
-			when(getBuildable().getTasks()).thenReturn(scheduleTasks.stream().map(DefaultBuilder::getBuildable).collect(toList()));
-			return getBuilder();
-		}
+        @Override
+        public final <T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> ScheduleEntryBuilder tasks(List<TBUILDER> scheduleTasks) {
+            when(getBuildable().getTasks()).thenReturn(scheduleTasks.stream().map(DefaultBuilder::getBuildable).collect(toList()));
+            return getBuilder();
+        }
 
-		@Override
-		public final ScheduleEntryBuilder withScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException {
-			ScheduleEntryControl scheduleEntryControl = build(supplier.get().aScheduleEntry(getBuilder()));
-			when(getBuildable().execute()).thenReturn(scheduleEntryControl);
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleEntryBuilder withScheduleEntryControlAfterExecute(Supplier<ScheduleEntryControlBuilder> supplier) throws ScheduleEntryRunningException {
+            ScheduleEntryControl scheduleEntryControl = build(supplier.get().aScheduleEntry(getBuilder()));
+            when(getBuildable().execute()).thenReturn(scheduleEntryControl);
+            return getBuilder();
+        }
 
-	}
+    }
 
 }

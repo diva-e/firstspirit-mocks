@@ -11,15 +11,15 @@ import static org.junit.Assert.assertThat;
 
 public class TemplateContainerMockTest extends MockTest {
 
-	@Test
-	public void testTemplateContainerWith() {
-		TemplateContainerBuilder templateContainerBuilder = templateContainerWith("test", 2, null);
-		assertThat(templateContainerBuilder, is(notNullValue()));
-	}
+    @Test
+    public void testTemplateContainerWith() {
+        TemplateContainerBuilder templateContainerBuilder = templateContainerWith("test", 2, null);
+        assertThat(templateContainerBuilder, is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TemplateContainerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TemplateContainerMock.class;
+    }
 
 }

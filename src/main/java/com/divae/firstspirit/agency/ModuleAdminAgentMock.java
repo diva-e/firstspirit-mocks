@@ -16,28 +16,28 @@ import static org.mockito.Mockito.when;
 
 public final class ModuleAdminAgentMock {
 
-	private ModuleAdminAgentMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ModuleAdminAgentMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ModuleAdminAgentBuilder moduleAdminAgentWith() {
-		return new DefaultModuleAdminAgentBuilder();
-	}
+    public static ModuleAdminAgentBuilder moduleAdminAgentWith() {
+        return new DefaultModuleAdminAgentBuilder();
+    }
 
-	public interface ModuleAdminAgentBuilder extends Builder<ModuleAdminAgent, ModuleAdminAgentBuilder> {
-		ModuleAdminAgentBuilder install(Supplier<ModuleResultBuilder> supplier, InputStream fsmStream, boolean updateUsages) throws ModuleException, IOException;
-	}
+    public interface ModuleAdminAgentBuilder extends Builder<ModuleAdminAgent, ModuleAdminAgentBuilder> {
+        ModuleAdminAgentBuilder install(Supplier<ModuleResultBuilder> supplier, InputStream fsmStream, boolean updateUsages) throws ModuleException, IOException;
+    }
 
-	public static final class DefaultModuleAdminAgentBuilder extends DefaultBuilder<ModuleAdminAgent, ModuleAdminAgentBuilder, DefaultModuleAdminAgentBuilder> implements ModuleAdminAgentBuilder {
+    public static final class DefaultModuleAdminAgentBuilder extends DefaultBuilder<ModuleAdminAgent, ModuleAdminAgentBuilder, DefaultModuleAdminAgentBuilder> implements ModuleAdminAgentBuilder {
 
-		private DefaultModuleAdminAgentBuilder() {
-		}
+        private DefaultModuleAdminAgentBuilder() {
+        }
 
-		@Override
-		public final ModuleAdminAgentBuilder install(Supplier<ModuleResultBuilder> supplier, InputStream fsmStream, boolean updateUsages) throws ModuleException, IOException {
-			ModuleResult moduleResult = build(supplier.get());
-			when(getBuildable().install(fsmStream, updateUsages)).thenReturn(moduleResult);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final ModuleAdminAgentBuilder install(Supplier<ModuleResultBuilder> supplier, InputStream fsmStream, boolean updateUsages) throws ModuleException, IOException {
+            ModuleResult moduleResult = build(supplier.get());
+            when(getBuildable().install(fsmStream, updateUsages)).thenReturn(moduleResult);
+            return getBuilder();
+        }
+    }
 }

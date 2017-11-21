@@ -7,21 +7,21 @@ import de.espirit.firstspirit.access.store.globalstore.GCABody;
 
 public final class GCABodyMock {
 
-	private GCABodyMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private GCABodyMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static GCABodyBuilder gcaBodyWith(String name, long id, GCAPageBuilder parent) {
-		return new DefaultGCABodyBuilder(name, id, parent);
-	}
+    public static GCABodyBuilder gcaBodyWith(String name, long id, GCAPageBuilder parent) {
+        return new DefaultGCABodyBuilder(name, id, parent);
+    }
 
-	public interface GCABodyBuilder extends BodyBuilder<GCABody, GCABodyBuilder> {
-	}
+    public interface GCABodyBuilder extends BodyBuilder<GCABody, GCABodyBuilder> {
+    }
 
-	public static final class DefaultGCABodyBuilder extends DefaultBodyBuilder<GCABody, GCABodyBuilder, DefaultGCABodyBuilder> implements GCABodyBuilder {
+    private static final class DefaultGCABodyBuilder extends DefaultBodyBuilder<GCABody, GCABodyBuilder, DefaultGCABodyBuilder> implements GCABodyBuilder {
 
-		private DefaultGCABodyBuilder(String name, long id, GCAPageBuilder parent) {
-			super(name, id, parent);
-		}
-	}
+        private DefaultGCABodyBuilder(String name, long id, GCAPageBuilder parent) {
+            super(name, id, parent);
+        }
+    }
 }

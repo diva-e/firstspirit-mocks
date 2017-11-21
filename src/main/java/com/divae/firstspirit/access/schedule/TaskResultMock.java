@@ -10,43 +10,43 @@ import static org.mockito.Mockito.when;
 
 public final class TaskResultMock {
 
-	private TaskResultMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private TaskResultMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static TaskResultBuilder taskResultWith() {
-		return new DefaultTaskResultBuilder();
-	}
+    public static TaskResultBuilder taskResultWith() {
+        return new DefaultTaskResultBuilder();
+    }
 
-	public interface TaskResultBuilder extends Builder<TaskResult, TaskResultBuilder> {
-		<T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> TaskResultBuilder aTask(TBUILDER scheduleTask);
+    public interface TaskResultBuilder extends Builder<TaskResult, TaskResultBuilder> {
+        <T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> TaskResultBuilder aTask(TBUILDER scheduleTask);
 
-		TaskResultBuilder anErrorCount(int errorCount);
+        TaskResultBuilder anErrorCount(int errorCount);
 
-		TaskResultBuilder aWarningCount(int warningCount);
-	}
+        TaskResultBuilder aWarningCount(int warningCount);
+    }
 
-	public static final class DefaultTaskResultBuilder extends DefaultBuilder<TaskResult, TaskResultBuilder, DefaultTaskResultBuilder> implements TaskResultBuilder {
+    public static final class DefaultTaskResultBuilder extends DefaultBuilder<TaskResult, TaskResultBuilder, DefaultTaskResultBuilder> implements TaskResultBuilder {
 
-		private DefaultTaskResultBuilder() {
-		}
+        private DefaultTaskResultBuilder() {
+        }
 
-		@Override
-		public final <T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> TaskResultBuilder aTask(TBUILDER scheduleTask) {
-			when(getBuildable().getTask()).thenReturn(getBuildable(scheduleTask));
-			return getBuilder();
-		}
+        @Override
+        public final <T extends ScheduleTask, TBUILDER extends ScheduleTaskBuilder<T, TBUILDER>> TaskResultBuilder aTask(TBUILDER scheduleTask) {
+            when(getBuildable().getTask()).thenReturn(getBuildable(scheduleTask));
+            return getBuilder();
+        }
 
-		@Override
-		public final TaskResultBuilder anErrorCount(int errorCount) {
-			when(getBuildable().getErrorCount()).thenReturn(errorCount);
-			return getBuilder();
-		}
+        @Override
+        public final TaskResultBuilder anErrorCount(int errorCount) {
+            when(getBuildable().getErrorCount()).thenReturn(errorCount);
+            return getBuilder();
+        }
 
-		@Override
-		public final TaskResultBuilder aWarningCount(int warningCount) {
-			when(getBuildable().getWarningCount()).thenReturn(warningCount);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final TaskResultBuilder aWarningCount(int warningCount) {
+            when(getBuildable().getWarningCount()).thenReturn(warningCount);
+            return getBuilder();
+        }
+    }
 }

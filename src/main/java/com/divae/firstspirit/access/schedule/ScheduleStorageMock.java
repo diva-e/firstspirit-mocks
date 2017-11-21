@@ -20,50 +20,50 @@ import static org.mockito.Mockito.when;
 
 public final class ScheduleStorageMock {
 
-	private ScheduleStorageMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ScheduleStorageMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ScheduleStorageBuilder scheduleStorageWith() {
-		return new DefaultScheduleStorageBuilder();
-	}
+    public static ScheduleStorageBuilder scheduleStorageWith() {
+        return new DefaultScheduleStorageBuilder();
+    }
 
-	public interface ScheduleStorageBuilder extends Builder<ScheduleStorage, ScheduleStorageBuilder> {
-		ScheduleStorageBuilder scheduleEntries(Supplier<Map<ProjectBuilder, List<ScheduleEntryBuilder>>> supplier);
+    public interface ScheduleStorageBuilder extends Builder<ScheduleStorage, ScheduleStorageBuilder> {
+        ScheduleStorageBuilder scheduleEntries(Supplier<Map<ProjectBuilder, List<ScheduleEntryBuilder>>> supplier);
 
-		ScheduleStorageBuilder runningEntries(List<ScheduleEntryControlBuilder> scheduleEntryControls);
+        ScheduleStorageBuilder runningEntries(List<ScheduleEntryControlBuilder> scheduleEntryControls);
 
-		ScheduleStorageBuilder aHistory(Supplier<Map<ProjectBuilder, List<ScheduleEntryControlBuilder>>> supplier, Date fromDate, Date untilDate, int maxCount);
-	}
+        ScheduleStorageBuilder aHistory(Supplier<Map<ProjectBuilder, List<ScheduleEntryControlBuilder>>> supplier, Date fromDate, Date untilDate, int maxCount);
+    }
 
-	public static final class DefaultScheduleStorageBuilder extends DefaultBuilder<ScheduleStorage, ScheduleStorageBuilder, DefaultScheduleStorageBuilder> implements ScheduleStorageBuilder {
+    public static final class DefaultScheduleStorageBuilder extends DefaultBuilder<ScheduleStorage, ScheduleStorageBuilder, DefaultScheduleStorageBuilder> implements ScheduleStorageBuilder {
 
-		private DefaultScheduleStorageBuilder() {
-		}
+        private DefaultScheduleStorageBuilder() {
+        }
 
-		@Override
-		public final ScheduleStorageBuilder scheduleEntries(Supplier<Map<ProjectBuilder, List<ScheduleEntryBuilder>>> supplier) {
-			supplier.get().forEach((project, scheduleEntryControlBuilders) -> {
-				List<ScheduleEntry> scheduleEntries = scheduleEntryControlBuilders.stream().map(BuilderMock::build).collect(toList());
-				when(getBuildable().getScheduleEntries(getBuildable(project))).thenReturn(scheduleEntries);
-			});
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleStorageBuilder scheduleEntries(Supplier<Map<ProjectBuilder, List<ScheduleEntryBuilder>>> supplier) {
+            supplier.get().forEach((project, scheduleEntryControlBuilders) -> {
+                List<ScheduleEntry> scheduleEntries = scheduleEntryControlBuilders.stream().map(BuilderMock::build).collect(toList());
+                when(getBuildable().getScheduleEntries(getBuildable(project))).thenReturn(scheduleEntries);
+            });
+            return getBuilder();
+        }
 
-		@Override
-		public final ScheduleStorageBuilder runningEntries(List<ScheduleEntryControlBuilder> scheduleEntryControls) {
-			when(getBuildable().getRunningEntries()).thenReturn(scheduleEntryControls.stream().map(DefaultBuilder::getBuildable).collect(toList()));
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleStorageBuilder runningEntries(List<ScheduleEntryControlBuilder> scheduleEntryControls) {
+            when(getBuildable().getRunningEntries()).thenReturn(scheduleEntryControls.stream().map(DefaultBuilder::getBuildable).collect(toList()));
+            return getBuilder();
+        }
 
-		@Override
-		public final ScheduleStorageBuilder aHistory(Supplier<Map<ProjectBuilder, List<ScheduleEntryControlBuilder>>> supplier, Date fromDate, Date untilDate, int maxCount) {
-			supplier.get().forEach((project, scheduleEntryControlBuilders) -> {
-				List<ScheduleEntryControl> scheduleEntryControls = scheduleEntryControlBuilders.stream().map(BuilderMock::build).collect(toList());
-				when(getBuildable().getHistory(fromDate, untilDate, maxCount, getBuildable(project))).thenReturn(scheduleEntryControls);
-			});
-			return getBuilder();
-		}
+        @Override
+        public final ScheduleStorageBuilder aHistory(Supplier<Map<ProjectBuilder, List<ScheduleEntryControlBuilder>>> supplier, Date fromDate, Date untilDate, int maxCount) {
+            supplier.get().forEach((project, scheduleEntryControlBuilders) -> {
+                List<ScheduleEntryControl> scheduleEntryControls = scheduleEntryControlBuilders.stream().map(BuilderMock::build).collect(toList());
+                when(getBuildable().getHistory(fromDate, untilDate, maxCount, getBuildable(project))).thenReturn(scheduleEntryControls);
+            });
+            return getBuilder();
+        }
 
-	}
+    }
 }

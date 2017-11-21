@@ -15,28 +15,28 @@ import static org.mockito.Mockito.when;
 
 public final class LinkFormsProducerMock {
 
-	private LinkFormsProducerMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private LinkFormsProducerMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static LinkFormsProducerBuilder linkFormsProducerWith() {
-		return new DefaultLinkFormsProducerBuilder();
-	}
+    public static LinkFormsProducerBuilder linkFormsProducerWith() {
+        return new DefaultLinkFormsProducerBuilder();
+    }
 
-	public interface LinkFormsProducerBuilder extends FormDataProducerBuilder<LinkFormsProducer, LinkFormsProducerBuilder> {
-		LinkFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, LinkTemplateBuilder linkTemplate, LanguageBuilder language);
-	}
+    public interface LinkFormsProducerBuilder extends FormDataProducerBuilder<LinkFormsProducer, LinkFormsProducerBuilder> {
+        LinkFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, LinkTemplateBuilder linkTemplate, LanguageBuilder language);
+    }
 
-	public static final class DefaultLinkFormsProducerBuilder extends DefaultFormDataProducerBuilder<LinkFormsProducer, LinkFormsProducerBuilder, DefaultLinkFormsProducerBuilder> implements LinkFormsProducerBuilder {
+    public static final class DefaultLinkFormsProducerBuilder extends DefaultFormDataProducerBuilder<LinkFormsProducer, LinkFormsProducerBuilder, DefaultLinkFormsProducerBuilder> implements LinkFormsProducerBuilder {
 
-		private DefaultLinkFormsProducerBuilder() {
-		}
+        private DefaultLinkFormsProducerBuilder() {
+        }
 
-		@Override
-		public final LinkFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, LinkTemplateBuilder linkTemplate, LanguageBuilder language) {
-			IdProvidingFormData idProvidingFormData = build(supplier.get());
-			when(getBuildable().create(getBuildable(linkTemplate), getBuildable(language))).thenReturn(idProvidingFormData);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final LinkFormsProducerBuilder creates(Supplier<IdProvidingFormDataBuilder> supplier, LinkTemplateBuilder linkTemplate, LanguageBuilder language) {
+            IdProvidingFormData idProvidingFormData = build(supplier.get());
+            when(getBuildable().create(getBuildable(linkTemplate), getBuildable(language))).thenReturn(idProvidingFormData);
+            return getBuilder();
+        }
+    }
 }

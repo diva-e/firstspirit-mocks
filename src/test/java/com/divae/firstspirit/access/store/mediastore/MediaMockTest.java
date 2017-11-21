@@ -28,54 +28,54 @@ import static org.junit.Assert.assertThat;
 
 public class MediaMockTest extends MockTest {
 
-	@Test
-	public void testMediaWith() {
-		String uid = "test";
-		assertThat(mediaWith(uid, 2, null), is(notNullValue()));
-	}
+    @Test
+    public void testMediaWith() {
+        String uid = "test";
+        assertThat(mediaWith(uid, 2, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return MediaMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return MediaMock.class;
+    }
 
-	@Test
-	public void testAPicture() {
-		LanguageBuilder masterLanguage = languageWith("DE");
-		ProjectBuilder projectBuilder = projectWith("test", 0, masterLanguage);
-		String uid = "test";
-		Media media = (Media) build(mediaStoreRootWith(1, projectBuilder).children(parent -> singletonList(mediaWith(uid, 2, parent).aPicture(mediaBuilderParent -> pictureWith("picture", mediaBuilderParent), masterLanguage)))).getChildren().iterator().next();
-		assertThat(media.getPicture(build(masterLanguage)), is(notNullValue()));
-		assertThat(media.getType(), is(PICTURE));
-	}
+    @Test
+    public void testAPicture() {
+        LanguageBuilder masterLanguage = languageWith("DE");
+        ProjectBuilder projectBuilder = projectWith("test", 0, masterLanguage);
+        String uid = "test";
+        Media media = (Media) build(mediaStoreRootWith(1, projectBuilder).children(parent -> singletonList(mediaWith(uid, 2, parent).aPicture(mediaBuilderParent -> pictureWith("picture", mediaBuilderParent), masterLanguage)))).getChildren().iterator().next();
+        assertThat(media.getPicture(build(masterLanguage)), is(notNullValue()));
+        assertThat(media.getType(), is(PICTURE));
+    }
 
-	@Test
-	public void testAFile() {
-		LanguageBuilder languageBuilder = languageWith("DE");
-		String uid = "test";
-		Media media = (Media) build(mediaStoreRootWith(1, projectWith("test", 0, languageBuilder)).children(parent -> singletonList(mediaWith(uid, 2, parent).aFile(mediaBuilderParent -> fileWith("file", mediaBuilderParent), languageBuilder)))).getChildren().iterator().next();
-		Language language = build(languageBuilder);
-		assertThat(media.getFile(language), is(notNullValue()));
-		assertThat(media.getType(), is(FILE));
-		assertThat(media.getParseFile(), is(FALSE));
-	}
+    @Test
+    public void testAFile() {
+        LanguageBuilder languageBuilder = languageWith("DE");
+        String uid = "test";
+        Media media = (Media) build(mediaStoreRootWith(1, projectWith("test", 0, languageBuilder)).children(parent -> singletonList(mediaWith(uid, 2, parent).aFile(mediaBuilderParent -> fileWith("file", mediaBuilderParent), languageBuilder)))).getChildren().iterator().next();
+        Language language = build(languageBuilder);
+        assertThat(media.getFile(language), is(notNullValue()));
+        assertThat(media.getType(), is(FILE));
+        assertThat(media.getParseFile(), is(FALSE));
+    }
 
-	@Test
-	public void testAStoredUrl() {
-		LanguageBuilder languageBuilder = languageWith("DE").isMasterLanguage();
-		String uid = "test";
-		ResolutionBuilder resolutionBuilder = resolutionWith("test");
-		Resolution resolution = build(resolutionBuilder);
-		Media media = build(mediaWith(uid, 2, null).aStoredUrl("test", languageBuilder, resolutionBuilder));
-		Language masterLanguage = build(languageBuilder);
-		assertThat(media.getStoredUrl(masterLanguage, resolution), is("test"));
-	}
+    @Test
+    public void testAStoredUrl() {
+        LanguageBuilder languageBuilder = languageWith("DE").isMasterLanguage();
+        String uid = "test";
+        ResolutionBuilder resolutionBuilder = resolutionWith("test");
+        Resolution resolution = build(resolutionBuilder);
+        Media media = build(mediaWith(uid, 2, null).aStoredUrl("test", languageBuilder, resolutionBuilder));
+        Language masterLanguage = build(languageBuilder);
+        assertThat(media.getStoredUrl(masterLanguage, resolution), is("test"));
+    }
 
 
-	@Test
-	public void testDefaults() {
-		String uid = "test";
-		Media media = build(mediaWith(uid, 2, null));
-		assertThat(media.getReferenceName(), is(MEDIA.prefix() + uid));
-	}
+    @Test
+    public void testDefaults() {
+        String uid = "test";
+        Media media = build(mediaWith(uid, 2, null));
+        assertThat(media.getReferenceName(), is(MEDIA.prefix() + uid));
+    }
 }

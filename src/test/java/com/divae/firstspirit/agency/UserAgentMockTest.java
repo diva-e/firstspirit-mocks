@@ -14,17 +14,17 @@ import static org.junit.Assert.assertThat;
 
 public class UserAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return UserAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return UserAgentMock.class;
+    }
 
-	@Test
-	public void testAnUser() {
-		UserBuilder userBuilder = userWith(0L);
-		UserAgent userAgent = build(userAgentWith().anUser(userBuilder));
-		User user = build(userBuilder);
-		assertThat(userAgent.getUser(), is(user));
-	}
+    @Test
+    public void testAnUser() {
+        UserBuilder userBuilder = userWith(0L);
+        UserAgent userAgent = build(userAgentWith().anUser(userBuilder));
+        User user = build(userBuilder);
+        assertThat(userAgent.getUser(), is(user));
+    }
 
 }

@@ -20,18 +20,18 @@ import static org.junit.Assert.assertThat;
 
 public class ShowFormDialogOperationMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ShowFormDialogOperationMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ShowFormDialogOperationMock.class;
+    }
 
-	@Test
-	public void testPerforms() throws ShowFormDialogOperation.InvalidRulesetDefinition {
-		FormMock.FormBuilder formBuilder = formWith();
-		LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
-		ShowFormDialogOperation showFormDialogOperation = build(showFormDialogOperationWith().performs(FormDataMock::formDataWith, formBuilder, singletonList(languageBuilder)));
-		Form form = build(formBuilder);
-		Language language = build(languageBuilder);
-		assertThat(showFormDialogOperation.perform(form, singletonList(language)), is(notNullValue()));
-	}
+    @Test
+    public void testPerforms() throws ShowFormDialogOperation.InvalidRulesetDefinition {
+        FormMock.FormBuilder formBuilder = formWith();
+        LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
+        ShowFormDialogOperation showFormDialogOperation = build(showFormDialogOperationWith().performs(FormDataMock::formDataWith, formBuilder, singletonList(languageBuilder)));
+        Form form = build(formBuilder);
+        Language language = build(languageBuilder);
+        assertThat(showFormDialogOperation.perform(form, singletonList(language)), is(notNullValue()));
+    }
 }

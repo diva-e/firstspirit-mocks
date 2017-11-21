@@ -15,21 +15,21 @@ import static org.junit.Assert.assertThat;
 
 public class TargetReferenceMockTest extends MockTest {
 
-	@Test
-	public void testTargetReferenceWith() {
-		assertThat(targetReferenceWith("test"), is(notNullValue()));
-	}
+    @Test
+    public void testTargetReferenceWith() {
+        assertThat(targetReferenceWith("test"), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TargetReferenceMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TargetReferenceMock.class;
+    }
 
-	@Test
-	public void testAValue() {
-		PageRefBuilder pageRefBuilder = pageRefWith("test", 2, null);
-		TargetReference targetReference = build(targetReferenceWith("test").aValue(pageRefBuilder));
-		PageRef pageRef = build(pageRefBuilder);
-		assertThat(targetReference.get(), is(pageRef));
-	}
+    @Test
+    public void testAValue() {
+        PageRefBuilder pageRefBuilder = pageRefWith("test", 2, null);
+        TargetReference targetReference = build(targetReferenceWith("test").aValue(pageRefBuilder));
+        PageRef pageRef = build(pageRefBuilder);
+        assertThat(targetReference.get(), is(pageRef));
+    }
 }

@@ -4,9 +4,9 @@ import com.divae.firstspirit.MockTest;
 
 public class BasicElementInfoMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return BasicElementInfoMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return BasicElementInfoMock.class;
+    }
 
 }

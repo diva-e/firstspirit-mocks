@@ -12,28 +12,28 @@ import static org.junit.Assert.assertThat;
 
 public class PackageVersionMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PackageVersionMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PackageVersionMock.class;
+    }
 
-	@Test
-	public void testATag() {
-		String tag = "test";
-		PackageVersion packageVersion = build(packageVersionWith().aTag(tag));
-		assertThat(packageVersion.getTag(), is(tag));
-	}
+    @Test
+    public void testATag() {
+        String tag = "test";
+        PackageVersion packageVersion = build(packageVersionWith().aTag(tag));
+        assertThat(packageVersion.getTag(), is(tag));
+    }
 
-	@Test
-	public void testAComment() {
-		String comment = "test";
-		PackageVersion packageVersion = build(packageVersionWith().aComment(comment));
-		assertThat(packageVersion.getComment(), is(comment));
-	}
+    @Test
+    public void testAComment() {
+        String comment = "test";
+        PackageVersion packageVersion = build(packageVersionWith().aComment(comment));
+        assertThat(packageVersion.getComment(), is(comment));
+    }
 
-	@Test
-	public void testIsUpdateVersion() {
-		PackageVersion packageVersion = build(packageVersionWith().isUpdateVersion(true));
-		assertThat(packageVersion.isUpdate(), is(TRUE));
-	}
+    @Test
+    public void testIsUpdateVersion() {
+        PackageVersion packageVersion = build(packageVersionWith().isUpdateVersion(true));
+        assertThat(packageVersion.isUpdate(), is(TRUE));
+    }
 }

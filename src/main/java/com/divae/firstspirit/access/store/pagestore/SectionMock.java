@@ -13,38 +13,38 @@ import static org.mockito.Mockito.when;
 
 public final class SectionMock {
 
-	private SectionMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SectionMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static <ST extends SectionTemplate, T extends Section<ST>, OT extends Body, OTBUILDER extends BodyBuilder<OT, OTBUILDER>> TruncatedSectionBuilder<ST, T> sectionWith(String uid, long id, OTBUILDER parent) {
-		return new TruncatedDefaultSectionBuilder<>(uid, id, parent);
-	}
+    public static <ST extends SectionTemplate, T extends Section<ST>, OT extends Body, OTBUILDER extends BodyBuilder<OT, OTBUILDER>> TruncatedSectionBuilder<ST, T> sectionWith(String uid, long id, OTBUILDER parent) {
+        return new TruncatedDefaultSectionBuilder<>(uid, id, parent);
+    }
 
-	public interface SectionBuilder<ST extends SectionTemplate, T extends Section<ST>, TBUILDER extends SectionBuilder<ST, T, TBUILDER>> extends DataProviderBuilder<T, TBUILDER>, IDProviderBuilder<T, TBUILDER>, TemplateProviderBuilder<ST, T, TBUILDER> {
-		TBUILDER aTemplate(ST sectionTemplate);
-	}
+    public interface SectionBuilder<ST extends SectionTemplate, T extends Section<ST>, TBUILDER extends SectionBuilder<ST, T, TBUILDER>> extends DataProviderBuilder<T, TBUILDER>, IDProviderBuilder<T, TBUILDER>, TemplateProviderBuilder<ST, T, TBUILDER> {
+        TBUILDER aTemplate(ST sectionTemplate);
+    }
 
-	public static class DefaultSectionBuilder<ST extends SectionTemplate, T extends Section<ST>, EBUILDER extends SectionBuilder<ST, T, EBUILDER>, TBUILDER extends DefaultSectionBuilder<ST, T, EBUILDER, TBUILDER>> extends DefaultDataProviderBuilder<T, EBUILDER, TBUILDER> implements SectionBuilder<ST, T, EBUILDER> {
+    public static class DefaultSectionBuilder<ST extends SectionTemplate, T extends Section<ST>, EBUILDER extends SectionBuilder<ST, T, EBUILDER>, TBUILDER extends DefaultSectionBuilder<ST, T, EBUILDER, TBUILDER>> extends DefaultDataProviderBuilder<T, EBUILDER, TBUILDER> implements SectionBuilder<ST, T, EBUILDER> {
 
-		protected <OT extends Body, OTBUILDER extends BodyBuilder<OT, OTBUILDER>> DefaultSectionBuilder(String name, long id, OTBUILDER parent) {
-			super(name, id, parent);
-		}
+        protected <OT extends Body, OTBUILDER extends BodyBuilder<OT, OTBUILDER>> DefaultSectionBuilder(String name, long id, OTBUILDER parent) {
+            super(name, id, parent);
+        }
 
-		@Override
-		public final EBUILDER aTemplate(ST sectionTemplate) {
-			when(getBuildable().getTemplate()).thenReturn(sectionTemplate);
-			return getInterfaceBuilder();
-		}
-	}
+        @Override
+        public final EBUILDER aTemplate(ST sectionTemplate) {
+            when(getBuildable().getTemplate()).thenReturn(sectionTemplate);
+            return getInterfaceBuilder();
+        }
+    }
 
-	public interface TruncatedSectionBuilder<ST extends SectionTemplate, T extends Section<ST>> extends SectionBuilder<ST, T, TruncatedSectionBuilder<ST, T>> {
-	}
+    public interface TruncatedSectionBuilder<ST extends SectionTemplate, T extends Section<ST>> extends SectionBuilder<ST, T, TruncatedSectionBuilder<ST, T>> {
+    }
 
-	private static final class TruncatedDefaultSectionBuilder<ST extends SectionTemplate, T extends Section<ST>> extends DefaultSectionBuilder<ST, T, TruncatedSectionBuilder<ST, T>, TruncatedDefaultSectionBuilder<ST, T>> implements TruncatedSectionBuilder<ST, T> {
+    private static final class TruncatedDefaultSectionBuilder<ST extends SectionTemplate, T extends Section<ST>> extends DefaultSectionBuilder<ST, T, TruncatedSectionBuilder<ST, T>, TruncatedDefaultSectionBuilder<ST, T>> implements TruncatedSectionBuilder<ST, T> {
 
-		<OT extends Body, OTBUILDER extends BodyBuilder<OT, OTBUILDER>> TruncatedDefaultSectionBuilder(String name, long id, OTBUILDER parent) {
-			super(name, id, parent);
-		}
-	}
+        private <OT extends Body, OTBUILDER extends BodyBuilder<OT, OTBUILDER>> TruncatedDefaultSectionBuilder(String name, long id, OTBUILDER parent) {
+            super(name, id, parent);
+        }
+    }
 }

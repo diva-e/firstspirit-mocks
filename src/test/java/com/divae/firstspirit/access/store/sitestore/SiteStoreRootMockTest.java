@@ -12,18 +12,18 @@ import static org.junit.Assert.assertThat;
 
 public class SiteStoreRootMockTest extends MockTest {
 
-	@Test
-	public void testSiteStoreRootWithStringLongProject() {
-		assertThat(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testSiteStoreRootWithStringLongProject() {
+        assertThat(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Test
-	public void testSiteStoreRootWithStringLongListLanguageInfo() {
-		assertThat(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testSiteStoreRootWithStringLongListLanguageInfo() {
+        assertThat(siteStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return SiteStoreRootMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return SiteStoreRootMock.class;
+    }
 }

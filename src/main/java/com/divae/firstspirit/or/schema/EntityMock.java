@@ -12,58 +12,58 @@ import static org.mockito.Mockito.when;
 
 public final class EntityMock {
 
-	private EntityMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private EntityMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static EntityBuilder entityWith(UUID gid) {
-		return new DefaultEntityBuilder(gid);
-	}
+    public static EntityBuilder entityWith(UUID gid) {
+        return new DefaultEntityBuilder(gid);
+    }
 
-	public interface EntityBuilder extends Builder<Entity, EntityBuilder> {
-		EntityBuilder aType(String entityTypeName);
+    public interface EntityBuilder extends Builder<Entity, EntityBuilder> {
+        EntityBuilder aType(String entityTypeName);
 
-		EntityBuilder aType(EntityTypeBuilder entityType);
+        EntityBuilder aType(EntityTypeBuilder entityType);
 
-		EntityBuilder gets(Object key, Object value);
+        EntityBuilder gets(Object key, Object value);
 
-		EntityBuilder aValue(String key, Object value);
-	}
+        EntityBuilder aValue(String key, Object value);
+    }
 
-	public static final class DefaultEntityBuilder extends DefaultBuilder<Entity, EntityBuilder, DefaultEntityBuilder> implements EntityBuilder {
+    public static final class DefaultEntityBuilder extends DefaultBuilder<Entity, EntityBuilder, DefaultEntityBuilder> implements EntityBuilder {
 
-		private DefaultEntityBuilder(UUID gid) {
-			super(gid);
-			anGid(gid);
-		}
+        private DefaultEntityBuilder(UUID gid) {
+            super(gid);
+            anGid(gid);
+        }
 
-		@Override
-		public final EntityBuilder aType(String entityTypeName) {
-			return aType(entityTypeWith().aName(entityTypeName));
-		}
+        @Override
+        public final EntityBuilder aType(String entityTypeName) {
+            return aType(entityTypeWith().aName(entityTypeName));
+        }
 
-		@Override
-		public final EntityBuilder aType(EntityTypeBuilder entityType) {
-			when(getBuildable().getEntityType()).thenReturn(getBuildable(entityType));
-			return getBuilder();
-		}
+        @Override
+        public final EntityBuilder aType(EntityTypeBuilder entityType) {
+            when(getBuildable().getEntityType()).thenReturn(getBuildable(entityType));
+            return getBuilder();
+        }
 
-		@Override
-		@SuppressWarnings("SuspiciousMethodCalls")
-		public final EntityBuilder gets(Object key, Object value) {
-			when(getBuildable().get(key)).thenReturn(value);
-			return getBuilder();
-		}
+        @Override
+        @SuppressWarnings("SuspiciousMethodCalls")
+        public final EntityBuilder gets(Object key, Object value) {
+            when(getBuildable().get(key)).thenReturn(value);
+            return getBuilder();
+        }
 
-		@Override
-		public final EntityBuilder aValue(String key, Object value) {
-			when(getBuildable().getValue(key)).thenReturn(value);
-			return getBuilder();
-		}
+        @Override
+        public final EntityBuilder aValue(String key, Object value) {
+            when(getBuildable().getValue(key)).thenReturn(value);
+            return getBuilder();
+        }
 
-		private void anGid(UUID gid) {
-			when(getBuildable().getGid()).thenReturn(gid);
-		}
+        private void anGid(UUID gid) {
+            when(getBuildable().getGid()).thenReturn(gid);
+        }
 
-	}
+    }
 }

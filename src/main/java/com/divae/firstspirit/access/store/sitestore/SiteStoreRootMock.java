@@ -22,53 +22,53 @@ import static de.espirit.firstspirit.access.store.IDProvider.UidType.SITESTORE_F
 
 public final class SiteStoreRootMock {
 
-	private SiteStoreRootMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private SiteStoreRootMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static SiteStoreRootBuilder siteStoreRootWith(long id, ProjectBuilder project) {
-		return new DefaultSiteStoreRootBuilder(id, project);
-	}
+    public static SiteStoreRootBuilder siteStoreRootWith(long id, ProjectBuilder project) {
+        return new DefaultSiteStoreRootBuilder(id, project);
+    }
 
-	public interface SiteStoreRootBuilder extends StoreBuilder<SiteStoreRoot, SiteStoreRootBuilder>, SiteStoreFolderBuilder<SiteStoreRoot, SiteStoreRootBuilder> {
-	}
+    public interface SiteStoreRootBuilder extends StoreBuilder<SiteStoreRoot, SiteStoreRootBuilder>, SiteStoreFolderBuilder<SiteStoreRoot, SiteStoreRootBuilder> {
+    }
 
-	public static final class DefaultSiteStoreRootBuilder extends DefaultStoreBuilder<SiteStoreRoot, SiteStoreRootBuilder, DefaultSiteStoreRootBuilder> implements SiteStoreRootBuilder {
+    public static final class DefaultSiteStoreRootBuilder extends DefaultStoreBuilder<SiteStoreRoot, SiteStoreRootBuilder, DefaultSiteStoreRootBuilder> implements SiteStoreRootBuilder {
 
-		private final TruncatedSiteStoreFolderBuilder<SiteStoreRoot> siteStoreFolderBuilder;
+        private final TruncatedSiteStoreFolderBuilder<SiteStoreRoot> siteStoreFolderBuilder;
 
-		private DefaultSiteStoreRootBuilder(long id, ProjectBuilder project) {
-			super(id, SITESTORE_FOLDER, Type.SITESTORE, project);
-			siteStoreFolderBuilder = siteStoreFolderWith(getBuilder());
-		}
+        private DefaultSiteStoreRootBuilder(long id, ProjectBuilder project) {
+            super(id, SITESTORE_FOLDER, Type.SITESTORE, project);
+            siteStoreFolderBuilder = siteStoreFolderWith(getBuilder());
+        }
 
-		@Override
-		public SiteStoreRootBuilder isStartNode(boolean startNode) {
-			siteStoreFolderBuilder.isStartNode(startNode);
-			return getBuilder();
-		}
+        @Override
+        public SiteStoreRootBuilder isStartNode(boolean startNode) {
+            siteStoreFolderBuilder.isStartNode(startNode);
+            return getBuilder();
+        }
 
-		@Override
-		public <E extends FormData, EBUILDER extends FormDataBuilder<E, EBUILDER>> SiteStoreRootBuilder aFormData(Supplier<EBUILDER> supplier) {
-			siteStoreFolderBuilder.aFormData(supplier);
-			return getBuilder();
-		}
+        @Override
+        public <E extends FormData, EBUILDER extends FormDataBuilder<E, EBUILDER>> SiteStoreRootBuilder aFormData(Supplier<EBUILDER> supplier) {
+            siteStoreFolderBuilder.aFormData(supplier);
+            return getBuilder();
+        }
 
-		@Override
-		public <T extends StartNode, TBUILDER extends StartNodeBuilder<T, TBUILDER>> SiteStoreRootBuilder aStartNode(Function<SiteStoreRootBuilder, TBUILDER> function) {
-			return aStartNodeWith(() -> function.apply(getBuilder()));
-		}
+        @Override
+        public <T extends StartNode, TBUILDER extends StartNodeBuilder<T, TBUILDER>> SiteStoreRootBuilder aStartNode(Function<SiteStoreRootBuilder, TBUILDER> function) {
+            return aStartNodeWith(() -> function.apply(getBuilder()));
+        }
 
-		@Override
-		public <OT extends StartNode, OTBUILDER extends StartNodeBuilder<OT, OTBUILDER>> SiteStoreRootBuilder aStartNodeWith(Supplier<OTBUILDER> supplier) {
-			siteStoreFolderBuilder.aStartNodeWith(supplier);
-			return getBuilder();
-		}
+        @Override
+        public <OT extends StartNode, OTBUILDER extends StartNodeBuilder<OT, OTBUILDER>> SiteStoreRootBuilder aStartNodeWith(Supplier<OTBUILDER> supplier) {
+            siteStoreFolderBuilder.aStartNodeWith(supplier);
+            return getBuilder();
+        }
 
-		@Override
-		public SiteStoreRootBuilder aStoredUrl(String storedUrl, LanguageBuilder language, TemplateSetBuilder templateSet) {
-			siteStoreFolderBuilder.aStoredUrl(storedUrl, language, templateSet);
-			return getBuilder();
-		}
-	}
+        @Override
+        public SiteStoreRootBuilder aStoredUrl(String storedUrl, LanguageBuilder language, TemplateSetBuilder templateSet) {
+            siteStoreFolderBuilder.aStoredUrl(storedUrl, language, templateSet);
+            return getBuilder();
+        }
+    }
 }

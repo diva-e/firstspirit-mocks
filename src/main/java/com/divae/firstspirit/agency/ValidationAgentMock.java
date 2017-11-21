@@ -11,28 +11,28 @@ import static org.mockito.Mockito.when;
 
 public final class ValidationAgentMock {
 
-	private ValidationAgentMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private ValidationAgentMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static ValidationAgentBuilder validationAgentWith() {
-		return new DefaultValidationAgentBuilder();
-	}
+    public static ValidationAgentBuilder validationAgentWith() {
+        return new DefaultValidationAgentBuilder();
+    }
 
-	public interface ValidationAgentBuilder extends Builder<ValidationAgent, ValidationAgentBuilder> {
-		ValidationAgentBuilder aReleaseValidation(MultiFormValidationReportBuilder multiFormValidationReport, IDProvider idProvider);
-	}
+    public interface ValidationAgentBuilder extends Builder<ValidationAgent, ValidationAgentBuilder> {
+        ValidationAgentBuilder aReleaseValidation(MultiFormValidationReportBuilder multiFormValidationReport, IDProvider idProvider);
+    }
 
-	public static final class DefaultValidationAgentBuilder extends DefaultBuilder<ValidationAgent, ValidationAgentBuilder, DefaultValidationAgentBuilder> implements ValidationAgentBuilder {
+    public static final class DefaultValidationAgentBuilder extends DefaultBuilder<ValidationAgent, ValidationAgentBuilder, DefaultValidationAgentBuilder> implements ValidationAgentBuilder {
 
-		private DefaultValidationAgentBuilder() {
-		}
+        private DefaultValidationAgentBuilder() {
+        }
 
-		@Override
-		public final ValidationAgentBuilder aReleaseValidation(MultiFormValidationReportBuilder multiFormValidationReport, IDProvider idProvider) {
-			when(getBuildable().validate(idProvider, RELEASE)).thenReturn(getBuildable(multiFormValidationReport));
-			return getBuilder();
-		}
-	}
+        @Override
+        public final ValidationAgentBuilder aReleaseValidation(MultiFormValidationReportBuilder multiFormValidationReport, IDProvider idProvider) {
+            when(getBuildable().validate(idProvider, RELEASE)).thenReturn(getBuildable(multiFormValidationReport));
+            return getBuilder();
+        }
+    }
 
 }

@@ -11,15 +11,15 @@ import static org.junit.Assert.assertThat;
 
 public class PublishGroupMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PublishGroupMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PublishGroupMock.class;
+    }
 
-	@Test
-	public void testAName() {
-		String name = "test";
-		PublishGroup publishGroup = build(publishGroupWith(0L).aName(name));
-		assertThat(publishGroup.getName(), is(name));
-	}
+    @Test
+    public void testAName() {
+        String name = "test";
+        PublishGroup publishGroup = build(publishGroupWith(0L).aName(name));
+        assertThat(publishGroup.getName(), is(name));
+    }
 }

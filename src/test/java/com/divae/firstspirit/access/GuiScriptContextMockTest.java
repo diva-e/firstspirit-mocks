@@ -12,13 +12,13 @@ import static org.junit.Assert.assertThat;
 
 public class GuiScriptContextMockTest extends MockTest {
 
-	@Test
-	public void testGuiScriptContextProjectWith() {
-		assertThat(guiScriptContextWith(projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testGuiScriptContextProjectWith() {
+        assertThat(guiScriptContextWith(projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GuiScriptContextMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GuiScriptContextMock.class;
+    }
 }

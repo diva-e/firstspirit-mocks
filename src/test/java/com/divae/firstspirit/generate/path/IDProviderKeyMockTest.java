@@ -12,17 +12,17 @@ import static org.junit.Assert.assertThat;
 
 public class IDProviderKeyMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return IDProviderKeyMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return IDProviderKeyMock.class;
+    }
 
-	@Test
-	public void testANodeId() {
-		long nodeId = 0L;
-		IDProviderKey idProviderKey = build(idProviderKeyWith().aNodeId(nodeId));
-		assertThat(idProviderKey.getNodeId(), is(valueOf(nodeId)));
-	}
+    @Test
+    public void testANodeId() {
+        long nodeId = 0L;
+        IDProviderKey idProviderKey = build(idProviderKeyWith().aNodeId(nodeId));
+        assertThat(idProviderKey.getNodeId(), is(valueOf(nodeId)));
+    }
 
 
 }

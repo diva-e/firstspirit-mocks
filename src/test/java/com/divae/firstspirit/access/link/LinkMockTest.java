@@ -13,14 +13,14 @@ import static org.junit.Assert.assertThat;
 
 public class LinkMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return LinkMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return LinkMock.class;
+    }
 
-	@Test
-	public void testAFormData() {
-		Link link = build(linkWith().aFormData(FormDataMock::formDataWith));
-		assertThat(link.getFormData(), is(notNullValue()));
-	}
+    @Test
+    public void testAFormData() {
+        Link link = build(linkWith().aFormData(FormDataMock::formDataWith));
+        assertThat(link.getFormData(), is(notNullValue()));
+    }
 }

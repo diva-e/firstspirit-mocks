@@ -8,36 +8,36 @@ import static org.mockito.Mockito.when;
 
 public final class OptionMock {
 
-	private OptionMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private OptionMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static OptionBuilder optionWith() {
-		return new DefaultOptionBuilder();
-	}
+    public static OptionBuilder optionWith() {
+        return new DefaultOptionBuilder();
+    }
 
-	public interface OptionBuilder extends Builder<Option, OptionBuilder> {
-		OptionBuilder aValue(Object object);
+    public interface OptionBuilder extends Builder<Option, OptionBuilder> {
+        OptionBuilder aValue(Object object);
 
-		OptionBuilder aKey(String key);
-	}
+        OptionBuilder aKey(String key);
+    }
 
-	public static final class DefaultOptionBuilder extends DefaultBuilder<Option, OptionBuilder, DefaultOptionBuilder> implements OptionBuilder {
+    public static final class DefaultOptionBuilder extends DefaultBuilder<Option, OptionBuilder, DefaultOptionBuilder> implements OptionBuilder {
 
-		private DefaultOptionBuilder() {
-		}
+        private DefaultOptionBuilder() {
+        }
 
-		@Override
-		public final OptionBuilder aValue(Object object) {
-			when(getBuildable().getValue()).thenReturn(object);
-			return getBuilder();
-		}
+        @Override
+        public final OptionBuilder aValue(Object object) {
+            when(getBuildable().getValue()).thenReturn(object);
+            return getBuilder();
+        }
 
-		@Override
-		public final OptionBuilder aKey(String key) {
-			when(getBuildable().getKey()).thenReturn(key);
-			return getBuilder();
-		}
+        @Override
+        public final OptionBuilder aKey(String key) {
+            when(getBuildable().getKey()).thenReturn(key);
+            return getBuilder();
+        }
 
-	}
+    }
 }

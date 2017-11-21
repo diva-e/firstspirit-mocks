@@ -14,29 +14,29 @@ import static org.mockito.Mockito.when;
 
 public final class GenerateTaskMock {
 
-	private GenerateTaskMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private GenerateTaskMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static GenerateTaskBuilder generateTaskWith(String name) {
-		return new DefaultGenerateTaskBuilder(name);
-	}
+    public static GenerateTaskBuilder generateTaskWith(String name) {
+        return new DefaultGenerateTaskBuilder(name);
+    }
 
-	public interface GenerateTaskBuilder extends ScheduleTaskBuilder<GenerateTask, GenerateTaskBuilder> {
-		<T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> GenerateTaskBuilder startNodes(List<TBUILDER> startNodes);
-	}
+    public interface GenerateTaskBuilder extends ScheduleTaskBuilder<GenerateTask, GenerateTaskBuilder> {
+        <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> GenerateTaskBuilder startNodes(List<TBUILDER> startNodes);
+    }
 
-	public static final class DefaultGenerateTaskBuilder extends DefaultScheduleTaskBuilder<GenerateTask, GenerateTaskBuilder, DefaultGenerateTaskBuilder> implements GenerateTaskBuilder {
+    public static final class DefaultGenerateTaskBuilder extends DefaultScheduleTaskBuilder<GenerateTask, GenerateTaskBuilder, DefaultGenerateTaskBuilder> implements GenerateTaskBuilder {
 
-		private DefaultGenerateTaskBuilder(String name) {
-			super(name);
-		}
+        private DefaultGenerateTaskBuilder(String name) {
+            super(name);
+        }
 
-		@Override
-		public final <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> GenerateTaskBuilder startNodes(List<TBUILDER> startNodes) {
-			List<IDProvider> idProviders = startNodes.stream().map(DefaultBuilder::getBuildable).collect(toList());
-			when(getBuildable().getStartNodes()).thenReturn(idProviders);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> GenerateTaskBuilder startNodes(List<TBUILDER> startNodes) {
+            List<IDProvider> idProviders = startNodes.stream().map(DefaultBuilder::getBuildable).collect(toList());
+            when(getBuildable().getStartNodes()).thenReturn(idProviders);
+            return getBuilder();
+        }
+    }
 }

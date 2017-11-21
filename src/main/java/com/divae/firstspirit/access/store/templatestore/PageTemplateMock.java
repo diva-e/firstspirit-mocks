@@ -13,28 +13,28 @@ import static org.mockito.Mockito.when;
 
 public final class PageTemplateMock {
 
-	private PageTemplateMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private PageTemplateMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static PageTemplateBuilder pageTemplateWith(String uid, long id, PageTemplatesBuilder parent) {
-		return new DefaultPageTemplateBuilder(uid, id, parent);
-	}
+    public static PageTemplateBuilder pageTemplateWith(String uid, long id, PageTemplatesBuilder parent) {
+        return new DefaultPageTemplateBuilder(uid, id, parent);
+    }
 
-	public interface PageTemplateBuilder extends TemplateBuilder<PageTemplate, PageTemplateBuilder>, PreviewImageProviderBuilder<PageTemplate, PageTemplateBuilder> {
-		PageTemplateBuilder aChannelSource(String channelSource, TemplateSetBuilder templateSet);
-	}
+    public interface PageTemplateBuilder extends TemplateBuilder<PageTemplate, PageTemplateBuilder>, PreviewImageProviderBuilder<PageTemplate, PageTemplateBuilder> {
+        PageTemplateBuilder aChannelSource(String channelSource, TemplateSetBuilder templateSet);
+    }
 
-	public static final class DefaultPageTemplateBuilder extends DefaultTemplateBuilder<PageTemplate, PageTemplateBuilder, DefaultPageTemplateBuilder> implements PageTemplateBuilder {
+    public static final class DefaultPageTemplateBuilder extends DefaultTemplateBuilder<PageTemplate, PageTemplateBuilder, DefaultPageTemplateBuilder> implements PageTemplateBuilder {
 
-		private DefaultPageTemplateBuilder(String uid, long id, PageTemplatesBuilder parent) {
-			super(uid, id, TEMPLATESTORE, parent);
-		}
+        private DefaultPageTemplateBuilder(String uid, long id, PageTemplatesBuilder parent) {
+            super(uid, id, TEMPLATESTORE, parent);
+        }
 
-		@Override
-		public final PageTemplateBuilder aChannelSource(String channelSource, TemplateSetBuilder templateSet) {
-			when(getBuildable().getChannelSource(getBuildable(templateSet))).thenReturn(channelSource);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final PageTemplateBuilder aChannelSource(String channelSource, TemplateSetBuilder templateSet) {
+            when(getBuildable().getChannelSource(getBuildable(templateSet))).thenReturn(channelSource);
+            return getBuilder();
+        }
+    }
 }

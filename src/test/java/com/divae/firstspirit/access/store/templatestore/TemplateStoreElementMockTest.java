@@ -11,13 +11,13 @@ import static org.junit.Assert.assertThat;
 
 public class TemplateStoreElementMockTest extends MockTest {
 
-	@Test
-	public void testTemplateStoreElementWith() {
-		assertThat(templateStoreElementWith("test", 2, TEMPLATESTORE, null), is(notNullValue()));
-	}
+    @Test
+    public void testTemplateStoreElementWith() {
+        assertThat(templateStoreElementWith("test", 2, TEMPLATESTORE, null), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TemplateStoreElementMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TemplateStoreElementMock.class;
+    }
 }

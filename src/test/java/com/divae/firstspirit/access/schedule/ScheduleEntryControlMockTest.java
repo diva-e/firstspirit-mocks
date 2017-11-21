@@ -18,28 +18,28 @@ import static org.junit.Assert.assertThat;
 
 public class ScheduleEntryControlMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return ScheduleEntryControlMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return ScheduleEntryControlMock.class;
+    }
 
-	@Test
-	public void testAScheduleEntryScheduleEntry() {
-		ScheduleEntryBuilder scheduleEntryBuilder = scheduleEntryWith(0L, projectWith("test", 0, languageWith("DE")));
-		ScheduleEntryControl scheduleEntryControl = build(scheduleEntryControlWith(0L).aScheduleEntry(scheduleEntryBuilder));
-		ScheduleEntry scheduleEntry = build(scheduleEntryBuilder);
-		assertThat(scheduleEntryControl.getScheduleEntry(), is(scheduleEntry));
-	}
+    @Test
+    public void testAScheduleEntryScheduleEntry() {
+        ScheduleEntryBuilder scheduleEntryBuilder = scheduleEntryWith(0L, projectWith("test", 0, languageWith("DE")));
+        ScheduleEntryControl scheduleEntryControl = build(scheduleEntryControlWith(0L).aScheduleEntry(scheduleEntryBuilder));
+        ScheduleEntry scheduleEntry = build(scheduleEntryBuilder);
+        assertThat(scheduleEntryControl.getScheduleEntry(), is(scheduleEntry));
+    }
 
-	@Test
-	public void testAState() {
-		ScheduleEntryControl scheduleEntryControl = build(scheduleEntryControlWith(0L).aState(() -> scheduleEntryStateWith(0L)));
-		assertThat(scheduleEntryControl.getState().getId(), is(0L));
-	}
+    @Test
+    public void testAState() {
+        ScheduleEntryControl scheduleEntryControl = build(scheduleEntryControlWith(0L).aState(() -> scheduleEntryStateWith(0L)));
+        assertThat(scheduleEntryControl.getState().getId(), is(0L));
+    }
 
-	@Test
-	public void testIsRunning() {
-		ScheduleEntryControl scheduleEntryControl = build(scheduleEntryControlWith(0L).isRunning(true));
-		assertThat(scheduleEntryControl.isRunning(), is(TRUE));
-	}
+    @Test
+    public void testIsRunning() {
+        ScheduleEntryControl scheduleEntryControl = build(scheduleEntryControlWith(0L).isRunning(true));
+        assertThat(scheduleEntryControl.isRunning(), is(TRUE));
+    }
 }

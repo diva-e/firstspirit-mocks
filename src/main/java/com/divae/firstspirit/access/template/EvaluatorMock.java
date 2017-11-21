@@ -6,20 +6,20 @@ import de.espirit.firstspirit.access.template.Evaluator;
 
 public final class EvaluatorMock {
 
-	private EvaluatorMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private EvaluatorMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static EvaluatorBuilder evaluatorWith() {
-		return new DefaultEvaluatorBuilder();
-	}
+    public static EvaluatorBuilder evaluatorWith() {
+        return new DefaultEvaluatorBuilder();
+    }
 
-	public interface EvaluatorBuilder extends Builder<Evaluator, EvaluatorBuilder> {
-	}
+    public interface EvaluatorBuilder extends Builder<Evaluator, EvaluatorBuilder> {
+    }
 
-	public static final class DefaultEvaluatorBuilder extends DefaultBuilder<Evaluator, EvaluatorBuilder, DefaultEvaluatorBuilder> implements EvaluatorBuilder {
+    private static final class DefaultEvaluatorBuilder extends DefaultBuilder<Evaluator, EvaluatorBuilder, DefaultEvaluatorBuilder> implements EvaluatorBuilder {
 
-		private DefaultEvaluatorBuilder() {
-		}
-	}
+        private DefaultEvaluatorBuilder() {
+        }
+    }
 }

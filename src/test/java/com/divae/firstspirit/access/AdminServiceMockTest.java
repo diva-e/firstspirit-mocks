@@ -23,33 +23,33 @@ import static org.junit.Assert.assertThat;
 
 public class AdminServiceMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return AdminServiceMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return AdminServiceMock.class;
+    }
 
 
-	@Test
-	public void testAConnection() {
-		Connection connection = build(connectionWith(new ProjectBuilder[]{projectWith("project", 0, languageWith("DE"))}).anAdminService(AdminServiceMock::adminServiceWith));
-		AdminService adminService = connection.getService(AdminService.class);
-		assertThat(adminService, is(notNullValue()));
-		assertThat(adminService.getConnection(), is(connection));
-	}
+    @Test
+    public void testAConnection() {
+        Connection connection = build(connectionWith(new ProjectBuilder[]{projectWith("project", 0, languageWith("DE"))}).anAdminService(AdminServiceMock::adminServiceWith));
+        AdminService adminService = connection.getService(AdminService.class);
+        assertThat(adminService, is(notNullValue()));
+        assertThat(adminService.getConnection(), is(connection));
+    }
 
-	@Test
-	public void testAScheduleStorage() {
-		ScheduleStorageBuilder scheduleStorageBuilder = scheduleStorageWith();
-		AdminService adminService = build(adminServiceWith().aScheduleStorage(scheduleStorageBuilder));
-		ScheduleStorage scheduleStorage = build(scheduleStorageBuilder);
-		assertThat(adminService.getScheduleStorage(), is(scheduleStorage));
-	}
+    @Test
+    public void testAScheduleStorage() {
+        ScheduleStorageBuilder scheduleStorageBuilder = scheduleStorageWith();
+        AdminService adminService = build(adminServiceWith().aScheduleStorage(scheduleStorageBuilder));
+        ScheduleStorage scheduleStorage = build(scheduleStorageBuilder);
+        assertThat(adminService.getScheduleStorage(), is(scheduleStorage));
+    }
 
-	@Test
-	public void testAnUserStorage() {
-		UserStorageBuilder userStorageBuilder = userStorageWith();
-		AdminService adminService = build(adminServiceWith().anUserStorage(userStorageBuilder));
-		UserStorage userStorage = build(userStorageBuilder);
-		assertThat(adminService.getUserStorage(), is(userStorage));
-	}
+    @Test
+    public void testAnUserStorage() {
+        UserStorageBuilder userStorageBuilder = userStorageWith();
+        AdminService adminService = build(adminServiceWith().anUserStorage(userStorageBuilder));
+        UserStorage userStorage = build(userStorageBuilder);
+        assertThat(adminService.getUserStorage(), is(userStorage));
+    }
 }

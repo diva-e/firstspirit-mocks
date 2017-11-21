@@ -9,28 +9,28 @@ import static org.mockito.Mockito.when;
 
 public final class UserAgentMock {
 
-	private UserAgentMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private UserAgentMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static UserAgentBuilder userAgentWith() {
-		return new DefaultUserAgentBuilder();
-	}
+    public static UserAgentBuilder userAgentWith() {
+        return new DefaultUserAgentBuilder();
+    }
 
-	public interface UserAgentBuilder extends Builder<UserAgent, UserAgentBuilder> {
-		UserAgentBuilder anUser(UserBuilder user);
-	}
+    public interface UserAgentBuilder extends Builder<UserAgent, UserAgentBuilder> {
+        UserAgentBuilder anUser(UserBuilder user);
+    }
 
-	public static final class DefaultUserAgentBuilder extends DefaultBuilder<UserAgent, UserAgentBuilder, DefaultUserAgentBuilder> implements UserAgentBuilder {
+    public static final class DefaultUserAgentBuilder extends DefaultBuilder<UserAgent, UserAgentBuilder, DefaultUserAgentBuilder> implements UserAgentBuilder {
 
-		private DefaultUserAgentBuilder() {
-		}
+        private DefaultUserAgentBuilder() {
+        }
 
-		@Override
-		public final UserAgentBuilder anUser(UserBuilder user) {
-			when(getBuildable().getUser()).thenReturn(getBuildable(user));
-			return getBuilder();
-		}
-	}
+        @Override
+        public final UserAgentBuilder anUser(UserBuilder user) {
+            when(getBuildable().getUser()).thenReturn(getBuildable(user));
+            return getBuilder();
+        }
+    }
 
 }

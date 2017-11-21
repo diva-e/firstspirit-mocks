@@ -23,81 +23,81 @@ import static org.junit.Assert.assertThat;
 
 public class UserServiceMockTest extends MockTest {
 
-	@Test
-	public void testUserServiceProjectWith() {
-		assertThat(userServiceWith(projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testUserServiceProjectWith() {
+        assertThat(userServiceWith(projectWith("project", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return UserServiceMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return UserServiceMock.class;
+    }
 
-	@Test
-	public void testAStoreBooleanStore() {
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
-		UserServiceBuilder userServiceBuilder = userServiceWith(projectBuilder);
-		UserService userService = build(userServiceBuilder.aStore(() -> storeWith(1, MEDIASTORE_FOLDER, MEDIASTORE, projectBuilder), false));
-		Store store = userService.getStore(MEDIASTORE, false);
-		assertThat(store.getId(), is(1L));
-		assertThat(store.getUserService(), is(userService));
-	}
+    @Test
+    public void testAStoreBooleanStore() {
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
+        UserServiceBuilder userServiceBuilder = userServiceWith(projectBuilder);
+        UserService userService = build(userServiceBuilder.aStore(() -> storeWith(1, MEDIASTORE_FOLDER, MEDIASTORE, projectBuilder), false));
+        Store store = userService.getStore(MEDIASTORE, false);
+        assertThat(store.getId(), is(1L));
+        assertThat(store.getUserService(), is(userService));
+    }
 
-	@Test
-	public void testAConnectionConnection() {
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
-		Connection connection = build(connectionWith(new ProjectBuilder[]{projectBuilder}).anUserService(() -> userServiceWith(projectBuilder)));
-		UserService userService = connection.getService(UserService.class);
-		assertThat(userService, is(notNullValue()));
-		assertThat(userService.getConnection(), is(connection));
-	}
+    @Test
+    public void testAConnectionConnection() {
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
+        Connection connection = build(connectionWith(new ProjectBuilder[]{projectBuilder}).anUserService(() -> userServiceWith(projectBuilder)));
+        UserService userService = connection.getService(UserService.class);
+        assertThat(userService, is(notNullValue()));
+        assertThat(userService.getConnection(), is(connection));
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testAConnectionConnectionWithDifferentUserService() {
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
-		ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectBuilder}).anUserService(() -> userServiceWith(projectBuilder));
-		UserServiceBuilder userServiceBuilder = userServiceWith(projectBuilder);
-		build(userServiceBuilder.aConnection(connectionWith(new ProjectBuilder[]{projectBuilder})).aConnection(connectionBuilder));
-	}
+    @Test(expected = IllegalArgumentException.class)
+    public void testAConnectionConnectionWithDifferentUserService() {
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
+        ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectBuilder}).anUserService(() -> userServiceWith(projectBuilder));
+        UserServiceBuilder userServiceBuilder = userServiceWith(projectBuilder);
+        build(userServiceBuilder.aConnection(connectionWith(new ProjectBuilder[]{projectBuilder})).aConnection(connectionBuilder));
+    }
 
-	@Test
-	public void testDefaults() {
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
-		UserService userService = build(userServiceWith(projectBuilder));
-		assertThat(userService.getProject(), is(build(projectBuilder)));
-	}
+    @Test
+    public void testDefaults() {
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
+        UserService userService = build(userServiceWith(projectBuilder));
+        assertThat(userService.getProject(), is(build(projectBuilder)));
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testWithConnectionWithDifferentProjectId() {
-		ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectWith("project", 0, languageWith("DE"))});
-		Connection connection = build(connectionBuilder);
-		UserService userService = build(userServiceWith(projectWith("test", 1, languageWith("DE"))).aConnection(connectionBuilder));
-		assertThat(userService.getConnection(), is(connection));
-	}
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithConnectionWithDifferentProjectId() {
+        ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectWith("project", 0, languageWith("DE"))});
+        Connection connection = build(connectionBuilder);
+        UserService userService = build(userServiceWith(projectWith("test", 1, languageWith("DE"))).aConnection(connectionBuilder));
+        assertThat(userService.getConnection(), is(connection));
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testWithConnectionWithDifferentProjectName() {
-		ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectWith("test1", 0, languageWith("DE"))});
-		Connection connection = build(connectionBuilder);
-		UserService userService = build(userServiceWith(projectWith("test2", 1, languageWith("DE"))).aConnection(connectionBuilder));
-		assertThat(userService.getConnection(), is(connection));
-	}
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithConnectionWithDifferentProjectName() {
+        ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectWith("test1", 0, languageWith("DE"))});
+        Connection connection = build(connectionBuilder);
+        UserService userService = build(userServiceWith(projectWith("test2", 1, languageWith("DE"))).aConnection(connectionBuilder));
+        assertThat(userService.getConnection(), is(connection));
+    }
 
-	@Test
-	public void testWithConnection() {
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
-		UserServiceBuilder userServiceBuilder = userServiceWith(projectBuilder);
-		ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectBuilder}).anUserService(() -> userServiceBuilder);
-		Connection connection = build(connectionBuilder);
-		UserService userService = build(userServiceBuilder.aConnection(connectionBuilder));
-		assertThat(userService.getConnection(), is(connection));
-		assertThat(connection.getService(UserService.class), is(userService));
-	}
+    @Test
+    public void testWithConnection() {
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
+        UserServiceBuilder userServiceBuilder = userServiceWith(projectBuilder);
+        ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectBuilder}).anUserService(() -> userServiceBuilder);
+        Connection connection = build(connectionBuilder);
+        UserService userService = build(userServiceBuilder.aConnection(connectionBuilder));
+        assertThat(userService.getConnection(), is(connection));
+        assertThat(connection.getService(UserService.class), is(userService));
+    }
 
-	@Test(expected = IllegalArgumentException.class)
-	public void testWithConnectionConnectionWithDifferentUserService() {
-		ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
-		ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectBuilder});
-		build(userServiceWith(projectBuilder).aConnection(connectionBuilder.anUserService(() -> userServiceWith(projectBuilder))));
-	}
+    @Test(expected = IllegalArgumentException.class)
+    public void testWithConnectionConnectionWithDifferentUserService() {
+        ProjectBuilder projectBuilder = projectWith("test", 0, languageWith("DE"));
+        ConnectionBuilder connectionBuilder = connectionWith(new ProjectBuilder[]{projectBuilder});
+        build(userServiceWith(projectBuilder).aConnection(connectionBuilder.anUserService(() -> userServiceWith(projectBuilder))));
+    }
 }

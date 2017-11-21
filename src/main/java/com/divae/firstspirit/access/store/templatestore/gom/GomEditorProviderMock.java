@@ -19,64 +19,64 @@ import static org.mockito.Mockito.when;
 
 public final class GomEditorProviderMock {
 
-	private GomEditorProviderMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private GomEditorProviderMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static GomEditorProviderBuilder gomEditorProviderWith(String uid) {
-		return new DefaultGomEditorProviderBuilder(uid);
-	}
+    public static GomEditorProviderBuilder gomEditorProviderWith(String uid) {
+        return new DefaultGomEditorProviderBuilder(uid);
+    }
 
-	public interface GomEditorProviderBuilder extends Builder<GomEditorProvider, GomEditorProviderBuilder> {
-		GomEditorProviderBuilder values(Supplier<List<GomFormElementBuilder>> supplier);
-	}
+    public interface GomEditorProviderBuilder extends Builder<GomEditorProvider, GomEditorProviderBuilder> {
+        GomEditorProviderBuilder values(Supplier<List<GomFormElementBuilder>> supplier);
+    }
 
-	public static class DefaultGomEditorProviderBuilder extends DefaultBuilder<GomEditorProvider, GomEditorProviderBuilder, DefaultGomEditorProviderBuilder> implements GomEditorProviderBuilder {
+    public static class DefaultGomEditorProviderBuilder extends DefaultBuilder<GomEditorProvider, GomEditorProviderBuilder, DefaultGomEditorProviderBuilder> implements GomEditorProviderBuilder {
 
-		private final List<GomFormElement> gomFormElements = new ArrayList<>();
+        private final List<GomFormElement> gomFormElements = new ArrayList<>();
 
-		private DefaultGomEditorProviderBuilder(String uid) {
-			super(uid);
-			anUid(uid);
-			mockList();
+        private DefaultGomEditorProviderBuilder(String uid) {
+            super(uid);
+            anUid(uid);
+            mockList();
 
-			when(getBuildable().get(anyInt())).thenAnswer(invocation -> {
-				int index = invocation.getArgument(0);
-				if (getBuildable().isEmpty() || getBuildable().size() < index) {
-					throw new IndexOutOfBoundsException();
-				}
-				return gomFormElements.get(index);
-			});
-		}
+            when(getBuildable().get(anyInt())).thenAnswer(invocation -> {
+                int index = invocation.getArgument(0);
+                if (getBuildable().isEmpty() || getBuildable().size() < index) {
+                    throw new IndexOutOfBoundsException();
+                }
+                return gomFormElements.get(index);
+            });
+        }
 
-		private void mockList() {
-			when(getBuildable().iterator()).thenReturn(new ArrayList<GomElement>(gomFormElements).iterator());
-			when(getBuildable().isEmpty()).thenReturn(gomFormElements.isEmpty());
-			when(getBuildable().size()).thenReturn(gomFormElements.size());
-			when(getBuildable().forms()).thenReturn(gomFormElements);
-		}
+        private void mockList() {
+            when(getBuildable().iterator()).thenReturn(new ArrayList<GomElement>(gomFormElements).iterator());
+            when(getBuildable().isEmpty()).thenReturn(gomFormElements.isEmpty());
+            when(getBuildable().size()).thenReturn(gomFormElements.size());
+            when(getBuildable().forms()).thenReturn(gomFormElements);
+        }
 
-		@Override
-		public final GomEditorProviderBuilder values(Supplier<List<GomFormElementBuilder>> supplier) {
-			List<GomFormElement> gomFormElements = supplier.get().stream().map(BuilderMock::build).collect(toList());
-			this.gomFormElements.addAll(gomFormElements);
+        @Override
+        public final GomEditorProviderBuilder values(Supplier<List<GomFormElementBuilder>> supplier) {
+            List<GomFormElement> gomFormElements = supplier.get().stream().map(BuilderMock::build).collect(toList());
+            this.gomFormElements.addAll(gomFormElements);
 
-			mockList();
+            mockList();
 
-			for (int i = 0; i < this.gomFormElements.size(); i++) {
-				findEditor((GomFormElement) getBuildable().get(i));
-			}
+            for (int i = 0; i < this.gomFormElements.size(); i++) {
+                findEditor((GomFormElement) getBuildable().get(i));
+            }
 
-			return getBuilder();
-		}
+            return getBuilder();
+        }
 
-		private void anUid(String uid) {
-			when(getBuildable().getUid()).thenReturn(uid);
-		}
+        private void anUid(String uid) {
+            when(getBuildable().getUid()).thenReturn(uid);
+        }
 
-		private void findEditor(GomFormElement gomFormElement) {
-			when(getBuildable().findEditor(gomFormElement.name())).thenReturn(gomFormElement);
-		}
-	}
+        private void findEditor(GomFormElement gomFormElement) {
+            when(getBuildable().findEditor(gomFormElement.name())).thenReturn(gomFormElement);
+        }
+    }
 
 }

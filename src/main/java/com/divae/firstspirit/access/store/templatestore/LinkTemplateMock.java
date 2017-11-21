@@ -17,30 +17,30 @@ import static org.mockito.Mockito.when;
 
 public final class LinkTemplateMock {
 
-	private LinkTemplateMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private LinkTemplateMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static LinkTemplateBuilder linkTemplateWith(String uid, long id, LinkTemplatesBuilder parent) {
-		return new DefaultLinkTemplateBuilder(uid, id, parent);
-	}
+    public static LinkTemplateBuilder linkTemplateWith(String uid, long id, LinkTemplatesBuilder parent) {
+        return new DefaultLinkTemplateBuilder(uid, id, parent);
+    }
 
-	public interface LinkTemplateBuilder extends TemplateBuilder<LinkTemplate, LinkTemplateBuilder> {
-		LinkTemplateBuilder createsLink(Supplier<LinkBuilder> supplier, LanguageBuilder language);
-	}
+    public interface LinkTemplateBuilder extends TemplateBuilder<LinkTemplate, LinkTemplateBuilder> {
+        LinkTemplateBuilder createsLink(Supplier<LinkBuilder> supplier, LanguageBuilder language);
+    }
 
-	public static final class DefaultLinkTemplateBuilder extends DefaultTemplateBuilder<LinkTemplate, LinkTemplateBuilder, DefaultLinkTemplateBuilder> implements LinkTemplateBuilder {
+    public static final class DefaultLinkTemplateBuilder extends DefaultTemplateBuilder<LinkTemplate, LinkTemplateBuilder, DefaultLinkTemplateBuilder> implements LinkTemplateBuilder {
 
-		private DefaultLinkTemplateBuilder(String uid, long id, LinkTemplatesBuilder parent) {
-			super(uid, id, TEMPLATESTORE_LINKTEMPLATE, parent);
-		}
+        private DefaultLinkTemplateBuilder(String uid, long id, LinkTemplatesBuilder parent) {
+            super(uid, id, TEMPLATESTORE_LINKTEMPLATE, parent);
+        }
 
-		@Override
-		public final LinkTemplateBuilder createsLink(Supplier<LinkBuilder> supplier, LanguageBuilder language) {
-			Link link = build(supplier.get());
-			when(getBuildable().createLink(getBuildable(language))).thenReturn(link);
-			return getBuilder();
-		}
+        @Override
+        public final LinkTemplateBuilder createsLink(Supplier<LinkBuilder> supplier, LanguageBuilder language) {
+            Link link = build(supplier.get());
+            when(getBuildable().createLink(getBuildable(language))).thenReturn(link);
+            return getBuilder();
+        }
 
-	}
+    }
 }

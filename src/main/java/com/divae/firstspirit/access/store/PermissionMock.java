@@ -8,43 +8,43 @@ import static org.mockito.Mockito.when;
 
 public final class PermissionMock {
 
-	private PermissionMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private PermissionMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static PermissionBuilder permissionWith() {
-		return new DefaultPermissionBuilder();
-	}
+    public static PermissionBuilder permissionWith() {
+        return new DefaultPermissionBuilder();
+    }
 
-	public interface PermissionBuilder extends Builder<Permission, PermissionBuilder> {
-		PermissionBuilder aSeePermission(boolean canSee);
+    public interface PermissionBuilder extends Builder<Permission, PermissionBuilder> {
+        PermissionBuilder aSeePermission(boolean canSee);
 
-		PermissionBuilder aReadPermission(boolean canRead);
+        PermissionBuilder aReadPermission(boolean canRead);
 
-		PermissionBuilder aReleasePermission(boolean canRelease);
-	}
+        PermissionBuilder aReleasePermission(boolean canRelease);
+    }
 
-	public static final class DefaultPermissionBuilder extends DefaultBuilder<Permission, PermissionBuilder, DefaultPermissionBuilder> implements PermissionBuilder {
+    public static final class DefaultPermissionBuilder extends DefaultBuilder<Permission, PermissionBuilder, DefaultPermissionBuilder> implements PermissionBuilder {
 
-		private DefaultPermissionBuilder() {
-		}
+        private DefaultPermissionBuilder() {
+        }
 
-		@Override
-		public final PermissionBuilder aSeePermission(boolean canSee) {
-			when(getBuildable().canSee()).thenReturn(canSee);
-			return getBuilder();
-		}
+        @Override
+        public final PermissionBuilder aSeePermission(boolean canSee) {
+            when(getBuildable().canSee()).thenReturn(canSee);
+            return getBuilder();
+        }
 
-		@Override
-		public final PermissionBuilder aReadPermission(boolean canRead) {
-			when(getBuildable().canRead()).thenReturn(canRead);
-			return getBuilder();
-		}
+        @Override
+        public final PermissionBuilder aReadPermission(boolean canRead) {
+            when(getBuildable().canRead()).thenReturn(canRead);
+            return getBuilder();
+        }
 
-		@Override
-		public final PermissionBuilder aReleasePermission(boolean canRelease) {
-			when(getBuildable().canRelease()).thenReturn(canRelease);
-			return getBuilder();
-		}
-	}
+        @Override
+        public final PermissionBuilder aReleasePermission(boolean canRelease) {
+            when(getBuildable().canRelease()).thenReturn(canRelease);
+            return getBuilder();
+        }
+    }
 }

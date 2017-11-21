@@ -21,35 +21,35 @@ import static org.junit.Assert.assertThat;
 
 public class PackageManagerMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return PackageManagerMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return PackageManagerMock.class;
+    }
 
-	@Test
-	public void testPackages() {
-		String packageName = "test";
-		PackageManager packageManager = build(packageManagerWith().packages(() -> singletonList(fsPackageWith(0L).aName(packageName))));
-		Collection<de.espirit.firstspirit.access.packagepool.Package> fsPackages = packageManager.getPackages();
-		assertThat(fsPackages.size(), is(1));
-		Package fsPackage = fsPackages.iterator().next();
-		assertThat(fsPackage.getId(), is(0L));
-		assertThat(fsPackage.getName(), is("test"));
-	}
+    @Test
+    public void testPackages() {
+        String packageName = "test";
+        PackageManager packageManager = build(packageManagerWith().packages(() -> singletonList(fsPackageWith(0L).aName(packageName))));
+        Collection<de.espirit.firstspirit.access.packagepool.Package> fsPackages = packageManager.getPackages();
+        assertThat(fsPackages.size(), is(1));
+        Package fsPackage = fsPackages.iterator().next();
+        assertThat(fsPackage.getId(), is(0L));
+        assertThat(fsPackage.getName(), is("test"));
+    }
 
-	@Test
-	public void testPublishGroups() {
-		PackageManager packageManager = build(packageManagerWith().publishGroups(() -> singletonList(publishGroupWith(0L).aName("test"))));
-		Collection<PublishGroup> publishGroups = packageManager.getPublishGroups();
-		assertThat(publishGroups.size(), is(1));
-		assertThat(publishGroups.iterator().next().getId(), is(0L));
-	}
+    @Test
+    public void testPublishGroups() {
+        PackageManager packageManager = build(packageManagerWith().publishGroups(() -> singletonList(publishGroupWith(0L).aName("test"))));
+        Collection<PublishGroup> publishGroups = packageManager.getPublishGroups();
+        assertThat(publishGroups.size(), is(1));
+        assertThat(publishGroups.iterator().next().getId(), is(0L));
+    }
 
-	@Test
-	public void testSubscriptions() {
-		PackageManager packageManager = build(packageManagerWith().subscriptions(singletonList(subscriptionWith())));
-		Collection<Subscription> subscriptions = packageManager.getSubscriptions();
-		assertThat(subscriptions.size(), is(1));
-		assertThat(subscriptions.iterator().next(), is(notNullValue()));
-	}
+    @Test
+    public void testSubscriptions() {
+        PackageManager packageManager = build(packageManagerWith().subscriptions(singletonList(subscriptionWith())));
+        Collection<Subscription> subscriptions = packageManager.getSubscriptions();
+        assertThat(subscriptions.size(), is(1));
+        assertThat(subscriptions.iterator().next(), is(notNullValue()));
+    }
 }

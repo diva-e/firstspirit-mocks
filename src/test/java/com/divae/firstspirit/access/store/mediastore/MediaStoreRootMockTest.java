@@ -16,21 +16,21 @@ import static org.junit.Assert.assertThat;
 
 public class MediaStoreRootMockTest extends MockTest {
 
-	@Test
-	public void testMediaStoreRootWith() {
-		assertThat(mediaStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
-	}
+    @Test
+    public void testMediaStoreRootWith() {
+        assertThat(mediaStoreRootWith(1, projectWith("test", 0, languageWith("DE"))), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return MediaStoreRootMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return MediaStoreRootMock.class;
+    }
 
-	@Test
-	public void testAMediaByUid() {
-		long id = 2;
-		MediaStoreRoot mediaStoreRoot = build(mediaStoreRootWith(1, projectWith("test", 0, languageWith("DE"))).aMediaByUid(parent -> mediaWith("test", id, parent), "test"));
-		assertThat(mediaStoreRoot.getMediaByUid("test").getId(), is(id));
-		assertThat(mediaStoreRoot.getStoreElement("test", UID_TYPE).getId(), is(id));
-	}
+    @Test
+    public void testAMediaByUid() {
+        long id = 2;
+        MediaStoreRoot mediaStoreRoot = build(mediaStoreRootWith(1, projectWith("test", 0, languageWith("DE"))).aMediaByUid(parent -> mediaWith("test", id, parent), "test"));
+        assertThat(mediaStoreRoot.getMediaByUid("test").getId(), is(id));
+        assertThat(mediaStoreRoot.getStoreElement("test", UID_TYPE).getId(), is(id));
+    }
 }

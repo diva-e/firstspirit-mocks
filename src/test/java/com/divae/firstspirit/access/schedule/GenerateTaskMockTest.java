@@ -17,28 +17,28 @@ import static org.junit.Assert.assertThat;
 
 public class GenerateTaskMockTest extends MockTest {
 
-	@Test
-	public void testGenerateTaskWith() {
-		assertThat(generateTaskWith("test"), is(notNullValue()));
-	}
+    @Test
+    public void testGenerateTaskWith() {
+        assertThat(generateTaskWith("test"), is(notNullValue()));
+    }
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return GenerateTaskMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return GenerateTaskMock.class;
+    }
 
-	@Test
-	public void testDefaults() {
-		GenerateTask generateTask = build(generateTaskWith("test"));
-		assertThat(generateTask.getStartNodes().size(), is(valueOf(0)));
-	}
+    @Test
+    public void testDefaults() {
+        GenerateTask generateTask = build(generateTaskWith("test"));
+        assertThat(generateTask.getStartNodes().size(), is(valueOf(0)));
+    }
 
-	@Test
-	public void testStartNodes() {
-		PageRefBuilder pageRefBuilder = pageRefWith("pageRef", 2, null);
-		GenerateTask generateTask = build(generateTaskWith("test").startNodes(singletonList(pageRefBuilder)));
-		PageRef pageRef = build(pageRefBuilder);
-		assertThat(generateTask.getStartNodes().size(), is(valueOf(1)));
-		assertThat(generateTask.getStartNodes().get(0), is(pageRef));
-	}
+    @Test
+    public void testStartNodes() {
+        PageRefBuilder pageRefBuilder = pageRefWith("pageRef", 2, null);
+        GenerateTask generateTask = build(generateTaskWith("test").startNodes(singletonList(pageRefBuilder)));
+        PageRef pageRef = build(pageRefBuilder);
+        assertThat(generateTask.getStartNodes().size(), is(valueOf(1)));
+        assertThat(generateTask.getStartNodes().get(0), is(pageRef));
+    }
 }

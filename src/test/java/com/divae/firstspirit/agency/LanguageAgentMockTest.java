@@ -15,16 +15,16 @@ import static org.junit.Assert.assertThat;
 
 public class LanguageAgentMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return LanguageAgentMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return LanguageAgentMock.class;
+    }
 
-	@Test
-	public void testLanguages() {
-		LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
-		LanguageAgent languageAgent = build(languageAgentWith().languages(singletonList(languageBuilder)));
-		Language language = build(languageBuilder);
-		assertThat(languageAgent.getLanguages(), is(singletonList(language)));
-	}
+    @Test
+    public void testLanguages() {
+        LanguageMock.LanguageBuilder languageBuilder = languageWith("DE");
+        LanguageAgent languageAgent = build(languageAgentWith().languages(singletonList(languageBuilder)));
+        Language language = build(languageBuilder);
+        assertThat(languageAgent.getLanguages(), is(singletonList(language)));
+    }
 }

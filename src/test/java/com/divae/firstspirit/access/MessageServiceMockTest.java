@@ -4,9 +4,9 @@ import com.divae.firstspirit.MockTest;
 
 public class MessageServiceMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return MessageServiceMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return MessageServiceMock.class;
+    }
 
 }

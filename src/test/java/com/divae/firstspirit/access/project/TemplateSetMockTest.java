@@ -11,14 +11,14 @@ import static org.junit.Assert.assertThat;
 
 public class TemplateSetMockTest extends MockTest {
 
-	@Override
-	protected Class<?> getFactoryClass() {
-		return TemplateSetMock.class;
-	}
+    @Override
+    protected Class<?> getFactoryClass() {
+        return TemplateSetMock.class;
+    }
 
-	@Test
-	public void testAPresentationChannelName() {
-		TemplateSet templateSet = build(templateSetWith("test").aPresentationChannelName("test"));
-		assertThat(templateSet.getPresentationChannelName(), is("test"));
-	}
+    @Test
+    public void testAPresentationChannelName() {
+        TemplateSet templateSet = build(templateSetWith("test").aPresentationChannelName("test"));
+        assertThat(templateSet.getPresentationChannelName(), is("test"));
+    }
 }

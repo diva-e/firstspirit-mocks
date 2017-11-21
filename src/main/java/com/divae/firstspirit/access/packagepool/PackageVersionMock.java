@@ -8,45 +8,45 @@ import static org.mockito.Mockito.when;
 
 public final class PackageVersionMock {
 
-	private PackageVersionMock() {
-		throw new UnsupportedOperationException("Don't use default constructor");
-	}
+    private PackageVersionMock() {
+        throw new UnsupportedOperationException("Don't use default constructor");
+    }
 
-	public static PackageVersionBuilder packageVersionWith() {
-		return new DefaultPackageVersionBuilder();
-	}
+    public static PackageVersionBuilder packageVersionWith() {
+        return new DefaultPackageVersionBuilder();
+    }
 
-	public interface PackageVersionBuilder extends Builder<PackageVersion, PackageVersionBuilder> {
-		PackageVersionBuilder aTag(String tag);
+    public interface PackageVersionBuilder extends Builder<PackageVersion, PackageVersionBuilder> {
+        PackageVersionBuilder aTag(String tag);
 
-		PackageVersionBuilder aComment(String comment);
+        PackageVersionBuilder aComment(String comment);
 
-		PackageVersionBuilder isUpdateVersion(boolean updateVersion);
-	}
+        PackageVersionBuilder isUpdateVersion(boolean updateVersion);
+    }
 
-	public static final class DefaultPackageVersionBuilder extends DefaultBuilder<PackageVersion, PackageVersionBuilder, DefaultPackageVersionBuilder> implements PackageVersionBuilder {
+    public static final class DefaultPackageVersionBuilder extends DefaultBuilder<PackageVersion, PackageVersionBuilder, DefaultPackageVersionBuilder> implements PackageVersionBuilder {
 
-		private DefaultPackageVersionBuilder() {
-		}
+        private DefaultPackageVersionBuilder() {
+        }
 
-		@Override
-		public final PackageVersionBuilder aTag(String tag) {
-			when(getBuildable().getTag()).thenReturn(tag);
-			return getBuilder();
-		}
+        @Override
+        public final PackageVersionBuilder aTag(String tag) {
+            when(getBuildable().getTag()).thenReturn(tag);
+            return getBuilder();
+        }
 
-		@Override
-		public final PackageVersionBuilder aComment(String comment) {
-			when(getBuildable().getComment()).thenReturn(comment);
-			return getBuilder();
-		}
+        @Override
+        public final PackageVersionBuilder aComment(String comment) {
+            when(getBuildable().getComment()).thenReturn(comment);
+            return getBuilder();
+        }
 
-		@Override
-		public final PackageVersionBuilder isUpdateVersion(boolean updateVersion) {
-			when(getBuildable().isUpdate()).thenReturn(updateVersion);
-			return getBuilder();
-		}
+        @Override
+        public final PackageVersionBuilder isUpdateVersion(boolean updateVersion) {
+            when(getBuildable().isUpdate()).thenReturn(updateVersion);
+            return getBuilder();
+        }
 
-	}
+    }
 
 }
