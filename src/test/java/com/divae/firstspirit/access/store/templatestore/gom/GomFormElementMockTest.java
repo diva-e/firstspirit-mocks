@@ -21,6 +21,4 @@ public class GomFormElementMockTest extends MockTest {
         GomFormElement gomFormElement = build(gomFormElementWith("test"));
         assertThat(gomFormElement.name(), is("test"));
     }
-
-
 }
