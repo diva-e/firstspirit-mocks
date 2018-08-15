@@ -3,8 +3,10 @@ package com.divae.firstspirit.access.store.globalstore;
 import com.divae.firstspirit.access.project.ProjectMock.ProjectBuilder;
 import com.divae.firstspirit.access.store.StoreMock.DefaultStoreBuilder;
 import com.divae.firstspirit.access.store.StoreMock.StoreBuilder;
+import com.divae.firstspirit.access.store.globalstore.GlobalContentAreaMock.GlobalContentAreaBuilder;
 import com.divae.firstspirit.access.store.globalstore.ProjectPropertiesMock.ProjectPropertiesBuilder;
 import de.espirit.firstspirit.access.store.Store.Type;
+import de.espirit.firstspirit.access.store.globalstore.GlobalContentArea;
 import de.espirit.firstspirit.access.store.globalstore.GlobalStoreRoot;
 import de.espirit.firstspirit.access.store.globalstore.ProjectProperties;
 
@@ -27,6 +29,8 @@ public final class GlobalStoreRootMock {
 
     public interface GlobalStoreRootBuilder extends StoreBuilder<GlobalStoreRoot, GlobalStoreRootBuilder> {
         GlobalStoreRootBuilder projectProperties(Function<GlobalStoreRootBuilder, ProjectPropertiesBuilder> function);
+
+        GlobalStoreRootBuilder globalContentArea(Function<GlobalStoreRootBuilder, GlobalContentAreaBuilder> function);
     }
 
     public static final class DefaultGlobalStoreRootBuilder extends DefaultStoreBuilder<GlobalStoreRoot, GlobalStoreRootBuilder, DefaultGlobalStoreRootBuilder> implements GlobalStoreRootBuilder {
@@ -39,6 +43,13 @@ public final class GlobalStoreRootMock {
         public final GlobalStoreRootBuilder projectProperties(Function<GlobalStoreRootBuilder, ProjectPropertiesBuilder> function) {
             ProjectProperties projectProperties = build(function.apply(getBuilder()));
             when(getBuildable().getProjectProperties()).thenReturn(projectProperties);
+            return getBuilder();
+        }
+
+        @Override
+        public final GlobalStoreRootBuilder globalContentArea(Function<GlobalStoreRootBuilder, GlobalContentAreaBuilder> function) {
+            GlobalContentArea globalContentArea = build(function.apply(getBuilder()));
+            when(getBuildable().getGlobalContentArea()).thenReturn(globalContentArea);
             return getBuilder();
         }
     }

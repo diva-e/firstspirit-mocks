@@ -11,16 +11,26 @@ public final class GCAFolderMock {
         throw new UnsupportedOperationException("Don't use default constructor");
     }
 
-    public static <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> GCAFolderBuilder gcaFolderWith(String name, long id, TBUILDER parent) {
-        return new DefaultGCAFolderBuilder(name, id, parent);
+    public static <T extends IDProvider, E extends IDProvider, EBUILDER extends IDProviderBuilder<E, EBUILDER>> TruncatedGCAFolderBuilder gcaFolderWith(String name, long id, EBUILDER parent) {
+        return new DefaultTruncatedGCAFolderBuilder(name, id, parent);
     }
 
-    public interface GCAFolderBuilder extends IDProviderBuilder<GCAFolder, GCAFolderBuilder> {
+    public interface GCAFolderBuilder<T extends GCAFolder, TBUILDER extends GCAFolderBuilder<T, TBUILDER>> extends IDProviderBuilder<T, TBUILDER> {
     }
 
-    private static final class DefaultGCAFolderBuilder extends DefaultIDProviderBuilder<GCAFolder, GCAFolderBuilder, DefaultGCAFolderBuilder> implements GCAFolderBuilder {
+    public static class DefaultGCAFolderBuilder<T extends GCAFolder, EBUILDER extends GCAFolderBuilder<T, EBUILDER>, TBUILDER extends DefaultGCAFolderBuilder<T, EBUILDER, TBUILDER>> extends DefaultIDProviderBuilder<T, EBUILDER, TBUILDER> implements GCAFolderBuilder<T, EBUILDER> {
 
-        private <T extends IDProvider, TBUILDER extends IDProviderBuilder<T, TBUILDER>> DefaultGCAFolderBuilder(String name, long id, TBUILDER parent) {
+        protected <OT extends IDProvider, OTBUILDER extends IDProviderBuilder<OT, OTBUILDER>> DefaultGCAFolderBuilder(String name, long id, OTBUILDER parent) {
+            super(name, id, parent);
+        }
+    }
+
+    public interface TruncatedGCAFolderBuilder<T extends GCAFolder> extends GCAFolderBuilder<T, TruncatedGCAFolderBuilder<T>> {
+    }
+
+    private static final class DefaultTruncatedGCAFolderBuilder<T extends GCAFolder> extends DefaultGCAFolderBuilder<T, TruncatedGCAFolderBuilder<T>, DefaultTruncatedGCAFolderBuilder<T>> implements TruncatedGCAFolderBuilder<T> {
+
+        private <OT extends IDProvider, OTBUILDER extends IDProviderBuilder<OT, OTBUILDER>> DefaultTruncatedGCAFolderBuilder(String name, long id, OTBUILDER parent) {
             super(name, id, parent);
         }
     }
