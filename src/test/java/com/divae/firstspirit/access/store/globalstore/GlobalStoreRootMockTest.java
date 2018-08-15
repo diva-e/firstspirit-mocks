@@ -1,6 +1,7 @@
 package com.divae.firstspirit.access.store.globalstore;
 
 import com.divae.firstspirit.MockTest;
+import de.espirit.firstspirit.access.store.globalstore.GlobalContentArea;
 import de.espirit.firstspirit.access.store.globalstore.GlobalStoreRoot;
 import de.espirit.firstspirit.access.store.globalstore.ProjectProperties;
 import org.junit.Test;
@@ -8,6 +9,7 @@ import org.junit.Test;
 import static com.divae.firstspirit.BuilderMock.build;
 import static com.divae.firstspirit.access.LanguageMock.languageWith;
 import static com.divae.firstspirit.access.project.ProjectMock.projectWith;
+import static com.divae.firstspirit.access.store.globalstore.GlobalContentAreaMock.globalContentAreaWith;
 import static com.divae.firstspirit.access.store.globalstore.GlobalStoreRootMock.globalStoreRootWith;
 import static com.divae.firstspirit.access.store.globalstore.ProjectPropertiesMock.projectPropertiesWith;
 import static org.hamcrest.Matchers.is;
@@ -33,5 +35,13 @@ public class GlobalStoreRootMockTest extends MockTest {
         ProjectProperties projectProperties = globalStoreRoot.getProjectProperties();
         assertThat(projectProperties.getName(), is("uid"));
         assertThat(projectProperties.getStore().getId(), is(1L));
+    }
+
+    @Test
+    public void testWithGlobalContentArea() {
+        GlobalStoreRoot globalStoreRoot = build(globalStoreRootWith(1, projectWith("test", 0, languageWith("DE"))).globalContentArea(parent -> globalContentAreaWith("uid", 2, parent)));
+        GlobalContentArea globalContentArea = globalStoreRoot.getGlobalContentArea();
+        assertThat(globalContentArea.getName(), is("uid"));
+        assertThat(globalContentArea.getStore().getId(), is(1L));
     }
 }
