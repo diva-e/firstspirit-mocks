@@ -58,7 +58,8 @@ public final class ConnectionMock {
 
         @Override
         public final ConnectionBuilder anAdminService(Supplier<AdminServiceBuilder> supplier) {
-            return aService(((DefaultAdminServiceBuilder) getBuilder(supplier.get())).aConnection(getBuilder()), AdminService.class);
+            DefaultAdminServiceBuilder adminServiceBuilder = getBuilder(supplier.get());
+            return aService(adminServiceBuilder.aConnection(getBuilder()), AdminService.class);
         }
 
         @Override
